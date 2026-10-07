@@ -61,6 +61,8 @@ Another key insight is that **test planning happens early**. In the V‑Model, a
 
 You can see that not every SDLC explicitly addresses every fundamental lifecycle concern. Some models focus on a subset of the lifecycle, leaving deployment and maintenance implied, external, or outside the model's primary scope.
 
+![V-Model Diagram](resources/V-Model.png)  
+
 ## Spiral
 
 | Name | Goal | Guiding Principles | Correlations  | Techniques |
@@ -84,6 +86,8 @@ The Spiral SDLC is built around the idea that **risk determines what happens nex
 **Product Release**
 
 A key characteristic of the Spiral model is that **each revolution around the spiral does not produce a deployable product**. Instead, each loop increases the product’s completeness and functionality. Early loops may produce prototypes or partial implementations, while later loops refine architecture, add features, and stabilize the system. Only after the final iteration—when all planned loops have been completed and risks have been sufficiently reduced—is the fully developed product shipped to customers. In other words, the Spiral model delivers value incrementally but **releases only once**, at the end of the full spiral.
+
+![Spiral Diagram](resources/Spiral.png)  
 
 ## Evolutionary Prototyping
 
