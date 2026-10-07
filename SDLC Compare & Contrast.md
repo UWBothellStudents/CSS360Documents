@@ -20,9 +20,8 @@ Every Software Engineering project has these fundamental phases:
 6. **Deploy**: Give it to the customers (safely)  
 7. **Maintain**: Patch and augment the functionality (may need more phases to decide what/how to augment)
 
-# 
 
-# Waterfall
+## Waterfall
 
 | Name | Goal | Guiding Principle | Correlations | Techniques |
 | ----- | ----- | ----- | ----- | ----- |
@@ -36,11 +35,9 @@ Every Software Engineering project has these fundamental phases:
 
 ### Notes 
 
-in Correlations, every row is a 1:1 match with a Fundamental phase, with no blurring or combining anywhere. Waterfall's correlations column is boring by design.
+In Correlations, every row is a 1:1 match with a Fundamental phase, with no blurring or combining anywhere. Waterfall's correlations column is boring by design.
 
-# 
-
-# V-Shaped Model
+## V-Shaped Model
 
 | Name | Goal | Guiding Principles | Correlations  | Techniques |
 | ----- | ----- | ----- | ----- | ----- |
@@ -56,17 +53,15 @@ in Correlations, every row is a 1:1 match with a Fundamental phase, with no blur
 
 ### Notes
 
-The V-Model is also called the **Verification-Validation Model** because it is primarily a verification and validation framework, focused on ensuring that requirements, design artifacts, implementation, and testing are tightly linked. The V-Model's main distinction is that test **planning** is embedded within the earlier phases rather than deferred until after implementation.
+The V-Model is a verification and validation framework, focused on ensuring that requirements, design artifacts, implementation, and testing are tightly linked. The V-Model's main distinction is that test **planning** is embedded within the earlier phases rather than deferred until after implementation.
 
-A common misunderstanding comes from diagrams that visually place *all* testing phases on the right side and label that entire side “Validation.” In reality, **Validation only happens at the very top**, during **User Acceptance Testing**, because that is the only phase that checks the system against *user needs*. Everything below UAT is **Verification**, because those tests check the system against *design specifications*. This distinction is essential: the right side of the V contains both Verification and Validation, even though many drawings blur the difference.
+A common question about the V-Model diagram is why the descent on the left is labeled Verification and the ascent on the right Validation. Using the classic definitions, verification asks "*are we building the product right?*" and validation asks "*are we building the right product?*" Acceptance testing at the top of the V is clearly validation, since it checks the system against user needs. Whether the lower phases on the right also count as validation is murkier: unit and integration tests check against design specifications, which is verification, and system testing sits in a gray area. A more useful way to read the diagram is by activity rather than by side. On the way down, the team reviews and inspects requirements and design documents and **designs** the tests that will later be run against each level. On the way up, they **execute** those tests, which produces the evidence that each level conforms to its specification and, at the top, that the system meets user needs.
 
 Another key insight is that **test planning happens early**. In the V‑Model, acceptance test plans are created during Requirements Analysis, system test plans during System Design, integration test plans during Architectural Design, and unit test plans during Module Design. This early planning reinforces the idea that quality is built into the process from the beginning rather than added at the end.
 
 You can see that not every SDLC explicitly addresses every fundamental lifecycle concern. Some models focus on a subset of the lifecycle, leaving deployment and maintenance implied, external, or outside the model's primary scope.
 
-# 
-
-# Spiral
+## Spiral
 
 | Name | Goal | Guiding Principles | Correlations  | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
@@ -75,7 +70,6 @@ You can see that not every SDLC explicitly addresses every fundamental lifecycle
 | **Engineering / Development & Testing** | Build and verify the solution for this iteration | Develop incrementally, verify functionality, refine design | Implementation \+ Test (verification). Also known as Develop, Construct | Architectural modeling, interface mockups, unit test suites, integration test harnesses |
 | **Evaluation / Customer Review** | Validate the iteration with stakeholders and plan the next cycle | Validate usefulness, gather feedback, decide next steps | Test (validation) \+ Deploy (internal). Also known as Evaluate, Review, Commit | User walkthroughs, usability testing scripts, feedback capture forms, iteration review reports |
 
-### 
 
 ### Notes
 
@@ -91,11 +85,7 @@ The Spiral SDLC is built around the idea that **risk determines what happens nex
 
 A key characteristic of the Spiral model is that **each revolution around the spiral does not produce a deployable product**. Instead, each loop increases the product’s completeness and functionality. Early loops may produce prototypes or partial implementations, while later loops refine architecture, add features, and stabilize the system. Only after the final iteration—when all planned loops have been completed and risks have been sufficiently reduced—is the fully developed product shipped to customers. In other words, the Spiral model delivers value incrementally but **releases only once**, at the end of the full spiral.
 
-# 
-
-# Evolutionary Prototyping
-
-### 
+## Evolutionary Prototyping
 
 | Name | Goal | Guiding Principles | Correlations  | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
@@ -116,7 +106,7 @@ Software prototyping comes in several forms, each serving a different purpose. T
 * **Incremental prototypes** are developed in pieces, with each prototype adding functionality until the full product emerges.   
 * **Extreme prototypes** are common in web development, starting with a static UI, then adding services, then full functionality. 
 
-# Scrum
+## Scrum
 
 | Name | Goal | Guiding Principles | Correlations | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
@@ -136,7 +126,7 @@ Scrum is also a lesson on how modern software teams organize themselves. The Pro
 
 Scrum is not just a project management technique: it is a learning cycle. Each sprint is a miniature SDLC: plan, build, inspect, and adapt. By repeating this cycle, teams reduce risk, incorporate feedback early, and deliver meaningful progress at a steady pace. This makes Scrum a practical and resilient approach for real-world software development, where uncertainty is the norm and responsiveness is essential.
 
-# Kanban
+## Kanban
 
 | Kanban Activity Area | Goal | Guiding Principles | Correlations | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
@@ -155,7 +145,7 @@ Deployment is a phase that is not defined in Kanban. There is a principle that d
 
 Maintenance is just another "*feature*" that is put onto the board and prioritized with the creation of features. 
 
-# Extreme Development
+## Extreme Programming
 
 | Name | Goal | Guiding Principles | Correlations | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
@@ -176,9 +166,7 @@ XP also encourages small and frequent releases, which give customers real softwa
 
 Traditional SDLC models assume that the cost of change grows over time. If a requirement changes late in the project, the team might need to rewrite code, redesign architecture, and redo testing. XP challenges this assumption by using engineering practices that keep the system flexible and easy to modify. The idea is that if the codebase is clean, well tested, and continuously refactored, then changes do not accumulate the same level of risk or cost. **Late changes are not inherently expensive.** XP tries to create an environment where change is expected and manageable. Instead of resisting late changes, XP embraces them by keeping the system flexible and by maintaining a high level of technical discipline. This mindset helps teams respond to real customer needs even when those needs evolve during development.
 
-# 
-
-# Code and Fix
+## Code and Fix
 
 | Name | Goal | Guiding Principles | Correlations | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
@@ -192,9 +180,9 @@ Code‑and‑Fix is the simplest and least structured approach to software devel
 
 You should understand that Code‑and‑Fix is easy to start but difficult to sustain. Because there is no structured design, testing discipline, or planning, the codebase often becomes tangled and hard to maintain. Technical debt accumulates quickly, and late changes can become very expensive. Although Code‑and‑Fix can work for very small throwaway projects or prototypes, it is risky for anything larger. This model helps students appreciate why more disciplined SDLC approaches exist and why planning, design, and testing matter.
 
-# Compare and Contrast
+## Compare and Contrast
 
-# Characteristics
+### Characteristics
 
 | Column Name | Description |
 | :---: | ----- |
@@ -204,7 +192,6 @@ You should understand that Code‑and‑Fix is easy to start but difficult to su
 | **Delivery Cadence** | Explains how often the model delivers working software. It highlights whether delivery is one‑time, staged, iterative, or continuous. *Example: Scrum delivers every sprint, Kanban delivers whenever an item clears the board.* |
 | **Practices and Artifacts** | Captures the concrete behaviors, outputs, and roles emphasized by the model. This includes prototyping, documentation rigor, and functional roles. *Example: Spiral uses prototypes for risk reduction, Waterfall produces heavy documentation, Scrum defines roles such as Product Owner and Scrum Master.* |
 
-### 
 
 ### Part 1: Defining Characteristics
 
