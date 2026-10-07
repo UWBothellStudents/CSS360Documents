@@ -22,7 +22,7 @@ Every Software Engineering project has these fundamental phases:
 
 
 ## Waterfall
-
+![Waterfall Diagram](resources/Waterfall.png)  
 | Name | Goal | Guiding Principle | Correlations | Techniques |
 | ----- | ----- | ----- | ----- | ----- |
 | **Requirements** | Capture a complete picture of what the customer wants before any other work begins. | Get it fully right the first time, since this phase will not be revisited later. | Requirements  | Stakeholder interviews; formal requirements documentation. |
@@ -38,7 +38,7 @@ Every Software Engineering project has these fundamental phases:
 In Correlations, every row is a 1:1 match with a Fundamental phase, with no blurring or combining anywhere. Waterfall's correlations column is boring by design.
 
 ## V-Shaped Model
-
+![V-Model Diagram](resources/V-Model.png)  
 | Name | Goal | Guiding Principles | Correlations  | Techniques |
 | ----- | ----- | ----- | ----- | ----- |
 | **Requirements Analysis** | Capture user needs and define acceptance criteria | Clarify expectations early and document precisely | Requirements. Test (Validation) | User requirements documents, acceptance test plans, use‑case modeling |
@@ -61,10 +61,8 @@ Another key insight is that **test planning happens early**. In the V‑Model, a
 
 You can see that not every SDLC explicitly addresses every fundamental lifecycle concern. Some models focus on a subset of the lifecycle, leaving deployment and maintenance implied, external, or outside the model's primary scope.
 
-![V-Model Diagram](resources/V-Model.png)  
-
 ## Spiral
-
+![Spiral Diagram](resources/Spiral.png)  
 | Name | Goal | Guiding Principles | Correlations  | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
 | **Planning / Objective Setting** | Identify objectives, constraints, and requirements for the iteration | Clarify goals early, prioritize risks, define scope | Requirements \+ Analysis. Also known as Identify, Determine | Vision statements, stakeholder interviews, requirement prioritization matrices |
@@ -87,10 +85,10 @@ The Spiral SDLC is built around the idea that **risk determines what happens nex
 
 A key characteristic of the Spiral model is that **each revolution around the spiral does not produce a deployable product**. Instead, each loop increases the product’s completeness and functionality. Early loops may produce prototypes or partial implementations, while later loops refine architecture, add features, and stabilize the system. Only after the final iteration—when all planned loops have been completed and risks have been sufficiently reduced—is the fully developed product shipped to customers. In other words, the Spiral model delivers value incrementally but **releases only once**, at the end of the full spiral.
 
-![Spiral Diagram](resources/Spiral.png)  
+
 
 ## Evolutionary Prototyping
-
+![Evolutionary Prototyping Diagram](resources/evolutionary.png)  
 | Name | Goal | Guiding Principles | Correlations  | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
 | **Requirements Gathering and Analysis** | Identify the subset of requirements to explore in the next prototype cycle | Focus on uncertain or high‑value features; gather just enough detail to build | Requirements \+ Analysis | User stories, feature prioritization matrices, context diagrams |
