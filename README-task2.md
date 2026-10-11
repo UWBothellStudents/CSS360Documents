@@ -282,7 +282,7 @@ Here is a sketch of an architecture where there is load balancer across multiple
 ![Load Balancing Sketch](resources/discord_memory_arch.png)
 
 # Q & A
-### 1. How can the bot's external network architecture remain the same while its internal code design changes from `orig` to `modular-architecture`?
+### 1. How can the bot's external network architecture remain the same while its internal code design changes? (from `orig` to `modular-architecture`)
 
 In both versions, the network path is the same: a Discord client causes Discord's servers to send an HTTPS request to the bot's `/interactions` endpoint, and the bot sends an HTTP response back to Discord. The same systems communicate over the same protocol; only the organization inside the bot changes.
 
@@ -312,10 +312,32 @@ Here is a very detailed trace:
 
 ### 4. Where does the bot create data that becomes JSON?
 
-Much of the bot constructs JavaScript objects that Express or `JSON.stringify()` later serializes into JSON. For example, `handleCommand()` in `commands/test.js` returns an object with `type` and `data` properties. Its nested `components` array describes the message Discord should display.
+The bot constructs JavaScript objects that Express later serializes into JSON (text representation of the object). For example, `handleCommand()` in `commands/test.js` returns an object with `type` and `data` properties. The `data` property is an object with more properties (flags and components). `components` is an array that describes the message Discord should display.
 
-The object literal is not itself JSON because it contains JavaScript constants, a function call, a template literal, and unquoted property names. It becomes JSON when `command-handler.js` passes it to `res.send(...)`. Another explicit example is `utils.js`, where `JSON.stringify(options.body)` converts a JavaScript value into JSON before sending a request to Discord's API.
+```javaScript
+export function handleCommand() {
+  return {
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    data: {
+      flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+      components: [
+        {
+          type: MessageComponentTypes.TEXT_DISPLAY,
+          content: `hello world ${getRandomEmoji()}`,
+        },
+      ],
+    },
+  };
+}
+```
+The JavaScript code has a literal object, not actual JSON. Note that it contains JavaScript constants (e.g. `MessageComponentTypes.TEXT_DISPLAY`), a function call (`getRandomEmoji()`), and **unquoted** property names. It becomes JSON when `command-handler.js` passes it to `res.send(...)`.  
 
+Another explicit example is `utils.js`, where `JSON.stringify(options.body)` converts a JavaScript value into JSON before sending a request to Discord's API.
+
+```javaScript
+  // Stringify payloads
+  if (options.body) options.body = JSON.stringify(options.body);
+```
 ### 5. What is the relationship between Node.js, Express, and npm?
 
 - **Node.js** is the runtime that executes the JavaScript bot outside a browser.
@@ -336,23 +358,78 @@ Middleware is code that runs during request processing before the final route ha
 
 If verification succeeds, processing continues and the handler can read `req.body`. If it fails, the request is rejected before any command logic runs. This prevents an unauthenticated sender from pretending to be Discord and invoking the bot's interaction endpoint. The public key is loaded from an environment variable so deployment-specific configuration is not hard-coded into the source.  
 
-> Do some research around where and how the method `verifyKeyMiddleware` is called. It could be beyond your current level to comprehend, so I've provided an answer below.  
+> A truly curious Computer Scientist would do some research to learn where and how the method `verifyKeyMiddleware` is called. It could be beyond your current level to comprehend, so I've provided an answer below.  
 
-The method `post` in `app.js` is a method on an `Express` object. You, the developer, use the function to *register routes*. This means that you tell Express what to do when a POST request with a specific route is received. Our code says that when the webserver receives a request with the "/interactions" path, then it should call two functions (callbacks) that are provided as arguments. The arguments to `app.post` are a path and two functions. We've now entered into the realm of *functional programming*, which is a type of programming where functions are *first class citizens*.  
+The method `post` in `app.js` is a method on an `Express` object. You, the developer, use the function to *register routes*. A *route* is a *path* in the URL. To *register* means that you tell Express what to do when a POST request with a specific route is received. Our code says that when the webserver receives a request with the "/interactions" path, then it should call two functions (callbacks, or route handlers) that are provided as arguments.  
 
-The function `verifyKeyMiddleware` is not invoked for every request. Instead, it is called only once and it *returns* a function that is invoked on every "/interactions" request.  
+The arguments to `app.post` are:
+1) a path (or route) named '/interactions'  
+2) a function to call first. It would seem that the first function to call is `verifyKeyMiddleware`, but that is not true. Instead, the function verifyKeyMiddleware *returns* a function that is invoked. Its purpose is to authenticate the request and to stop processing the request if **un**authentic.     
+3) another function to call next. This next function is provided *inline*. The functions prototype is `async function (req, res) {`. It is an *anonymous* function that takes two arguments. This anonymous function is invoked on every "/interactions" request only if the request was authenticated. 
 
-The third argument to `app.post` starts with `async function (req, res) {` and it is the definition of an anonymous function that takes two arguments. This anonymous function is invoked on every "/interactions" request.  
+Now we've now entered into the realm of *functional programming*, which is a type of programming where functions are *first class citizens*. The function `app.post` accepts functions as arguments and `verifyKeyMiddleware` returns a function.   
 
-### 8. How does the modular design route interaction requests/responses  that are related to a button, select-menu, or modal dialog?
+```javaScript
+app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async function (req, res) {
+  // Discord uses the interaction type to distinguish pings, slash commands,
+  // component clicks, modal submissions, and other interaction payloads.
+  const { type } = req.body;
 
-*Button* and *Select Menu* are components that have a specific type in their POST body. A modal dialog's submit also has its own type. When a component needs to take some action, a new HTTP request is issued. It is not a continuation of the slash-command function. 
+  // <more code not shown>
+```
+To summarize: verifyKeyMiddleware returns a function whose purpose is to verify the authenticity of the request (that it was genuinely sent and signed by Discord and not forged by someone else). Only if that verification succeeds does Express invoke the next route handler.  
 
-`app.js` first dispatches by interaction type:
+### 8. How does the modular design route interactions that are related to a button, select-menu, or modal dialog?
 
-- `MESSAGE_COMPONENT` goes to `component-handler.js`.
-- `MODAL_SUBMIT` goes to `modal-handler.js`.
+*Button* and *Select Menu* are components that have a specific type in their POST body. A modal dialog's submit also has its own type. When a component needs to take some action in the Discord UI, a new HTTP request is issued.  
 
-These dispatchers read the interaction's `custom_id` and use it to select a handler imported from a command module. For example, `component-handler.js` maps `BUTTON_COMPONENT_ID` to the component handler in `commands/test-button.js`. Some challenge IDs contain changing context, so the dispatcher can match an ID prefix instead of requiring an exact match.
+Here is a high level summary:  
+- The bot receives a request that is identified as a command.  
+  - The request is dispatched to code than handles commands.
+  - The command handler code responds with JSON that informs Discord to present a component.  
+- The user interacts with the component which then sends a new request to the bot.  
+- The bot receives a request that is identified as coming from a component.
+  - The request is dispatched to code that handles component requests.
+  - After handling the component's request, JSON is returned indicating that the request was handled.   
+
+More specifically:  
+- `app.js` first dispatches by interaction type:
+  - `MESSAGE_COMPONENT` goes to `component-handler.js`.
+  - `MODAL_SUBMIT` goes to `modal-handler.js`.
+- These dispatchers read the interaction's `custom_id` and use it to select a handler imported from a command module.   
+
+For example, a component request goes to `component-handler.js` which uses the ID to find the specific function to call. If the ID is `BUTTON_COMPONENT_ID` then that is sent to `handleTestButtonComponent`, the component handler in `commands/test-button.js`. 
+
+In summary, we dispatch requests first by type and then by ID. Below are code snippets attempting to show how a request is dispatched.    
+```javaScript
+  // File: app.js
+  // Dispatch request by TYPE
+  if (type === InteractionType.MESSAGE_COMPONENT) {
+    return handleComponent(req, res);
+  }
+```
+
+```javaScript
+// File: component-handler.js
+// get access to our testButton handler
+import {
+  BUTTON_COMPONENT_ID,
+  handleComponent as handleTestButtonComponent,
+} from '../commands/test-button.js';
+
+// create a Map to quickly get our handler by ID
+const componentHandlers = {
+  [BUTTON_COMPONENT_ID]: handleTestButtonComponent,
+  // more not shown
+};
+
+// Dispatch by ID
+export async function handleComponent(req, res) {
+  const componentId = req.body.data.custom_id;
+  const componentHandler = getComponentHandler(componentId);
+
+  if (componentHandler) {
+    const result = componentHandler(componentId, req);
+```
 
 This design keeps shared routing centralized while co-locating each feature's behavior in its command handler. It also shows why `custom_id` values must be unique and stable enough for the dispatcher to recognize them.
