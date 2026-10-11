@@ -109,6 +109,7 @@ Software prototyping comes in several forms, each serving a different purpose. T
 * **Extreme prototypes** are common in web development, starting with a static UI, then adding services, then full functionality. 
 
 ## Scrum
+![Scrum Diagram](resources/scrum.png)  
 
 | Name | Goal | Guiding Principles | Correlations | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
@@ -129,7 +130,7 @@ Scrum is also a lesson on how modern software teams organize themselves. The Pro
 Scrum is not just a project management technique: it is a learning cycle. Each sprint is a miniature SDLC: plan, build, inspect, and adapt. By repeating this cycle, teams reduce risk, incorporate feedback early, and deliver meaningful progress at a steady pace. This makes Scrum a practical and resilient approach for real-world software development, where uncertainty is the norm and responsiveness is essential.
 
 ## Kanban
-
+![Kanban Board](resources/kanban.jpg)  
 | Kanban Activity Area | Goal | Guiding Principles | Correlations | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
 | **Feature Board** | Deliver features through a continuous flow of work | Visualize workflow, limit WIP, manage flow, improve collaboratively | Implementation \+ Test | Explicit workflow policies, WIP limits, pull signals, cycle‑time tracking |
@@ -148,7 +149,7 @@ Deployment is a phase that is not defined in Kanban. There is a principle that d
 Maintenance is just another "*feature*" that is put onto the board and prioritized with the creation of features. 
 
 ## Extreme Programming
-
+![Extreme Programming Diagram](resources/extremeprog.png)  
 | Name | Goal | Guiding Principles | Correlations | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
 | **Planning** | Understand user stories and define the next small slice of value | Embrace change, prioritize customer involvement, plan frequently | Requirements \+ Analysis | User stories, story splitting, release planning, on‑site customer conversations |
@@ -169,7 +170,7 @@ XP also encourages small and frequent releases, which give customers real softwa
 Traditional SDLC models assume that the cost of change grows over time. If a requirement changes late in the project, the team might need to rewrite code, redesign architecture, and redo testing. XP challenges this assumption by using engineering practices that keep the system flexible and easy to modify. The idea is that if the codebase is clean, well tested, and continuously refactored, then changes do not accumulate the same level of risk or cost. **Late changes are not inherently expensive.** XP tries to create an environment where change is expected and manageable. Instead of resisting late changes, XP embraces them by keeping the system flexible and by maintaining a high level of technical discipline. This mindset helps teams respond to real customer needs even when those needs evolve during development.
 
 ## Code and Fix
-
+![Code and Fix Diagram](resources/codenfix.png)  
 | Name | Goal | Guiding Principles | Correlations | Techniques |
 | :---: | ----- | ----- | ----- | ----- |
 | **Initial Coding** | Start writing code as quickly as possible | Minimize upfront planning, rely on intuition | Requirements \+ Design (informal) | Quick prototypes, ad‑hoc design sketches, exploratory coding |
@@ -181,6 +182,8 @@ Traditional SDLC models assume that the cost of change grows over time. If a req
 Code‑and‑Fix is the simplest and least structured approach to software development. There is little or no upfront planning, and the team begins coding immediately. Requirements and design are handled informally, often through quick discussions or rough sketches. As problems appear, the team fixes them on the fly, which creates a cycle of coding and patching that continues until the software seems stable enough to release.
 
 You should understand that Code‑and‑Fix is easy to start but difficult to sustain. Because there is no structured design, testing discipline, or planning, the codebase often becomes tangled and hard to maintain. Technical debt accumulates quickly, and late changes can become very expensive. Although Code‑and‑Fix can work for very small throwaway projects or prototypes, it is risky for anything larger. This model helps students appreciate why more disciplined SDLC approaches exist and why planning, design, and testing matter.
+
+---
 
 ## Compare and Contrast
 
