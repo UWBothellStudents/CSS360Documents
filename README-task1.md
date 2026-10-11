@@ -168,19 +168,23 @@ https://your-codespace-name-3000.app.github.dev/interactions
 3. Click **Save Changes**. Discord immediately sends a test `PING` to verify a response. If the server is running the save should work. If it fails, confirm the app is running and the port is public, then try saving again.  
 
 ### 8. Test it
-You may need to refresh your Discord site, or just wait a bit. Make sure that you have the Codespaces bot running (listening on port 3000).   
+You may need to refresh your Discord site, or just wait a bit. Make sure that you have the Codespaces bot running (listening on port 3000). Make sure the port is public.    
 
 In your Discord test server, type `/test`. The bot should reply "hello world 👋". (The emoji will be random.)   
 
-### 9. GitHub Settings
-If you created the Git project via GitHub Classroom, and you added team members from there, then the permissions should be good-to-go. However, if for whatever reason, this is not the case, then you need to make sure that the professor and all team members have Write access to the repo.  
-
-### 10. Project Kanban Board
-1. Go to GitHub and find `Projects` in the navigation bar. 
-2. Create a new project, and use the `Kanban` template. 
+### 9. Project Kanban Board
+1. Go to GitHub and go to the UWBothellStudents organization. Click on `Projects` in the navigation bar. 
+2. Create a new project
+   - Click on "From your organization" in the menu of "Project templates" on the left.  
+   - Select `StridesSampleKanban`   
+   - Name your project after you team. Example: `Team 4`  
+3. Set the Default repository  
+   - Select the "kebab" menu (the 3 dots ...) in the upper right next to "Workflows".  
+   - Select `Settings`  
+   - Select your team's respository to be the "Default respository"  
 3. Create a new placeholder feature in the Backlog of your Kanban board.  
 
-![Kanban Board](resources/discord_kanban_project.png)  
+![Kanban Board with 5 Lanes](resources/discord_custom_kanban.png)  
 
 ## Troubleshooting  
 ISSUE: **The `npm run register` command fails**  

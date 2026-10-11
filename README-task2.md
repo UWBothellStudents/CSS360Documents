@@ -1,4 +1,4 @@
-# Task #2: Exploring Example code
+# Task #2: Discord Architecture
 
 ## Overview
 You should have a very simple Discord bot working. Now you will explore the code found the in `commands` and `module-architecture` folders.  
@@ -79,7 +79,7 @@ When a work item is in the Validation column, it is assumed to be in the *Tracki
 There needs to be communication from the Developer to the Validator so that the validation can be completed on-time and without delay. One should **over-communicate**: send email, document in the Validation work item, and verbally inform the Validator during Stand Up.  
 
 **Validation Failure**  
-It is possible that during Validation bugs are discovered. It could be that functionality is missing or something just doesn't work. In this case, create a new Work Item (issue) and label it as a Bug. 
+It is possible that during Validation bugs are discovered. It could be that functionality is missing or something just doesn't work. In this case, create a new Work Item (issue) and label it as a Bug. Add the work item to the Sprint Backlog (unless it seems too large or otherwise out of scope). Be cognizant of *Feature Creep* versus *Faulty Implementation*. In a single sprint, we want to assure that feature work is delivered as bug free as possible, so the team should attempt to fix all bugs found in the current sprint. However, some bugs essentially reveal a misunderstanding of the requirements and represent a whole new work item (added/different functionality). Sometimes it can be better to punt those to the Product Backlog and completed in a different sprint.  
 
 **Scrum - Stand Ups**  
 Because we meet only once per week and our Sprints are sometimes just one week long, students should **update the Kanban board outside of class**. Whenever the work is completed, update the item right away.  
@@ -91,37 +91,18 @@ Only one person in your group needs to do this. You can do it as a group, or jus
 3. Add a new field "User Story Type"  
 4. Create Burn Down Chart
 
-### Update Kanban Board
-Update the Kanban board to have 5 Lanes: Product Backlog, Sprint Backlog, Implement, Validate, Done.  
-* Go to the Project and click on the "Backlog" Tab.  
-* Next to the columns, click the "..." and select "Edit details..." then rename the field and provide a proper description.  
-* On the right, there is a (gear) "View" button. Click on that and select "Table."  
-* In the table, there is a column header named "Status". 
-  - Click on "..." next to the "Status" header.  
-  - Click on "Field Settings..."  
-  - You should see a list of Options. Edit them so that we get a Kanban board as shown below.  
+### Review Kanban Board and Work Items
+Verify the following:
+* The Kanban board has 5 Lanes: Product Backlog, Sprint Backlog, Implement, Validate, Done. 
+* Verify that the Work Item has the required fields:  
+  - Remaining: Time remaining on this work item to be frequently updated manually  
+  - User Story Type: There are three options (Epic, Feature, User Story)  
+* Verify that you can set the fields of a Work Item  
+* Verify that you can create a sub-issue  
+* Verify that you can see a Work Item in the Product Backlog and that you can move it around to other lanes in the Kanban Board  
+* Verify that you can assign a Work Item to a person (such as yourself)  
 
-![Kanban Board with 5 Lanes](resources/discord_custom_kanban.png)  
-
-### Update Field
-Rename the "Estimation" field to be "Estimation (remaining)".  
-* Be in *Table* view. Click on the "..." next to "Estimation", select "Field Settings..." and rename it.  
-
-### Add User Story Type
-Add a field named "User Story Type".  
-* In the *Table* view, scroll all the way to the right and click the "+".  
-* At the top, click "+ Add Field"  
-* Click on the link "Create a project field"  
-* Name it "User Story Type"  
-* Field Type will be "Single Select"  
-* Add the options: [Epic, Feature, User Story]  
-
-### Creating a new Work Item
-I once had problems creating a new Work Item.  
-
-You can visit: `https://github.com/UWBothellStudents/<repo>/issues/new`  
-
-Then, on the right, assign it to a Project.  
+![Kanban Board with 5 Lanes](resources/discord_custom_kanban.png)   
 
 ## Running Modular Architecture
 It is easy to switch from the original implementation found in the `orig` folder to the `modular-architecture` folder. You simply need to edit `package.json` by replacing `orig` with `modular-architecture`.
