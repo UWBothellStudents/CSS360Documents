@@ -1,4 +1,5 @@
 # Principles & Values
+The Values describe a mindset and the Principles describe how that mindset shows up in action.  
 
 ## Values
 1. Individuals and interactions over process and tools  
@@ -17,7 +18,7 @@ There are 12 Principles in Agile Development. Here we look at them and attempt t
 
 **Principle #1**:  
 **Agile:** Our highest priority is to satisfy the customer through the early and continuous delivery of valuable software.  
-> Quick Phrase: *Customer is King!*  
+> Quick Phrase: *Satisfy the customer*  
 
 **Planned:** Our highest priority is to satisfy the customer by delivering a complete, high-quality product that meets the agreed requirements on schedule.
 
@@ -33,7 +34,7 @@ There are 12 Principles in Agile Development. Here we look at them and attempt t
 
 **Principle #3**:  
 **Agile:** Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale.  
-> Quick Phrase: *Continuous Integration*  
+> Quick Phrase: *Integrate continuously*  
 
 **Planned:** Deliver software according to planned milestones, and final delivery date, emphasizing completeness, stability, and integration.
 
@@ -73,7 +74,7 @@ There are 12 Principles in Agile Development. Here we look at them and attempt t
 
 **Principle #8**:  
 **Agile:** Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.  
-> Quick Phrase: *Sustainable working pace*  
+> Quick Phrase: *Work sustainably*  
 
 **Planned:** Projects should be planned and managed to achieve objectives while maintaining sustainable use of time and resources. All should be able to maintain a constant pace indefinitely.  
 > Note: There could be no change in this principle's wording aside from swapping "Planned" for "Agile" since there is no "how" in the Agile statement. However, Waterfall models tend to experience a **Death March** more frequently than Agile methods.  
@@ -91,7 +92,7 @@ There are 12 Principles in Agile Development. Here we look at them and attempt t
 
 **Principle #10**:  
 **Agile:** Simplicity, the art of maximizing the amount of work not done, is essential.  
-> Quck Prase: *Avoid needless work*  
+> Quck Prase: *Keep it simple* or *Avoid needless work*  
 
 **Planned:** Thorough and careful planning should identify and organize all necessary work so only the required work is completed.
 
