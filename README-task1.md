@@ -1,4 +1,4 @@
-# Task #1: Creating a Discord Bot 
+# Sprint #1: Creating a Discord Bot 
 You will create a Discord Bot in JavaScript.  
 
 ## Overview

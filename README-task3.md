@@ -1,27 +1,46 @@
-# Task #3: Working in Parallel
+# Sprint #3: Feature Work
 
 ## Overview
-In Task #1 you all shared one Codespace, one bot, and one URL. That doesn't scale
-once multiple people are writing code at the same time. Someone's `npm start` could stomp on someone else's, and only one Interactions Endpoint URL can be registered at a time.
+In Sprint #1 you all shared one Codespace, one bot, and one URL. That doesn't scale
+once multiple people are writing code at the same time. Someone's `npm start` could stomp on someone else's, and only one Interactions Endpoint URL can be registered at a time.  
+
+In this Sprint, each member of the group will develop a medium-sized feature in their own branch that will get merged into main. Each member will test someone else's feature. The group will create a Tag of the *release*.   
 
 **Task:**  
-You will move from the shared setup environment to your own personal environment.
+You will move from the shared setup environment to your own personal environment. Each person will develop a non-trivial feature and a different person will test it.  
 
-**Deliverables:**  
-* Submit a screenshot of your new personal slash command on your own bot.  
-* Submit a screenshot of the team's unified Discord server that works with everyone's new commands.   
-* Create a Git Tag v1.0 with all the team members' contributions.
+**Submitted Deliverables:**  
+* Submit the text of your feature's User Story (and other requirements text).  
+* Submit the text for your feature's Test Scenarios.    
+* Submit the link to your Closed `Pull Request` as found in GitHub.  
+
+**Deliverables in GitHub:**  
+* GitHub should contain your branch for your feature work, and that work should be merged into `main`.  
+   - Your feature is functional.  
+   - Your feature has tests that run with `npm test`. (Use AI to help)  
+* A Burndown graph will be created by scripts using your Work Items. The Kanban board on GitHub should reflect consistent progress.      
+* Create a Git Tag v1.0 with all the team members' contributions. This should be a Work Item on the Kanban board for one member to complete.  
+
+**Prepare:**  
 * In class, you'll fill out a survey as you and a peer review your understanding of the work in this task.  
 
-**The goals are that from here on out:**  
+**The goals:**  
 - Each student works on their own **Codespace instance**.
-- Each student works on their own **git branch** (that runs in their own Codespace).
+- Each student works on their own **git branch** (that runs in their own Codespace).  
+- Exercise branches, pull requests, tests, Kanban  
+- Work in a environment where many developers simultaneously create multiple features in one project.   
 - Each student registers their own **Discord Application** (own bot, own token,
   own Interactions URL). This is so you can develop and test independently without
   touching anyone else's setup.
 - Everyone's test bot lives in the **same team Discord server.** You're not
   each creating a separate server. One server, multiple bots.
 - The Kanban board and repo **stay exactly as they are.** No changes needed there.
+
+**Steps:** (TODO: reconcile this with steps below) 
+1. As a group, brainstorm some Discord bot features.  
+2. Assign one or more significant features to each team member.  
+3. Break up Feature into smaller User Stories.  
+4. Use AI to develop and Test.  
 
 ## One-time team setup (only one person does this)
 
