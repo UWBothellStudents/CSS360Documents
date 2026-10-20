@@ -1,4 +1,4 @@
-# Task #2: Discord Architecture
+# Sprint #2: Discord Architecture
 
 ## Overview
 You should have a very simple Discord bot working. Now you will explore the code found the in `commands` and `module-architecture` folders.  
