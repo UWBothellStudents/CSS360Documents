@@ -1,10 +1,37 @@
-# Reading Reflections Answers
+# Part 2: Reading Reflections
 
-1.6 Kanban  
-2.2 Vibing with Git  
-3.2 Arch to Design
+## Summary
+This section spans three different units:  
+* SDLC: we finish the discussion on SDLCs by reviewing Kanban.  
+* Using tools: VS Code, Git, and GitHub  
+* Architecture and Design is started  
 
-# 1.6 Kanban
+### Slide Decks
+* 1.6 Kanban  
+* 2.1 VS Code & Clone  
+* 2.2 Vibing with Git  
+* 2.3 Discord Bots  
+* 3.1 Architecture  
+* 3.2 Arch to Design  
+
+### Reading
+#### 1.6 Kanban
+1. [Agile Project Management with Kanban | Eric Brechner | Talks at Google (](https://www.youtube.com/watch?v=CD0y-aU1sXo)[youtube.com](http://youtube.com)[)](https://www.youtube.com/watch?v=CD0y-aU1sXo)  Kanban Video (1 hour):   
+2. [What is Kanban in Project Management?](https://www.atlassian.com/agile/kanban) 
+
+#### 2.2 Vibing with Git
+
+1. [Git — Practical Java](https://java.mrstride.com/Topics/git.html)   
+2. [*Celebrating 20 Years of Git: 20 Interesting Facts From its Creator | Tower Blog*](https://www.git-tower.com/blog/git-turns-20) 
+
+
+#### 3.2 Arch to Design
+
+1. [Blessed Isolation \- Better Design](https://imwrightshardcode.com/2006/08/blessed-isolation-better-design/)  
+2. [MMM Chapter 4\. Aristocracy, Democracy, and System Design](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch04.xhtml)
+
+
+## 1.6 Kanban
 
 **What is Kanban?**
 
@@ -122,7 +149,7 @@ Rough Draft Answers:
 * Eric claims: to convert from Scrum to Kanban, just tell the team to add WIP limits. After a while, team will realize that Sprint Planning isn’t necessary, and other things aren’t necessary (demo, retrospective, etc.)  
 * Eric claims that Kanban can scale to very large teams, afterall, they use Kanban on Windows. Does this mean Kanban is a good choice regardless of the product? Why or why not? (A: While Eric says, yes, there are reasons to believe that some products would be better using a Plan Driven process. For example, at the start of a large system-of-systems project where the requirements gathering is deep. Also, read his article, [Coordinated Agility](https://imwrightshardcode.com/2010/05/coordinated-agility/), where he discusses why planning is important, and where Agile is best applied–at the team level of \~10 people. However, as Brechner states [here](https://imwrightshardcode.com/2006/08/blessed-isolation-better-design/), Architecture bridges the gap between big products and small teams. ) 
 
-# 2.2 Vibing with Git
+## 2.2 Vibing with Git
 
 Resources: 
 
@@ -176,30 +203,93 @@ After the Pull Request is approved, it is merged into the `main` branch. The fea
 Finally, all team members update their local copies by switching to `main` and running `git pull` so they receive the newly merged changes.
 
 The overall workflow is:
-
+```
 Pull main  
-↓  
+  ↓  
 Create branch  
-↓  
+  ↓  
 Edit files  
-↓  
+  ↓  
 git add  
-↓  
+  ↓  
 git commit  
-↓  
+  ↓  
 git push  
-↓  
+  ↓  
 Create Pull Request  
-↓  
+  ↓  
 Code Review  
-↓  
+  ↓  
 Merge into main  
-↓  
+  ↓  
 Team pulls updated main
+```
 
 This workflow allows multiple developers to work on different features simultaneously while keeping the `main` branch stable and organized.
 
-# 3.2 Arch to Design
+## 3.1 Architecture
+
+**What does the term "software architecture" refer to?**
+
+Software architecture is the set of principal design decisions about a system: the high-level structure that defines its major components, their relationships, and the principles governing design and evolution. It covers structure, behavior, interaction, and non-functional properties. Because it guides future changes, "evolution" is a key word in the definition.
+
+**When does a technical decision belong to the developer versus the architect?**
+
+Not every design decision has architectural status; only **principal** ones do. Picking a data structure is usually just a design detail, but if, for example, the app runs on phones where memory footprint matters, the choice affects the system's goals and becomes principal. What counts as "*principal*" depends on the goals the team defines for the system.
+
+**Explain how the two types of requirements relate to architecture.**
+
+**Functional** requirements (*what the system does*) are mostly satisfied by the implementation. **Non-functional** requirements such as scalability, maintainability, security, and performance are largely determined by the architecture. So the high-level structure of a system affects things like performance, robustness, and distributability. A common activity is to turn a non-functional requirement into a functional one that can be built and tested.
+
+**Why are the "ilities" (such as reliability, security, and performance) important to a product's success?**
+
+Functional requirements are what cause a customer to want a product, but non-functional requirements (reliability, performance, security, and more) can cause a customer to stop using it. Because the "ilities" can sound vague, metrics are needed to verify them objectively. Many of them overlap in meaning, usually with a twist or slant.
+
+**What does a block diagram do for an architecture?**
+
+A block diagram illustrates the high-level structure of a system without detailing each component's internals. Each block is a self-contained unit, and arrows, nesting, or spatial arrangement show how blocks interact or are connected. Block diagrams focus on abstraction, modularity, and hierarchy, and are not part of UML.
+
+**Describe the visual components of a context diagram (a Level-0 data flow diagram). What do they represent?**
+
+In a context diagram the circle is the system being developed, the boxes are the external systems or data sources and sinks it interacts with, and the arrows are data flows. Seeing the boundary clearly shows what the team must build and which outside systems it depends on. A good diagram tells as much of the story as possible without becoming confusing.
+
+**What is an architectural pattern?**
+
+An architectural pattern is a reusable collection of architectural design decisions for a problem that keeps coming up. Different patterns serve different purposes, just as a castle is built for protection while a house is built for a family to enjoy. Examples include client-server, layered, microservices, and sense-compute-control.
+
+**What is the client-server architectural pattern?**
+
+Client-server separates the requester (client) from the provider (server) and uses a request-response model over a network. Keeping logic and data on the server helps with consistency, scalability, and maintainability, and the pattern is flexible about how clients and servers are built internally. It is the stereotypical architecture of web and networked systems.
+
+**What is a major concern with the client-server architecture?**
+
+Because services are centralized, a server failure can bring down every application that depends on it, making it a single point of failure. Other concerns include exposure to attacks such as man-in-the-middle and denial of service (mitigated by encryption, internal networks, and authentication), the cost of maintaining services, and latency or performance bottlenecks.
+
+**How does a peer-to-peer (P2P) system differ from a client-server system?**
+
+In peer-to-peer systems there is no central server, so peers communicate directly, as in BitTorrent file sharing. All P2P systems are decentralized and distributed, but not all decentralized systems are P2P. Decentralized means control is spread among many entities (such as Bitcoin), while distributed means components are spread across locations but may still be centrally controlled (such as distributed data centers).
+
+**Describe the layered (multi-tiered) architecture?**
+
+In a layered architecture each layer provides its own set of services and depends only on the layer directly below it, so a layer can be swapped for another implementation with the same interfaces. A common web-app stack is presentation, business, persistence, and database layers. Known pitfalls include tight coupling, inefficient communication across layers, limited flexibility, and testing challenges.
+
+**A typical e-commerce website uses several architectural patterns together. What does this illustrate?**
+
+Patterns are not mutually exclusive. A website is a classic client-server system that is typically layered, its presentation layer may use MVC, its persistence layer may use the Repository pattern, and some systems also adopt microservices. The code itself is usually written in an object-oriented language.
+
+**What is the microservices architectural style? Provide one of its key benefits.**
+
+Microservices split an application into small, loosely coupled services that each handle a specific business capability and communicate through well-defined APIs. Each can use different technologies and be scaled or updated independently, and a failure in one service (such as search) need not stop others (such as checkout). Amazon, Netflix, and Uber are well-known users, following ideas like the Bezos API mandate that teams communicate only through service interfaces.
+
+**What type of project would a microservices architecture most likely be a poor choice?**
+
+Microservices are overkill for small or simple applications, like a basic CRUD blog, and for early-stage startups, where the extra complexity can slow development and raise costs. They require robust infrastructure (container orchestration, monitoring, logging), make data consistency harder, and introduce network latency and failure points. Martin Fowler suggests building a monolith first and extracting microservices once the boundaries are well understood.
+
+**Describe the sense-compute-control architectural pattern.**
+
+Sense-compute-control (also called stimulus/response) is used when a system must react to its environment: sensors collect data, computation processes it and makes decisions, and controllers or actuators act on the environment. Typical uses are embedded systems and robotics, such as self-driving cars, drones, and smart thermostats. Concerns include sensor reliability and accuracy (fault tolerance and robustness) and strict real-time constraints.  
+
+## 3.2 Arch to Design
 
 **MMM Chapter 4:**   
 We want an Aristocracy (an intellectual elite) to be the architect so that we have an elegant design. This does not negate the intellect & creative genius of the developers, for the architecture is just different (at a larger scale).  
