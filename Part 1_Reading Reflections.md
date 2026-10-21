@@ -4,11 +4,11 @@
 This section focuses on the difficulties of Software Engineering and the SDLC Processes that help solve them. We review 8 different Processes, but Kanban is deferred to the next part.  
 
 ### Slide Decks
-1.1 Intro to SwE  
-1.2 Essentials, Errors, SDLCs  
-1.3 SDLC Survey Set 1  
-1.4 SDLC Survey Set 2  
-1.5 Agile & Scrum
+* 1.1 Intro to SwE  
+* 1.2 Essentials, Errors, SDLCs  
+* 1.3 SDLC Survey Set 1  
+* 1.4 SDLC Survey Set 2  
+* 1.5 Agile & Scrum
 
 ### Reading
 #### 1.1 Intro to SWE
