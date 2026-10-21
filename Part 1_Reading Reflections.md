@@ -217,6 +217,12 @@ Waterfall → **\+ early test alignment** → V-Shaped
 V-Shaped → **\+ iterative risk-driven loops** → Spiral   
 Spiral → **\+ customer-evaluated evolving prototypes each loop** → Evolutionary Prototyping 
 
+## More SDLC Info
+Read the "SDLC Compare & Contrast" [document](SDLC%20Compare%20&%20Contrast.md) in this repository.  
+
+## SLDC Principles
+Read the "Principles" [document](Principles.md) in this repository.  
+
 ## 1.5 Agile & Scrum
 
 **1\. What makes an SDLC Agile?**

@@ -2,9 +2,9 @@
 
 ## Summary
 This section spans three different units:  
-* SDLC: we finish the discussion on SDLCs by reviewing Kanban.  
-* Using tools: VS Code, Git, and GitHub  
-* Architecture and Design is started  
+* Unit 1: SDLC: we finish the discussion on SDLCs by reviewing Kanban.  
+* Unit 2: Using tools: VS Code, Git, and GitHub  
+* Unit 3: We start to look at how Architecture and Design is done.    
 
 ### Slide Decks
 * 1.6 Kanban  
@@ -16,19 +16,24 @@ This section spans three different units:
 
 ### Reading
 #### 1.6 Kanban
-1. [Agile Project Management with Kanban | Eric Brechner | Talks at Google (](https://www.youtube.com/watch?v=CD0y-aU1sXo)[youtube.com](http://youtube.com)[)](https://www.youtube.com/watch?v=CD0y-aU1sXo)  Kanban Video (1 hour):   
-2. [What is Kanban in Project Management?](https://www.atlassian.com/agile/kanban) 
+* [Agile Project Management with Kanban | Eric Brechner | Talks at Google (](https://www.youtube.com/watch?v=CD0y-aU1sXo)[youtube.com](http://youtube.com)[)](https://www.youtube.com/watch?v=CD0y-aU1sXo)  Kanban Video (1 hour):   
+* [What is Kanban in Project Management?](https://www.atlassian.com/agile/kanban) 
 
 #### 2.2 Vibing with Git
 
-1. [Git — Practical Java](https://java.mrstride.com/Topics/git.html)   
-2. [*Celebrating 20 Years of Git: 20 Interesting Facts From its Creator | Tower Blog*](https://www.git-tower.com/blog/git-turns-20) 
+* [Git — Practical Java](https://java.mrstride.com/Topics/git.html)   
+* [*Celebrating 20 Years of Git: 20 Interesting Facts From its Creator | Tower Blog*](https://www.git-tower.com/blog/git-turns-20)  
 
+Extra Resources: 
+* [Version Control Systems \- GeeksforGeeks](https://www.geeksforgeeks.org/git/version-control-systems/),   
+* [https\://www\.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)  
+* [Celebrating 20 Years of Git: 20 Interesting Facts From its Creator | Tower Blog](https://www.git-tower.com/blog/git-turns-20)   
+* [Git — Practical Java](https://java.mrstride.com/Topics/git.html) 
 
 #### 3.2 Arch to Design
 
-1. [Blessed Isolation \- Better Design](https://imwrightshardcode.com/2006/08/blessed-isolation-better-design/)  
-2. [MMM Chapter 4\. Aristocracy, Democracy, and System Design](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch04.xhtml)
+* [Blessed Isolation \- Better Design](https://imwrightshardcode.com/2006/08/blessed-isolation-better-design/)  
+* [MMM Chapter 4\. Aristocracy, Democracy, and System Design](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch04.xhtml)
 
 
 ## 1.6 Kanban
@@ -151,13 +156,6 @@ Rough Draft Answers:
 
 ## 2.2 Vibing with Git
 
-Resources: 
-
-* [Version Control Systems \- GeeksforGeeks](https://www.geeksforgeeks.org/git/version-control-systems/),   
-* [https\://www\.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)  
-* [Celebrating 20 Years of Git: 20 Interesting Facts From its Creator | Tower Blog](https://www.git-tower.com/blog/git-turns-20)   
-* [Git — Practical Java](https://java.mrstride.com/Topics/git.html) 
-
 **What is the difference between Centralized and Distributed source control systems? Which one is git?**
 
 In a Centralized Version Control System, all files and version history are stored on a single central server, and developers commit their changes directly to that server. In a Distributed Version Control System, each developer has a complete local repository with its own history and can commit changes locally before sharing them with others. Git is a Distributed Version Control System.
@@ -227,6 +225,9 @@ Team pulls updated main
 
 This workflow allows multiple developers to work on different features simultaneously while keeping the `main` branch stable and organized.
 
+## 2.3 Discord Bots
+See the "README-task1.md" [document](README-task1.md) in this repository. Specifically, go to the end to find the **Q&A**. 
+
 ## 3.1 Architecture
 
 **What does the term "software architecture" refer to?**
@@ -291,7 +292,7 @@ Sense-compute-control (also called stimulus/response) is used when a system must
 
 ## 3.2 Arch to Design
 
-**MMM Chapter 4:**   
+#### **MMM Chapter 4**   
 We want an Aristocracy (an intellectual elite) to be the architect so that we have an elegant design. This does not negate the intellect & creative genius of the developers, for the architecture is just different (at a larger scale).  
 Here are some salient points the author makes
 
@@ -301,12 +302,12 @@ Here are some salient points the author makes
 
 Implementers raise objections that are both **Real** and an **Illusion**:
 
-1) (Real) The specifications will be too rich in function and will not reflect practical cost considerations.  
-2) (Illusion) The architects will get all the creative fun and shut out the inventiveness of the implementers.  
-3) (Illusion) The many implementers will have to sit idly by while the specifications come through the narrow funnel that is the architecture team.  
-   1) This is one of timing and phasing. A quick answer is to refrain from hiring implementers until the specifications are complete.  
+1) **(Real)** The specifications will be too rich in function and will not reflect practical cost considerations.  
+2) **(Illusion)** The architects will get all the creative fun and shut out the inventiveness of the implementers.  
+3) **(Illusion)** The many implementers will have to sit idly by while the specifications come through the narrow funnel that is the architecture team.  
+   * This is one of timing and phasing. A quick answer is to refrain from hiring implementers until the specifications are complete.  
 
-**Blessed Isolation \- Better Design**  
+#### **Blessed Isolation - Better Design**  
 Architecture is the way to bridge the gap between large products and small teams. “Isolation” in this title’s context is that teams can be isolated from one another and still function nicely on a single product because the architecture bridges them together.
 
 Documentation is needed when there are:
@@ -330,17 +331,16 @@ The process of creating architecture is simple:
 6. Document the components and interfaces.  
 7. Redesign and refactor as issues and new requirements emerge.
 
-[**The other side of quality--Designers and architects**](https://imwrightshardcode.com/2006/02/the-other-side-of-quality-designers-and-architects/)
+#### [**The other side of quality--Designers and architects**](https://imwrightshardcode.com/2006/02/the-other-side-of-quality-designers-and-architects/)
 
-**The other side of quality–Designers and architects**  
-The trouble is that quality and value are wrapped in perception. Even if we built a product that precisely matched the spec with zero bugs, customers and reviewers might still hate it. If it doesn’t work the way they think it should, it’s junk. If it doesn’t solve the problem the way they expect, it’s trash.  
-By ***designers***, Brechner means the people involved in **defining the user experience**… the “what.” Good designers really understand the entire customer experience.  
-By ***architects***, Brechner means the people involved in defining the **end-to-end implementation approach**… the “how.” 
-
-**Customer** and **business needs** define the “why” and “when.”  
-*Good designers produce a pipe dream. Good architects make it real.*  
-Designers and architects must envision and describe the road map to realize customer value. This is not waterfall because you simply need to know what you want to achieve and to think through the pitfalls, not create an exhaustive document of everything.  
-Designers and architects play different roles, but they share one aspect in common: broad, end-to-end scope. Their job is to think across feature boundaries, product boundaries, and even market boundaries to seize opportunities.
+**Summary**  
+* The trouble is that quality and value are wrapped in perception. Even if we built a product that precisely matched the spec with zero bugs, customers and reviewers might still hate it. If it doesn’t work the way they think it should, it’s junk. If it doesn’t solve the problem the way they expect, it’s trash.  
+* By ***designers***, Brechner means the people involved in **defining the user experience**… the “what.” Good designers really understand the entire customer experience.    
+* By ***architects***, Brechner means the people involved in defining the **end-to-end implementation approach**… the “how.” 
+* **Customer** and **business needs** define the “why” and “when.”  
+* *Good designers produce a pipe dream. Good architects make it real.*  
+* Designers and architects must envision and describe the road map to realize customer value. This is not waterfall because you simply need to know what you want to achieve and to think through the pitfalls, not create an exhaustive document of everything.  
+* Designers and architects play different roles, but they share one aspect in common: broad, end-to-end scope. Their job is to think across feature boundaries, product boundaries, and even market boundaries to seize opportunities.
 
 **1\. What does Brooks mean by "conceptual integrity," and why does he argue that it is the most important quality of a software system?**
 
@@ -374,7 +374,7 @@ There is also the possibility of a team of architects creating the architecture 
 
 The architecture team decides what pieces exist and how they fit together. The implementation teams decide how to build their assigned pieces.
 
-**More on Architecture vs Design**  
+#### **More on Architecture vs Design**  
 It can be hard to define Architecture. From [Martin Fowler's article](https://martinfowler.com/architecture/), we can see several attempts at defining it:
 
 * The shared understanding that the expert developers have of the system design.  

@@ -1,83 +1,84 @@
 # Quiz 3: Reading Reflections
 
-# Summary
+## Summary
+This section's overall theme is **Project Management** as we examine techniques to gather requirements, create an archtiecture, brainstorm features, how to estimate costs, and how to test.  We look at using UML to draw architecture--to remove software's invisibility characteristic.  
 
-## Slide Decks
+### Slide Decks
 
-3.3 System Models (cont)  
-3.4 Brainstorming & Estimation  
-3.5 Project Management & Testing
-
+* 3.3 System Models  
+* 3.4 Brainstorming & Estimation  
+* 3.x Requirements   
+* 3.5 Project Management & Testing
 
 ### 3.3 System Models
 
-Overview:
+#### Overview:
 
 * [Unified Modeling Language (UML) Diagrams \- GeeksforGeeks](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-introduction/)   
-  * [Agile Models Distilled: Potential Artifacts for Agile Modeling](https://agilemodeling.com/artifacts.htm)   
-  * Examples: [Examples of UML diagrams \- use case, class, component, package, activity, sequence diagrams, etc.](https://www.uml-diagrams.org/index-examples.html)   
-  * Sommerville: Chapter 5: [Software Engineering, 10th GLOBAL Edition](https://dn790001.ca.archive.org/0/items/bme-vik-konyvek/Software%20Engineering%20-%20Ian%20Sommerville.pdf) 
+* [Agile Models Distilled: Potential Artifacts for Agile Modeling](https://agilemodeling.com/artifacts.htm)   
+* Examples: [Examples of UML diagrams \- use case, class, component, package, activity, sequence diagrams, etc.](https://www.uml-diagrams.org/index-examples.html)   
+* Sommerville: Chapter 5: [Software Engineering, 10th GLOBAL Edition](https://dn790001.ca.archive.org/0/items/bme-vik-konyvek/Software%20Engineering%20-%20Ian%20Sommerville.pdf) 
 
 
-	Data Flow Diagram
+#### Data Flow Diagram
 
 * [What is DFD (Data Flow Diagram) \- GeeksforGeeks](https://www.geeksforgeeks.org/software-engineering/what-is-dfddata-flow-diagram/)   
-  * [Data Flow Diagram (DFD)s: An Agile Introduction](https://agilemodeling.com/artifacts/dataFlowDiagram.htm) 
+* [Data Flow Diagram (DFD)s: An Agile Introduction](https://agilemodeling.com/artifacts/dataFlowDiagram.htm) 
 
-Sequence Diagram
+#### Sequence Diagram
 
 * [Sequence Diagram Tutorial \- Complete Guide with Examples | Creately](https://creately.com/guides/sequence-diagram-tutorial/)   
-  * [UML Sequence Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/sequenceDiagram.htm)    
-  * [UML sequence diagrams overview of graphical notation \- lifeline, message, execution specification, interaction use, etc.](https://www.uml-diagrams.org/sequence-diagrams.html) 
+* [UML Sequence Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/sequenceDiagram.htm)    
+* [UML sequence diagrams overview of graphical notation \- lifeline, message, execution specification, interaction use, etc.](https://www.uml-diagrams.org/sequence-diagrams.html) 
 
-	Class Diagram
+#### Class Diagram
 
 * [UML Class Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/classDiagram.htm)   
-  * [UML Class Diagram \- GeeksforGeeks](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-class-diagrams/)   
-  * [UML Class Diagram Tutorial](https://www.visual-paradigm.com/guide/uml-unified-modeling-language/uml-class-diagram-tutorial/) 
+* [UML Class Diagram \- GeeksforGeeks](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-class-diagrams/)   
+* [UML Class Diagram Tutorial](https://www.visual-paradigm.com/guide/uml-unified-modeling-language/uml-class-diagram-tutorial/) 
 
-	Activity Diagram 
+#### Activity Diagram 
 
 * [https\://www\.geeksforgeeks.org/system-design/unified-modeling-language-uml-activity-diagrams/](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-activity-diagrams/)   
-  * [Activity Diagram \- Activity Diagram Symbols, Examples, and More](https://www.smartdraw.com/activity-diagram/) 
+* [Activity Diagram \- Activity Diagram Symbols, Examples, and More](https://www.smartdraw.com/activity-diagram/) 
 
-	Use Case Diagram
+#### Use Case Diagram
 
 * [Use Case Diagram \- Unified Modeling Language (UML) \- GeeksforGeeks](https://www.geeksforgeeks.org/system-design/use-case-diagram/)   
-  * [UML Use Case Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/useCaseDiagram.htm)   
-  * [Use case diagram \- Wikipedia](https://en.wikipedia.org/wiki/Use_case_diagram) 
+* [UML Use Case Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/useCaseDiagram.htm)   
+* [Use case diagram \- Wikipedia](https://en.wikipedia.org/wiki/Use_case_diagram) 
 
-State Diagram
+#### State Diagram
 
 * [State Machine Diagrams | Unified Modeling Language (UML) \- GeeksforGeeks](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-state-diagrams/)   
-  * [UML State Machine Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/stateMachineDiagram.htm) 
+* [UML State Machine Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/stateMachineDiagram.htm) 
 
 	  
-**EXTRA**:  
-Network Diagram
+#### **EXTRA**:  
+##### Network Diagram
 
 * [Network Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/networkDiagram.htm)   
-  * [Computer network diagram \- Wikipedia](https://en.wikipedia.org/wiki/Computer_network_diagram) 
+* [Computer network diagram \- Wikipedia](https://en.wikipedia.org/wiki/Computer_network_diagram) 
 
-  Entity Relationship Diagram
+##### Entity Relationship Diagram
 
-  * [ER Diagram Symbols: Complete Guide to Notations & Meanings](https://www.we-notes.com/component-breakdown-decoding-er-diagram-symbols/) 
+* [ER Diagram Symbols: Complete Guide to Notations & Meanings](https://www.we-notes.com/component-breakdown-decoding-er-diagram-symbols/) 
 
 ### 3.4 Brainstorming & Estimation
 
-1. [Dev schedules, flying pigs, and other fantasies – I.M. Wright’s “Hard Code”](https://imwrightshardcode.com/2001/06/dev-schedules-flying-pigs-and-other-fantasies/)   
-2. [Project buffer overflow – I.M. Wright’s “Hard Code”](https://imwrightshardcode.com/2018/11/project-buffer-overflow/)
+* [Dev schedules, flying pigs, and other fantasies – I.M. Wright’s “Hard Code”](https://imwrightshardcode.com/2001/06/dev-schedules-flying-pigs-and-other-fantasies/)   
+* [Project buffer overflow – I.M. Wright’s “Hard Code”](https://imwrightshardcode.com/2018/11/project-buffer-overflow/)
 
 ### 3.5 Project Management and Testing
 
-1. [The Mythical Man-Month. | Chapter 2](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch02.xhtml)   
-2. [Calling the Shot | Chapter 8 | Mythical Man-Month](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch08.xhtml)   
-3. [Hatching a Catastrophe | Chapter 14 | Mythical Man-Month](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch14.xhtml) 
+* [The Mythical Man-Month. | Chapter 2](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch02.xhtml)   
+* [Calling the Shot | Chapter 8 | Mythical Man-Month](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch08.xhtml)   
+* [Hatching a Catastrophe | Chapter 14 | Mythical Man-Month](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch14.xhtml) 
 
-	Optional:
+	**Optional**:
 
-4. [JUnit — Practical Java](https://java.mrstride.com/frameworks/junit.html)   
-5. [Practice: Test Guidelines — Practical Java](https://java.mrstride.com/frameworks/good_tests.html) 
+* [JUnit — Practical Java](https://java.mrstride.com/frameworks/junit.html)   
+* [Practice: Test Guidelines — Practical Java](https://java.mrstride.com/frameworks/good_tests.html) 
 
 
 # 3.3 System Modeling with UML 
@@ -236,9 +237,9 @@ The user story leans towards a non-functional requirement by stating "distribute
 **Functional requirement:** "The system shall provide an API for storing and retrieving cached data."  
 **Non-functional requirement:** "The API shall return responses within 100 ms for 95% of requests."
 
-# 3.5 Project Management & Testing
+## 3.5 Project Management & Testing
 
-## The Mythical Man-Month
+### The Mythical Man-Month (Chapter 2)
 
 Brooks argues that software projects are frequently underestimated because people are overly optimistic about how smoothly work will proceed. He explains that while project cost may be measured in man-months, project progress cannot be accelerated simply by adding people because of communication and training overhead. People underestimate testing and integration work. He states Brook's Law: adding manpower to a late software project often makes it even later.
 
@@ -283,7 +284,7 @@ Software projects today are often organized around smaller autonomous teams and 
 6. **If a project is behind schedule today, what actions should be tried before adding more developers, and how do those actions compare with Brooks's recommendations?**  
    Before adding developers, teams should identify bottlenecks, reduce scope, remove low value features, automate repetitive work, improve requirements clarity, and focus effort on the highest risk tasks. For heaven's sake, one could even consider moving the delivery date. Teams will always try to improve efficiency, but this doesn't always mean "working smarter." Often times the best way to improving efficiency is to automate\! People's level of efficiency is limited.
 
-## Calling the Shots
+### Calling the Shots (Chapter 8)
 
 **Summary** 
 
@@ -308,7 +309,7 @@ Brooks relies heavily on lines of code and instruction counts as measures of sof
 4. **Does the widespread use of Agile methodologies make software estimation easier, or does it simply change the way uncertainty is managed?**  
    Agile generally does not eliminate estimation difficulty; instead, it changes how uncertainty is handled by emphasizing short iterations, frequent feedback, and continual replanning. Rather than attempting to predict an entire project accurately upfront, Agile teams focus on improving forecasts as new information becomes available.
 
-## Hatching a Catastrophe
+### Hatching a Catastrophe (Chapter 14)
 
 **Summary**
 
