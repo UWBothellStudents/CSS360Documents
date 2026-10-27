@@ -1,4 +1,4 @@
-# Part 2: Reading Reflections
+# Period 2: Reading Reflections
 
 ## Summary
 This section spans three different units:  
@@ -7,14 +7,16 @@ This section spans three different units:
 * Unit 3: We start to look at how Architecture and Design is done.    
 
 ### Slide Decks
-* 1.6 Kanban  
-* 2.1 VS Code & Clone  
-* 2.2 Vibing with Git  
-* 2.3 Discord Bots  
-* 3.1 Architecture  
-* 3.2 Arch to Design  
+* <a href="#1.6">1.6 Kanban</a>  
+* <a href="#2.1">2.1 VS Code & Clone</a>  
+* <a href="#2.2">2.2 Vibing with Git</a>  
+* <a href="#2.3">2.3 Discord Bots</a>  
+* <a href="#3.1">3.1 Architecture</a>  
+* <a href="#3.2">3.2 Arch to Design</a>  
 
 ### Reading
+Sprint #1 and our work in the Discord Bot is a part of this time period. You should know the [Q&A found here](README-task1.md#q--a).  
+
 #### 1.6 Kanban
 * [Agile Project Management with Kanban | Eric Brechner | Talks at Google (](https://www.youtube.com/watch?v=CD0y-aU1sXo)[youtube.com](http://youtube.com)[)](https://www.youtube.com/watch?v=CD0y-aU1sXo)  Kanban Video (1 hour):   
 * [What is Kanban in Project Management?](https://www.atlassian.com/agile/kanban) 
@@ -35,7 +37,7 @@ Extra Resources:
 * [Blessed Isolation \- Better Design](https://imwrightshardcode.com/2006/08/blessed-isolation-better-design/)  
 * [MMM Chapter 4\. Aristocracy, Democracy, and System Design](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch04.xhtml)
 
-
+<a id="1.6"></a>
 ## 1.6 Kanban
 
 **What is Kanban?**
@@ -154,7 +156,28 @@ Rough Draft Answers:
 * Eric claims: to convert from Scrum to Kanban, just tell the team to add WIP limits. After a while, team will realize that Sprint Planning isn’t necessary, and other things aren’t necessary (demo, retrospective, etc.)  
 * Eric claims that Kanban can scale to very large teams, afterall, they use Kanban on Windows. Does this mean Kanban is a good choice regardless of the product? Why or why not? (A: While Eric says, yes, there are reasons to believe that some products would be better using a Plan Driven process. For example, at the start of a large system-of-systems project where the requirements gathering is deep. Also, read his article, [Coordinated Agility](https://imwrightshardcode.com/2010/05/coordinated-agility/), where he discusses why planning is important, and where Agile is best applied–at the team level of \~10 people. However, as Brechner states [here](https://imwrightshardcode.com/2006/08/blessed-isolation-better-design/), Architecture bridges the gap between big products and small teams. ) 
 
+<a id="2.2"></a>
 ## 2.2 Vibing with Git
+
+**Describe what Git, as a source control management tool, offers?**
+
+Git is a source control management tool that keeps every version of a file so developers can roll back to any point in time. It lets multiple developers change the same file at the same time, merges their changes, and leaves humans to resolve conflicts. A server, which can be in a backed-up cloud, provides a backup of the work.
+
+**What was a major problem with centralized version control systems?**
+
+In a centralized system one server holds the authoritative copy, so if it went down nobody could commit, compare history, or collaborate. Almost every operation (committing, viewing history, branching) needed a live connection, which was a big problem before the internet was ubiquitous. Other pains were slow operations, painful branching, and lock-based conflicts where one developer could block everyone else from a file.
+
+**Why does Git's distributed design mean there is no single point of failure?**
+
+In a distributed system like Git, every developer's machine holds a complete, fully functional copy of the repository: all history, all branches, and all versions. If the server disappears, any developer's copy can restore it, and developers can keep committing and branching offline and push when the server returns. This is exactly what Linus needed for a globally distributed project like the Linux kernel.
+
+**Why did Linus Torvalds create Git in 2005?**
+
+By 2005 Linus was managing the Linux kernel, one of the largest open-source projects, and a licensing dispute forced the community to stop using its version control tool. He found every available alternative unacceptable, so he spent about two weeks writing his own. Git was designed to fix the specific frustrations of centralized systems, and it is distributed, fast, powerful, and reliable (but also complicated and console based).
+
+**What is the relationship between Git and GitHub?**
+
+Git tracks changes, stores commit history, manages branches, and works offline without any internet connection or GitHub. GitHub is a website built on top of Git that hosts remote repositories and adds features Git does not provide, such as pull requests, code reviews, issue tracking, permissions, and automation (Actions) for CI/CD. One could think of Git as Microsoft Word and GitHub as OneDrive (which hosts Word documents, but does a lot more). There are other platforms such as GitLab and Bitbucket that also use Git.
 
 **What is the difference between Centralized and Distributed source control systems? Which one is git?**
 
@@ -172,9 +195,9 @@ A branch is a separate line of development within a Git repository that allows d
 
 A branching strategy is a set of rules that a team follows for creating, naming, using, and merging branches. It helps developers collaborate consistently and reduces confusion when multiple people are working on the same project. A popular example is GitFlow, which uses separate branches for features, releases, and hotfixes to organize development work.
 
-**What is a Pull Request?**
+**What is the purpose of a pull request (PR)?**
 
-A Pull Request is a request to merge changes from one branch into another, often from a feature branch into the main branch. It gives team members an opportunity to review code, discuss changes, and suggest improvements before the changes are merged.
+A pull request asks to merge the changes from one branch (such as a new feature branch) into a target branch such as main. Other developers can review the changes, discuss them, request modifications, and run automated tests, and once it is approved the PR is merged and becomes part of the official project history. This all happens on the remote hosting service, not on your local machine. People will mistakenly think that a Pull Request is a part of Git, but really it is a process outside of Git that is facilitated by GitHub. Git provides commands such as `commit`, `branch`, `merge`, and `push`, but it has no concept of a pull request. A pull request is a collaboration and code-review workflow provided by hosting platforms such as GitHub, GitLab, and Bitbucket. A pull request allows other developers to review proposed changes, discuss them, request modifications, approve them, or reject them before the changes are merged into another branch.
 
 **What is the difference between Git and GitHub?**
 
@@ -223,11 +246,45 @@ Merge into main
 Team pulls updated main
 ```
 
-This workflow allows multiple developers to work on different features simultaneously while keeping the `main` branch stable and organized.
+This workflow allows multiple developers to work on different features simultaneously while keeping the `main` branch stable and organized.  
 
+**What is the purpose of the staging area in Git?**
+
+The staging area sits between your working directory and the local repository. You `add` files to it to collect and review the changes you want, and only those staged changes become part of the next commit. In a merge with conflicts you add only the resolved files before committing.
+
+**What is the difference between `git fetch` and `git pull`?**
+
+Fetch brings remote changes to your machine without touching your own work, which lets you look at them before deciding what to do. Pull does the same download and then merges the remote branch's changes into your current local branch, so conflicts can appear. Uploading your commits to the remote is a different command, push.
+
+**What happens to your changes when you run `git commit`?**
+
+A commit is a snapshot of your project at a specific time, built from the changes you have staged, and it is stored in your local repository. Nothing reaches the remote until you push, so you can commit offline as often as you like. A pull request is a separate step done on a hosting platform such as GitHub.
+
+**What does `git clone` do?**
+
+Cloning is typically the first thing a developer does: it copies the remote repository to the local client, including all code, history, and branches. Because the copy is complete, you can then work, commit, and branch locally without network access. The remote is called `origin` by default.
+
+**Why do teams create branches?**
+
+A branch is like a parallel timeline where you can add features, experiment, or fix bugs without breaking anything for other developers. Branches are lightweight and easy to create and delete, and no one's changes collide until they are ready to merge. Most teams treat `main` as the clean, stable, production-ready code and keep unfinished work off it.
+
+**In Git Flow, how is a hotfix branch used?**
+
+A hotfix branch is cut directly from `main` when a critical bug is found in production and cannot wait for the normal release cycle. After the fix, it is merged into `main` (to ship it) and into `develop` so that the fix is not lost in the next release. The main idea of Git Flow is that each branch has one job.
+
+**In Git Flow, what is the role of the develop branch?**
+
+`develop` is where finished features come together; short-lived `feature` branches are created from it and merged back before being deleted. Automated tests often run continuously against it, and when it has enough features a `release` branch is cut from it. Looking at `develop` answers "what has been finished but not shipped yet?", while `main` answers "what is in production?"
+
+**What causes a merge conflict, and what must the developer do about it?**
+
+A conflict occurs when the same part of the same file has been changed differently on the two branches, so Git does not know which version you want and asks you to decide. Git marks the section with `<<<<<<<`, `=======`, and `>>>>>>>`; you resolve it by editing the file manually or with a tool such as VS Code, verify everything still works, then `add` the resolved files, `commit`, and `push`. Pulling and pushing often and keeping branches small and isolated helps avoid conflicts.
+
+<a id="2.3"></a>
 ## 2.3 Discord Bots
 See the "README-task1.md" [document](README-task1.md) in this repository. Specifically, go to the end to find the **Q&A**. 
 
+<a id="3.1"></a>
 ## 3.1 Architecture
 
 **What does the term "software architecture" refer to?**
@@ -290,6 +347,7 @@ Microservices are overkill for small or simple applications, like a basic CRUD b
 
 Sense-compute-control (also called stimulus/response) is used when a system must react to its environment: sensors collect data, computation processes it and makes decisions, and controllers or actuators act on the environment. Typical uses are embedded systems and robotics, such as self-driving cars, drones, and smart thermostats. Concerns include sensor reliability and accuracy (fault tolerance and robustness) and strict real-time constraints.  
 
+<a id="3.2"></a>
 ## 3.2 Arch to Design
 
 #### **MMM Chapter 4**   
@@ -319,7 +377,7 @@ Documentation is needed when there are:
 
 Design documents, or any documentation for that matter, are good when the documentation is needed. Don’t waste time. Don’t avoid doing what is necessary.
 
-* “The whole point of architecture is to break intractable problems into little manageable ones.”
+> “The whole point of architecture is to break intractable problems into little manageable ones.”  
 
 The process of creating architecture is simple:
 
@@ -399,7 +457,7 @@ Design is about decisions that are:
 
 **Some people use a three-tier split** instead of two: 
 
-1. *Architecture* (system/enterprise level) →   
-2. *Design* (component/module level) →   
+1. *Architecture* (system/enterprise level)     
+2. *Design* (component/module level)     
 3. *Detailed design* or *implementation design* (interfaces, algorithms, class structure within a module). 
 

@@ -1,4 +1,4 @@
-# Part 1: Reading Reflections
+# Period 1: Reading Reflections
 
 ## Summary
 This section focuses on the difficulties of Software Engineering and the SDLC Processes that help solve them. We review 8 different Processes, but Kanban is deferred to the next part.  

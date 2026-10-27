@@ -1,18 +1,22 @@
-# Quiz 3: Reading Reflections
+# Period 3: Reading Reflections
 
 ## Summary
 This section's overall theme is **Project Management** as we examine techniques to gather requirements, create an archtiecture, brainstorm features, how to estimate costs, and how to test.  We look at using UML to draw architecture--to remove software's invisibility characteristic.  
 
 ### Slide Decks
 
-* 3.3 System Models  
-* 3.4 Brainstorming & Estimation  
-* 3.x Requirements   
-* 3.5 Project Management & Testing
+* <a href="#3.3">3.3 System Models</a>  
+* <a href="#3.4">3.4 Brainstorming & Estimation</a>  
+* <a href="#3.x">3.x Requirements</a>   
+* <a href="#3.5">3.5 Project Management & Testing</a>
+* <a href="#3.6">3.6 Security</a>
 
-### 3.3 System Models
+### Reading
+Sprint #2 and our work in the Discord Bot is a part of this time period. You should know the [Q&A found here](README-task2.md#q--a).
 
-#### Overview:
+#### 3.3 System Models
+
+##### Overview:
 
 * [Unified Modeling Language (UML) Diagrams \- GeeksforGeeks](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-introduction/)   
 * [Agile Models Distilled: Potential Artifacts for Agile Modeling](https://agilemodeling.com/artifacts.htm)   
@@ -20,41 +24,39 @@ This section's overall theme is **Project Management** as we examine techniques 
 * Sommerville: Chapter 5: [Software Engineering, 10th GLOBAL Edition](https://dn790001.ca.archive.org/0/items/bme-vik-konyvek/Software%20Engineering%20-%20Ian%20Sommerville.pdf) 
 
 
-#### Data Flow Diagram
+##### Data Flow Diagram
 
 * [What is DFD (Data Flow Diagram) \- GeeksforGeeks](https://www.geeksforgeeks.org/software-engineering/what-is-dfddata-flow-diagram/)   
 * [Data Flow Diagram (DFD)s: An Agile Introduction](https://agilemodeling.com/artifacts/dataFlowDiagram.htm) 
 
-#### Sequence Diagram
+##### Sequence Diagram
 
 * [Sequence Diagram Tutorial \- Complete Guide with Examples | Creately](https://creately.com/guides/sequence-diagram-tutorial/)   
 * [UML Sequence Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/sequenceDiagram.htm)    
 * [UML sequence diagrams overview of graphical notation \- lifeline, message, execution specification, interaction use, etc.](https://www.uml-diagrams.org/sequence-diagrams.html) 
 
-#### Class Diagram
+##### Class Diagram
 
 * [UML Class Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/classDiagram.htm)   
 * [UML Class Diagram \- GeeksforGeeks](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-class-diagrams/)   
 * [UML Class Diagram Tutorial](https://www.visual-paradigm.com/guide/uml-unified-modeling-language/uml-class-diagram-tutorial/) 
 
-#### Activity Diagram 
+##### Activity Diagram 
 
 * [https\://www\.geeksforgeeks.org/system-design/unified-modeling-language-uml-activity-diagrams/](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-activity-diagrams/)   
 * [Activity Diagram \- Activity Diagram Symbols, Examples, and More](https://www.smartdraw.com/activity-diagram/) 
 
-#### Use Case Diagram
+##### Use Case Diagram
 
 * [Use Case Diagram \- Unified Modeling Language (UML) \- GeeksforGeeks](https://www.geeksforgeeks.org/system-design/use-case-diagram/)   
 * [UML Use Case Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/useCaseDiagram.htm)   
 * [Use case diagram \- Wikipedia](https://en.wikipedia.org/wiki/Use_case_diagram) 
 
-#### State Diagram
+##### State Diagram
 
 * [State Machine Diagrams | Unified Modeling Language (UML) \- GeeksforGeeks](https://www.geeksforgeeks.org/system-design/unified-modeling-language-uml-state-diagrams/)   
 * [UML State Machine Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/stateMachineDiagram.htm) 
 
-	  
-#### **EXTRA**:  
 ##### Network Diagram
 
 * [Network Diagrams: An Agile Introduction](https://agilemodeling.com/artifacts/networkDiagram.htm)   
@@ -64,12 +66,12 @@ This section's overall theme is **Project Management** as we examine techniques 
 
 * [ER Diagram Symbols: Complete Guide to Notations & Meanings](https://www.we-notes.com/component-breakdown-decoding-er-diagram-symbols/) 
 
-### 3.4 Brainstorming & Estimation
+#### 3.4 Brainstorming & Estimation
 
 * [Dev schedules, flying pigs, and other fantasies – I.M. Wright’s “Hard Code”](https://imwrightshardcode.com/2001/06/dev-schedules-flying-pigs-and-other-fantasies/)   
 * [Project buffer overflow – I.M. Wright’s “Hard Code”](https://imwrightshardcode.com/2018/11/project-buffer-overflow/)
 
-### 3.5 Project Management and Testing
+#### 3.5 Project Management and Testing
 
 * [The Mythical Man-Month. | Chapter 2](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch02.xhtml)   
 * [Calling the Shot | Chapter 8 | Mythical Man-Month](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch08.xhtml)   
@@ -80,8 +82,8 @@ This section's overall theme is **Project Management** as we examine techniques 
 * [JUnit — Practical Java](https://java.mrstride.com/frameworks/junit.html)   
 * [Practice: Test Guidelines — Practical Java](https://java.mrstride.com/frameworks/good_tests.html) 
 
-
-# 3.3 System Modeling with UML 
+<a id="3.3"></a>
+## 3.3 System Modeling with UML 
 These questions come from the 3.3 Slide deck.
 
 **Why do software teams create system models?**
@@ -144,8 +146,9 @@ It mixes messages with physical activities and state changes. A sequence diagram
 
 Classical structured analysis emphasizes that process and data are separate, and uses process-oriented models such as DFDs, ERDs, and state transition diagrams. Object-oriented analysis unifies data and behavior around objects, using UML diagrams such as class, use case, sequence, and activity diagrams. The boundaries between the approaches are blurry, so the key point is knowing the focus of each.
 
+<a id="3.4"></a>
 
-# 3.4 Brainstorming & Estimation
+## 3.4 Brainstorming & Estimation  
 
 **Dev Schedules, Flying Pigs**  
 Development scheduling succeeds when it prioritizes risk management over rigid deadlines, focuses on critical features first, and avoids the myth of precise time estimations. Teams and customers benefit most when the process emphasizes quality and coherence over arbitrary dates.
@@ -170,7 +173,7 @@ Accurate estimation requires using historical data, trusting calculated timeline
    2. Time buffer: added to time estimates. Bad because it avoids addressing the real problem–bad estimates.  
    3. Last-mile buffer: accounts for variations and end-of-game delays. Historical data shows that it takes time to account for last-minute “hijinks” that invariably pop up.
 
-## Flying Pigs
+### Flying Pigs
 
 **1\. Why does Wright argue that detailed feature-by-feature schedule estimates are largely a fantasy, and what experience does he use to support that claim?**
 
@@ -196,7 +199,7 @@ Wright argues that developers who feel pressure to hit feature deadlines may hid
 
 One might put emphasis on prioritizing must-have features, communicating risk early, and avoiding false precision in estimates. One could reject the idea that feature dates are largely irrelevant because Scrum boards, sprint goals, and backlog planning benefit from shorter-term commitments that help teams coordinate work while still accommodating uncertainty.
 
-## IMW Buffer Overflow
+### IMW Buffer Overflow
 
 **1\. Wright argues that most traditional estimation buffers are unnecessary. What are the three types of buffers he describes, and why does he believe only one of them is actually needed?**  
 1\) a work buffer that keeps engineers supplied with ready-to-start tasks; 2\) an estimation buffer that compensates for poor estimates, and; 3\) a final delivery buffer that accounts for last-minute variation and surprises. He argues that if estimates are based on historical completion data, only the final delivery buffer is necessary because the other two exist primarily to compensate for poor planning or inaccurate estimation practices.
@@ -207,6 +210,7 @@ He recommends calculating a team's historical task completion rate and then esti
 **3\. Wright repeatedly tells readers to "believe the estimate." Why does he think teams and managers struggle to trust estimates that are based on historical data?**  
 He believes people often distrust data-driven estimates because they want to believe they can work faster, work harder, or somehow achieve a better outcome than their historical performance suggests. He argues that this optimism leads managers and engineers to second-guess valid estimates instead of accepting what the data indicates about likely completion dates.
 
+<a id="3.x"></a>
 ## 3.x Requirements
 
 **Functional Requirement:**
@@ -237,6 +241,7 @@ The user story leans towards a non-functional requirement by stating "distribute
 **Functional requirement:** "The system shall provide an API for storing and retrieving cached data."  
 **Non-functional requirement:** "The API shall return responses within 100 ms for 95% of requests."
 
+<a id="3.5"></a>
 ## 3.5 Project Management & Testing
 
 ### The Mythical Man-Month (Chapter 2)
@@ -354,4 +359,9 @@ That said, the chapter's central warning about gradual schedule erosion remains 
 4. **How does Brooks use the word "Hustle" in the article? How does hustle impact culture and the development process?**  
    Brooks uses "hustle" to describe the habit of *acting sooner, working harder*, and maintaining reserve effort so that teams can *absorb everyday disruption*s without falling behind schedule. A culture of hustle can increase responsiveness and *accountability*, but if taken too far it can also contribute to stress, burnout, and unsustainable work practices.   
    
+
+<a id="3.6"></a>
+## 3.6 Security  
+
+TODO!!!
 
