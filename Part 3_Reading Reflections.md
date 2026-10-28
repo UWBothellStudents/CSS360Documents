@@ -360,8 +360,4 @@ That said, the chapter's central warning about gradual schedule erosion remains 
    Brooks uses "hustle" to describe the habit of *acting sooner, working harder*, and maintaining reserve effort so that teams can *absorb everyday disruption*s without falling behind schedule. A culture of hustle can increase responsiveness and *accountability*, but if taken too far it can also contribute to stress, burnout, and unsustainable work practices.   
    
 
-<a id="3.6"></a>
-## 3.6 Security  
-
-TODO!!!
 
