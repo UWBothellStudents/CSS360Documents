@@ -8,8 +8,12 @@ You will be creating a Discord Bot! Have fun!
 * Create a Discord Bot hosted in Codespaces using the template code provided in GitHub.
 
 **Deliverables:**  
-* Submit a screenshot of your browser that has a completed `/challenge` command.  
-* Submit a screenshot of the Kanban board with a work item in the backlog.  
+* Nothing to submit, but you will have to demonstrate functionality to a peer which includes:
+   * Showing and starting the Bot Server in Codespaces  
+   * Setting the port to public  
+   * Showing how to register commands  
+   * Demonstrating the `/test` command  
+   * Show the Kanban board in GitHub  
 * In class, you'll fill out a survey as you and a peer review your understanding of your work in this task.  
 
 **Goals:**  
