@@ -9,7 +9,7 @@ You will be creating a Discord Bot! Have fun!
 
 **Deliverables:**  
 * Nothing to submit, but you will have to demonstrate functionality to a peer which includes:
-   * Showing and starting the Bot Server in Codespaces  
+   * Showing and starting the Bot Server in Codespaces on your own branch   
    * Setting the port to public  
    * Showing how to register commands  
    * Demonstrating the `/test` command  
@@ -22,8 +22,9 @@ You will be creating a Discord Bot! Have fun!
 
 ## Introduction 
 This README describes the project and provides a set of instructions for creating a simple Discord bot.
-You will complete **Task #1** as a group. Individuals are responsible for understanding every part of the technology,
-and every student will be required to work on their own in future tasks.
+You will complete **Task #1** as a group so that you can help each other out. Individuals are responsible for understanding every part of the technology,
+and every student is required to have their own bot working on their own branch.  
+
 There is a **Q&A section** with questions that each student needs to be able to answer.
 
 The instructions below will create a minimal Discord bot built with Discord's **HTTP Interactions** model developed in 
@@ -82,8 +83,9 @@ We need to open the repo on Codespaces...
 1. On the GitHub site, open your Git repo. If needed, select `<> Code` in the navigation bar.
 2. In the body of the page, select `<> Code` and select the `Codespaces` tab.
 3. Select the `+` to create a Codespace on `main`.  
+4. Create your own branch right away. All you work should be done your own branch.  
 
-> **VS Code client**: It *should* be possible interact with the Codespaces instance through the VS Code local client, but the setup is more involved. Furthermore, Stride wasn't able to set the port to public when using the VS Code client. Nevertheless, for those interested in trying...  
+> **VS Code client**: I do **NOT** recommend using the local VS Code Client that is linked to Codespaces. However, it *should* be possible interact with the Codespaces instance through the VS Code local client, but the setup is more involved. Furthermore, Stride wasn't able to set the port to public when using the VS Code client. Nevertheless, for those interested in trying...  
 > *  In VS Code, install the **GitHub Codespaces** extension if you don't have it.  
 > * Command Palette (`Cmd/Ctrl+Shift+P`) → **Codespaces: Create New Codespace** → pick this repo/branch. VS Code will connect to it like a remote window.  
 
@@ -176,7 +178,9 @@ You may need to refresh your Discord site, or just wait a bit. Make sure that yo
 
 In your Discord test server, type `/test`. The bot should reply "hello world 👋". (The emoji will be random.)   
 
-### 9. Project Kanban Board
+### 9. Project Kanban Board  
+> **IMPORTANT**: Only **ONE** project should be created per team. Every member of the team will share this single project.  
+
 1. Go to GitHub and go to the UWBothellStudents organization. Click on `Projects` in the navigation bar. 
 2. Create a new project
    - Click on "From your organization" in the menu of "Project templates" on the left.  
