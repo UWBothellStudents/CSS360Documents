@@ -4,7 +4,8 @@
 Each team member will contribute to the analysis of the Discord Bot.  
 
 **Task:** 
-*  Identify bugs, gaps, and technical debt in your bot and start closing the gaps
+* Identify bugs, gaps, and technical debt in your bot and start closing the gaps  
+* Complete a Security Analysis: STRIDE, Threat Tree  
 
 **Deliverables:**  
 You are done if you have conducted an analysis of limitations and weaknesses in your assigned bot and completed the following:

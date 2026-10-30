@@ -189,7 +189,7 @@ In your Discord test server, type `/test`. The bot should reply "hello world ðŸ‘
 3. Set the Default repository  
    - Select the "kebab" menu (the 3 dots ...) in the upper right next to "Workflows".  
    - Select `Settings`  
-   - Select your team's respository to be the "Default respository"  
+   - Select your team's repository to be the "Default repository"  
 3. Create a new placeholder feature in the Backlog of your Kanban board.  
 
 ![Kanban Board with 5 Lanes](resources/discord_custom_kanban.png)  
@@ -232,7 +232,7 @@ ISSUE: **The bot didn't respond in time to the slash command**
 If you changed bot behavior, stop the running process and start it again.  
 > In the Terminal, type in `Ctrl+C` to stop the server, then `npm start` to start it again. 
 
-> Note: if you want auto-restarts during development, you can use an altnerative way to start the server: `npm run dev`  
+> Note: if you want auto-restarts during development, you can use an alternative way to start the server: `npm run dev`  
 
 If you changed the set of slash commands you want: run `npm run register` again so Discord updates the command list.
    - Code changes: a restart is required (stop with Ctrl+C, then start with `npm start`)
@@ -246,7 +246,7 @@ Codespaces is a full development environment that runs in the cloud instead of o
 
 It is a virtual machine with VS Code, a terminal, and all your project files, accessible through a browser (or the VS Code client). Every Codespace is created *from* a specific repository (and even a specific branch of it). GitHub clones your repo onto that cloud machine automatically when the Codespace is created. So the repo is the actual source of truth for your code (tracked by git, with full history), and a Codespace is just a disposable, ready-to-use *place to run and edit* that code without installing Node, git, or anything else locally.  
 
-Codespaces has a local copy of all the files. You can add files or change files in Codespaces without making any changes to the Git repository. Users should commit and push desired changes to `git` so that the work can be tracked and persist. Commiting to git will allow you to delete a Codespace and recreate it anytime without losing anything... as long as your changes were committed and pushed to the repo.
+Codespaces has a local copy of all the files. You can add files or change files in Codespaces without making any changes to the Git repository. Users should commit and push desired changes to `git` so that the work can be tracked and persist. Committing to git will allow you to delete a Codespace and recreate it anytime without losing anything... as long as your changes were committed and pushed to the repo.
 
 **2. What is the difference between a Discord Test Server, a Discord App, and a Discord bot?**
 A Discord App is registered with Discord and contains a Bot that is installed into one or more Servers.

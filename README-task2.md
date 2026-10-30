@@ -1,14 +1,15 @@
 # Task #2: Discord Architecture
 
 ## Overview
-You should have a very simple Discord bot working. Now you will explore the code found the in `commands` and `module-architecture` folders.  
+You should have a very simple Discord bot working. Now you will explore the code found the in `commands` and `module-architecture` folders. You'll add tasks to the Kanban board, draw a diagram, and add a simple command. 
 
 **Task:** 
-* Customize Kanban board and Project Insights.  
-* Analyze the architecture and design of your Discord bot.  
+* Add Work Items to the Kanban board   
+* Draw an architecture/design diagram of your Discord bot  
+* Add to the modular architecture a slash command, `/<your_name>`  
 
 **Deliverables:**  
-* A set of **hand-drawn** diagrams of the architecture/design. They can be high level architecture or specific to the design of a slash command (feature). Take a picture of the paper with the diagram. It must be hand-drawn on paper. Each person submits only one diagram. Each person submits a different type of diagram (turn in the actual paper to the Instructor as well as the picture into Canvas). Coordinate with team members so that there are **no duplicates**. If there are 5 people on the team, then there should be two Sequence Diagrams, each depicting a different feature.    
+* Each individual will create **ONE hand-drawn** architecture/design diagram. The team will coordinate to have a complementary set of **hand-drawn** diagrams of the architecture/design. They can be high level architecture or specific to the design of a slash command (feature). Take a picture of the paper with the diagram. It must be hand-drawn on paper. Each person submits only one diagram. Each person submits a different type of diagram. You may be asked to also physically submit the paper to the Instructor. Coordinate with team members so that there are **no duplicates**. If there are 5 people on the team, then there should be two Sequence Diagrams, each depicting a different feature.    
    
    - [Activity diagram](https://en.wikipedia.org/wiki/Activity_diagram)  
    - [Sequence diagram](https://en.wikipedia.org/wiki/Sequence_diagram) 
@@ -17,14 +18,24 @@ One of the following:
    a) [System context diagram](https://en.wikipedia.org/wiki/System_context_diagram)   
    b) [Network diagram](https://en.wikipedia.org/wiki/Computer_network_diagram)  
    c) [Data flow diagram (DFD)](https://en.wikipedia.org/wiki/Data-flow_diagram)  
+   d) You can choose another diagram type with **instructor approval**.  
+* Create a new slash command in the modular architecture. The command will be your name. The response can be any creative text. For example:
+```
+Input on Discord: /stride
+Response: One small step for a man, one giant leap for a Stride.
+```
 
-You can choose other diagrams with **instructor approval**.  
-
-* Each diagram is agumented with a two paragraph, typed description that tells its story with words to inform the viewer.  
-* In class, you'll fill out a survey as you and a peer review your understanding of the work in this task.  
+**Notes:**  
+* Each diagram is augmented with a two paragraph, typed description that tells its story with words to inform the viewer.  
+* The diagrams cannot be renditions of the diagrams found in [the Architecture Document](Architecture.md)  
+* You need to have Work Items added to the Kanban board. 
+  - There should be detailed Feature work items in the form of a **User Story**.  
+  - There should be the Validation work item with Test Scenarios that are used to assure that the diagram meets requirements.  
+  - A different person should complete the Validation work. If you draw a diagram, you cannot be the person to validate that the drawing and explanatory text is complete/accurate.  
+* Remember, in class, you'll fill out a survey with a peer to review your understanding of the work in this Sprint.  
 
 **The goals are:**  
-* Have a better Kanban board in your Project.  
+* Have a single Kanban board for your team with a Product Backlog.  
 * Understand Discord bot coding a bit better  
    - What are HTTP requests and responses?  
    - What is an Express Server and how is it used in our implementation?   
@@ -32,6 +43,9 @@ You can choose other diagrams with **instructor approval**.
 * Adopt a feature-based, modular organization with co-located command logic to make the bot more extensible  
 * Explain design terminology and point to specific code that correlates  
 * Create diagrams that illustrate architecture  
+* Each student works on their own **Codespace instance**.
+* Each student works on their own **git branch** (that runs in their own Codespace).  
+* Exercise branches, pull requests, Kanban, User Stories, Validation tasks    
 
 The bot has been be refactored from a monolithic interaction handler into a modular, feature-based architecture. With the changes, each slash command will encapsulate (or co-locate) its command definition, command handler, component handlers, modal handlers, and command-specific state or business logic in a dedicated module (file). Central dispatchers route incoming Discord interactions to the appropriate command module.
 
@@ -51,7 +65,7 @@ Useful terms for this design include:
 ## Process Explanation
 We are doing **Scrum** with a use of a **Kanban board for visualization**. This is because:  
 * we have project deadlines that map to Sprints.  
-* we are practicing process (planning, kickoff, estimation, standups, demo)  
+* we are practicing process (planning, kickoff, estimation, stand-ups, demo)  
 * we want to track progress to Done via a Burndown graph.  
 
 This means that:  
@@ -66,7 +80,14 @@ This means that:
 * Students will have WIP limits; no Lane WIP limits.  
 
 
-**Implementation**
+**Implementation**  
+Here is a short list for how to implement your new slash command:  
+1. Add code to the `modular-architecture` directory for your new command.  
+   - Update `commands.js` with your new command.  
+   - Update `component-handler.js` and any other file as necessary.   
+2. Register your new set of commands.  
+3. Restart the bot service.  
+
 When a work item is implemented, the code is completed in the developer's personal branch named `<developer>-<feature>`.  
 
 The developer should create Unit Tests and complete Smoke Tests. Once those are done, the developer with initiate a **Pull Request**. A different person should review the code and merge into main.  
@@ -84,14 +105,7 @@ It is possible that during Validation bugs are discovered. It could be that func
 **Scrum - Stand Ups**  
 Because we meet only once per week and our Sprints are sometimes just one week long, students should **update the Kanban board outside of class**. Whenever the work is completed, update the item right away.  
 
-## Project Updates
-Only one person in your group needs to do this. You can do it as a group, or just designate one person to this the following:
-1. Update Kanban board to have 5 Lanes  
-2. Update the Estimation field  
-3. Add a new field "User Story Type"  
-4. Create Burn Down Chart
-
-### Review Kanban Board and Work Items
+## Review Kanban Board and Work Items
 Verify the following:
 * The Kanban board has 5 Lanes: Product Backlog, Sprint Backlog, Implement, Validate, Done. 
 * Verify that the Work Item has the required fields:  
@@ -145,7 +159,7 @@ A Discord bot isn't really a program that "runs inside Discord." It's a separate
 
 ### Step 1: Something happens in Discord (the Interaction)
 
-A user does something interactive such as typing in a slash command, clicking a button, picking from a dropdown, or submiting a form (a "modal"). Discord packages that event as an **Interaction** and sends it as an HTTP POST request to your bot's server. That's where your `InteractionType` values come in:
+A user does something interactive such as typing in a slash command, clicking a button, picking from a dropdown, or submitting a form (a "modal"). Discord packages that event as an **Interaction** and sends it as an HTTP POST request to your bot's server. That's where your `InteractionType` values come in:
 
 **Interaction Types:**  
 - `APPLICATION_COMMAND` — someone ran a slash command (like `/roll dice`)
@@ -158,7 +172,7 @@ Each of these arrives with a payload describing exactly what happened: which com
 
 This is the actual "coding" part. Your server reads the interaction type and any relevant IDs (like a `custom_id` on a button) and runs whatever logic you wrote — roll a die, look something up in a database, start a game, whatever.
 
-## Step 3: Your bot responds — with instructions for what to display
+### Step 3: Your bot responds — with instructions for what to display
 
 Here's the part that trips people up: your HTTP response isn't just "success/fail." It's a structured JSON object made up of a **response type** and **data**. The user never sees this JSON directly. The JSON is effectively a set of instructions telling Discord's client *what to display and how*. Discord reads that object and renders the actual message, embed, or form on the user's screen.
 
@@ -174,7 +188,7 @@ Once Discord receives that object, it renders it according to its own UI rules, 
 Here is a simple visual of that request/response cycle.  
 ![Discord overview](resources/discord_overview.png)
 
-### A couple of things worth emphasizing
+### Things worth emphasizing
 
 **The bot is stateless per request, mostly**  
 Each interaction is its own HTTP request. There's no persistent "conversation" the way a chat feels — every button click or command is a fresh POST with everything the bot needs to know packed into the payload (who clicked, what they clicked, in what channel).
@@ -185,7 +199,7 @@ Discord expects a response within 3 seconds, or it shows "This interaction faile
 **`custom_id` is how buttons/menus "remember" context**  
 Since HTTP requests don't carry memory, developers embed identifying info directly into a button's `custom_id` (e.g. `"delete_task_42"`) so that when it's clicked, the bot can parse that string back out and know exactly what to do. There is no database lookup required for simple cases.
 
-## JSON
+### JSON
 JSON (JavaScript Object Notation) is a text format for exchanging structured data. It may be stored in a `.json` file or sent in an HTTP request or response. Despite its name, JSON is language-independent.
 
 JSON supports six value types: **object**, **array**, **string**, **number**, **Boolean** (`true` or `false`), and **null**.
