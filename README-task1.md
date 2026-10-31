@@ -9,7 +9,7 @@ You will be creating a Discord Bot! Have fun!
 
 **Deliverables:**  
 * Nothing to submit, but you will have to demonstrate functionality to a peer which includes:
-   * Showing and starting the Bot Server in Codespaces  
+   * Showing and starting the Bot Server in Codespaces on your own branch   
    * Setting the port to public  
    * Showing how to register commands  
    * Demonstrating the `/test` command  
@@ -22,8 +22,9 @@ You will be creating a Discord Bot! Have fun!
 
 ## Introduction 
 This README describes the project and provides a set of instructions for creating a simple Discord bot.
-You will complete **Task #1** as a group. Individuals are responsible for understanding every part of the technology,
-and every student will be required to work on their own in future tasks.
+You will complete **Task #1** as a group so that you can help each other out. Individuals are responsible for understanding every part of the technology,
+and every student is required to have their own bot working on their own branch.  
+
 There is a **Q&A section** with questions that each student needs to be able to answer.
 
 The instructions below will create a minimal Discord bot built with Discord's **HTTP Interactions** model developed in 
@@ -82,8 +83,9 @@ We need to open the repo on Codespaces...
 1. On the GitHub site, open your Git repo. If needed, select `<> Code` in the navigation bar.
 2. In the body of the page, select `<> Code` and select the `Codespaces` tab.
 3. Select the `+` to create a Codespace on `main`.  
+4. Create your own branch right away. All you work should be done your own branch.  
 
-> **VS Code client**: It *should* be possible interact with the Codespaces instance through the VS Code local client, but the setup is more involved. Furthermore, Stride wasn't able to set the port to public when using the VS Code client. Nevertheless, for those interested in trying...  
+> **VS Code client**: I do **NOT** recommend using the local VS Code Client that is linked to Codespaces. However, it *should* be possible interact with the Codespaces instance through the VS Code local client, but the setup is more involved. Furthermore, Stride wasn't able to set the port to public when using the VS Code client. Nevertheless, for those interested in trying...  
 > *  In VS Code, install the **GitHub Codespaces** extension if you don't have it.  
 > * Command Palette (`Cmd/Ctrl+Shift+P`) → **Codespaces: Create New Codespace** → pick this repo/branch. VS Code will connect to it like a remote window.  
 
@@ -176,7 +178,9 @@ You may need to refresh your Discord site, or just wait a bit. Make sure that yo
 
 In your Discord test server, type `/test`. The bot should reply "hello world 👋". (The emoji will be random.)   
 
-### 9. Project Kanban Board
+### 9. Project Kanban Board  
+> **IMPORTANT**: Only **ONE** project should be created per team. Every member of the team will share this single project.  
+
 1. Go to GitHub and go to the UWBothellStudents organization. Click on `Projects` in the navigation bar. 
 2. Create a new project
    - Click on "From your organization" in the menu of "Project templates" on the left.  
@@ -185,7 +189,7 @@ In your Discord test server, type `/test`. The bot should reply "hello world �
 3. Set the Default repository  
    - Select the "kebab" menu (the 3 dots ...) in the upper right next to "Workflows".  
    - Select `Settings`  
-   - Select your team's respository to be the "Default respository"  
+   - Select your team's repository to be the "Default repository"  
 3. Create a new placeholder feature in the Backlog of your Kanban board.  
 
 ![Kanban Board with 5 Lanes](resources/discord_custom_kanban.png)  
@@ -228,7 +232,7 @@ ISSUE: **The bot didn't respond in time to the slash command**
 If you changed bot behavior, stop the running process and start it again.  
 > In the Terminal, type in `Ctrl+C` to stop the server, then `npm start` to start it again. 
 
-> Note: if you want auto-restarts during development, you can use an altnerative way to start the server: `npm run dev`  
+> Note: if you want auto-restarts during development, you can use an alternative way to start the server: `npm run dev`  
 
 If you changed the set of slash commands you want: run `npm run register` again so Discord updates the command list.
    - Code changes: a restart is required (stop with Ctrl+C, then start with `npm start`)
@@ -242,7 +246,7 @@ Codespaces is a full development environment that runs in the cloud instead of o
 
 It is a virtual machine with VS Code, a terminal, and all your project files, accessible through a browser (or the VS Code client). Every Codespace is created *from* a specific repository (and even a specific branch of it). GitHub clones your repo onto that cloud machine automatically when the Codespace is created. So the repo is the actual source of truth for your code (tracked by git, with full history), and a Codespace is just a disposable, ready-to-use *place to run and edit* that code without installing Node, git, or anything else locally.  
 
-Codespaces has a local copy of all the files. You can add files or change files in Codespaces without making any changes to the Git repository. Users should commit and push desired changes to `git` so that the work can be tracked and persist. Commiting to git will allow you to delete a Codespace and recreate it anytime without losing anything... as long as your changes were committed and pushed to the repo.
+Codespaces has a local copy of all the files. You can add files or change files in Codespaces without making any changes to the Git repository. Users should commit and push desired changes to `git` so that the work can be tracked and persist. Committing to git will allow you to delete a Codespace and recreate it anytime without losing anything... as long as your changes were committed and pushed to the repo.
 
 **2. What is the difference between a Discord Test Server, a Discord App, and a Discord bot?**
 A Discord App is registered with Discord and contains a Bot that is installed into one or more Servers.
