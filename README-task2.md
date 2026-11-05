@@ -77,33 +77,103 @@ This means that:
   - **estimate** each work item. This will include the creation of **Unit Tests** and execution of **Smoke Tests**.   
   - create a **Validation Work Item with Test Scenarios**. These Validation Work Items are to be **assigned to someone different**.  
   - Each person should **commit** to the work assigned to them. A commitment means that the work load is acceptable and will be done on a schedule that allows the full team to succeed with the *Sprint's Deliverables*.    
-* Students will have WIP limits; no Lane WIP limits.  
+* Students will have WIP limits.  
+* The Implement and Validate lanes should have a WIP limit that match the number of members on the team.  
+* The lanes Product Backlog, Sprint Backlog, and Done do not have WIP limits.  
 
+**Required Fields**  
+Each Work Item should have values in the following fields:  
+- Priority  
+- Start Date  
+- Target Date  
+- Size  
+- Estimate  
+- Remaining  
+- User Story Type  
+- (not a field) Text in the body that **Defines Done** or **Test Scenarios**.  
+
+> **Important**: The date fields don't initially appear in the side bar (popup) that displays the work item's details. To set the date fields, there are a few options:  
+> 1)	Go to the “Team items” tab. Scroll over to the Start/Target Date columns and add a value.
+> 2)	Go to the “Roadmap” tab. Add the work to a date by clicking in the timeline space.
+> 3)	Customize the columns under “My items”  tab.  Add the Start/Target Date fields. Then add values there.  
+>
+> Once the date fields have initial values, they will appear in the sidebar. 
+
+### Specific Process Details for Sprint #2
+In Sprint #2, Each student should complete 4 (or more) tasks.
+1)	Architecture diagram (Implementation task): Required: User Story. Definition of Done.
+2)	Validation of a different student’s diagram. Required: How to validate.
+3)	Slash Name command (Implementation Task): Required: User Story. Definition of Done.
+4)	Validation of a different student’s slash command. Required: How to validate.
+
+**Details on Work Items**  
+* Items would be created in the Product Backlog.   
+* All Items in the Product Backlog ought to have Priority and Size fields filled out immediately and implementation Tasks should have a User Story and Definition of Done. Validation tasks should have Test Scenarios (how to validate).
+* After proper creation, all work items for this Sprint should be moved to Sprint Backlog during Planning Meeting.
+* All Items in the Sprint Backlog ought to have these fields filled out: Assignee, Estimate, Remaining. At this stage, Start Date and Target Date are optional.
+* When Implementation tasks begin, the work item moves to the Implement lane. Start Date and Target Date should be filled out.
+* As students progress on the work, the Remaining time is updated.
+* When an Implementation task is completed:
+   - A Pull Request is made. Ideally someone else will complete the merge into `main`.
+   - The associated Validation task should then be moved to the Validation lane on the Kanban board (if not already there).  
+* Validation work should be completed on `main`. This means that the tester needs to Pull main and test the fully merged code in main.  
+
+> **Important**: Because all implementation work needs to be validated, the implementation should be completed early enough to allow sufficient time for the Validation to happen. Furthermore, if an issue is found, issues should be addressed before the end of the Sprint.  
 
 **Implementation**  
-Here is a short list for how to implement your new slash command:  
-1. Add code to the `modular-architecture` directory for your new command.  
-   - Update `commands.js` with your new command.  
-   - Update `component-handler.js` and any other file as necessary.   
-2. Register your new set of commands.  
-3. Restart the bot service.  
+In Sprint #2, you can complete the work in either `orig` or the `modular-architecture` directory.   
 
-When a work item is implemented, the code is completed in the developer's personal branch named `<developer>-<feature>`.  
+Here is a short list for how to implement your new slash command:  
+  
+* Step 1a: If you work in the `modular-architecture` directory for your new command.  
+   - Update `commands.js` with your new command name.  
+   - Update `component-handler.js` to route it correctly.   
+   - Add the new file with your command's implementation.    
+
+* Step 1b: If you work in the `orig` directory.  
+   - Update `app.js` with your new code.  
+   - Update `command.js` with your new command.  
+
+2. Register your new set of commands. (`npm run register`) 
+3. Restart the bot service.  (`npm start`)  
+
+When a work item is implemented, the code is completed in the developer's personal branch named `<devname>-<feature>`.  
 
 The developer should create Unit Tests and complete Smoke Tests. Once those are done, the developer with initiate a **Pull Request**. A different person should review the code and merge into main.  
 
-**Validation**  
+**Scrum - Stand Ups**  
+Because we meet only once per week and our Sprints are sometimes just one week long, students should **update the Kanban board outside of class**. Whenever the work is completed, update the item right away. 
+
+## Validation
+**Validating on main**   
+The ultimate goal is to have one "deployed" Discord Bot with that belongs to a Discord Server with all members invited. Therefore, each Implementation needs to be validated on `main`. 
+
+The steps are:  
+* The code is completed and committed to the developer's branch.   
+* Pull Request and merged into `main`.  
+* On Codespaces, Tester changes to the `main` branch and Pulls.  
+* Service is started and feature is tested.  
+* Don't forget: Tester needs to switch back to their own branch before resuming their own feature work.  
+
+> At some point, a Discord Server needs to be set up that represents the *Released* Discord Bot. Your team will eventually need to create one more Discord App and Discord Server for this.  
+
+**Validation Discussion**  
 It can be problematic to review one's own work, and we want to practice process & team coordination. Therefore, we will require that the Validation of a work item to be done by a different person. To help with the tracking, we will have a separate Work Item specific to Validation with its own time Estimate.  
 
 When a work item is in the Validation column, it is assumed to be in the *Tracking* state, waiting for its dependency work item to be fully implemented, checked in, and merged into `main`.  
 
 There needs to be communication from the Developer to the Validator so that the validation can be completed on-time and without delay. One should **over-communicate**: send email, document in the Validation work item, and verbally inform the Validator during Stand Up.  
 
-**Validation Failure**  
-It is possible that during Validation bugs are discovered. It could be that functionality is missing or something just doesn't work. In this case, create a new Work Item (issue) and label it as a Bug. Add the work item to the Sprint Backlog (unless it seems too large or otherwise out of scope). Be cognizant of *Feature Creep* versus *Faulty Implementation*. In a single sprint, we want to assure that feature work is delivered as bug free as possible, so the team should attempt to fix all bugs found in the current sprint. However, some bugs essentially reveal a misunderstanding of the requirements and represent a whole new work item (added/different functionality). Sometimes it can be better to punt those to the Product Backlog and completed in a different sprint.  
+**Validation Failure: If an issue (bug) is Found**  
+When validation happens, an issue could be discovered. In our class, the expectation is the following:  
+* A new Work Item is created. Give it the **Type**: `Bug`.   
+* The new Work Item is added to `Sprint Backlog`.  
+* The developer needs to address the Work Item in *this* Sprint.  
 
-**Scrum - Stand Ups**  
-Because we meet only once per week and our Sprints are sometimes just one week long, students should **update the Kanban board outside of class**. Whenever the work is completed, update the item right away.  
+It is possible that the issue found is too big or hard to complete in this Sprint. In such a case, the item is moved to the `Product Backlog` to be addressed later. When bugs are moved to the Product Backlog, this is considered `Technical Debt`. It also means that the work wasn't truly completed ontime and it could impact your ability to Demo the feature.  
+
+Be cognizant of *Feature Creep* versus *Faulty Implementation*. In a single sprint, we want to assure that feature work is delivered as bug free as possible, so the team should attempt to fix all bugs found in the current sprint. However, some bugs essentially reveal a misunderstanding of the requirements and represent a whole new work item (added/different functionality). Sometimes it can be better to punt those to the Product Backlog and completed in a different sprint.  
+ 
 
 ## Review Kanban Board and Work Items
 Verify the following:
