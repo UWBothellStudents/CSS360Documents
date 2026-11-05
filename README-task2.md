@@ -6,7 +6,7 @@ You should have a very simple Discord bot working. Now you will explore the code
 **Task:** 
 * Add Work Items to the Kanban board   
 * Draw an architecture/design diagram of your Discord bot  
-* Add to the modular architecture a slash command, `/<your_name>`  
+* Add to the **modular architecture** a slash command, `/<your_name>`  
 
 **Deliverables:**  
 * Each individual will create **ONE hand-drawn** architecture/design diagram. The team will coordinate to have a complementary set of **hand-drawn** diagrams of the architecture/design. They can be high level architecture or specific to the design of a slash command (feature). Take a picture of the paper with the diagram. It must be hand-drawn on paper. Each person submits only one diagram. Each person submits a different type of diagram. You may be asked to also physically submit the paper to the Instructor. Coordinate with team members so that there are **no duplicates**. If there are 5 people on the team, then there should be two Sequence Diagrams, each depicting a different feature.    
@@ -121,19 +121,14 @@ In Sprint #2, Each student should complete 4 (or more) tasks.
 > **Important**: Because all implementation work needs to be validated, the implementation should be completed early enough to allow sufficient time for the Validation to happen. Furthermore, if an issue is found, issues should be addressed before the end of the Sprint.  
 
 **Implementation**  
-In Sprint #2, you can complete the work in either `orig` or the `modular-architecture` directory.   
+In Sprint #2, you should complete the work in the `modular-architecture` directory.   
 
 Here is a short list for how to implement your new slash command:  
   
-* Step 1a: If you work in the `modular-architecture` directory for your new command.  
+1. In the `modular-architecture` directory.  
    - Update `commands.js` with your new command name.  
    - Update `component-handler.js` to route it correctly.   
    - Add the new file with your command's implementation.    
-
-* Step 1b: If you work in the `orig` directory.  
-   - Update `app.js` with your new code.  
-   - Update `command.js` with your new command.  
-
 2. Register your new set of commands. (`npm run register`) 
 3. Restart the bot service.  (`npm start`)  
 
