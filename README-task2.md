@@ -116,6 +116,7 @@ In Sprint #2, Each student should complete 4 (or more) tasks.
 * When an Implementation task is completed:
    - A Pull Request is made. Ideally someone else will complete the merge into `main`.
    - The associated Validation task should then be moved to the Validation lane on the Kanban board (if not already there).  
+   - It is *fine* to have Validation tasks waiting in the Validate lane on the Kanban board at the start of the Sprint. It is **more correct** to leave them in the Sprint Backlog until the work is started. 
 * Validation work should be completed on `main`. This means that the tester needs to Pull main and test the fully merged code in main.  
 
 > **Important**: Because all implementation work needs to be validated, the implementation should be completed early enough to allow sufficient time for the Validation to happen. Furthermore, if an issue is found, issues should be addressed before the end of the Sprint.  
