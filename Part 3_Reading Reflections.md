@@ -150,7 +150,42 @@ Classical structured analysis emphasizes that process and data are separate, and
 
 ## 3.4 Brainstorming & Estimation  
 
-**Dev Schedules, Flying Pigs**  
+### Brainstorming Rules
+
+1. **Define the Goal Clearly**  
+   Ensure everyone understands the specific product goal you are trying to achieve.
+
+2. **Encourage Wild Ideas**  
+   No idea is too crazy. Encourage participants to think outside the box.
+
+3. **Build on Others’ Ideas**  
+   Use “Yes, and…” instead of “No, but…” to build on each other’s ideas.
+
+4. **Defer Judgment**  
+   Avoid criticizing or evaluating ideas during the brainstorming session. Focus on quantity over quality at this stage.
+
+5. **Stay Focused on the Topic**  
+   Keep the discussion centered on the product goal. Use a facilitator to guide the conversation if necessary.
+
+6. **One Conversation at a Time**  
+   Ensure that only one person speaks at a time to maintain clarity and respect.
+
+7. **Be Visual**  
+   Use diagrams, sketches, or sticky notes to visualize ideas. This can help in understanding and building on concepts.
+
+8. **Set a Time Limit**  
+   Limit the brainstorming session to a specific time frame to keep the energy high and focused.
+
+9. **Encourage Participation from Everyone**  
+   Make sure all participants have an opportunity to contribute. Sometimes the quietest voices have the most innovative ideas.
+
+10. **Document All Ideas**  
+    Record all ideas generated during the session. You can evaluate and prioritize them later.
+
+11. **Have Fun**  
+    Create a positive and enjoyable atmosphere. Fun can spark creativity and lead to better ideas.
+
+### Article: Dev Schedules, Flying Pigs (by IM Wright)
 Development scheduling succeeds when it prioritizes risk management over rigid deadlines, focuses on critical features first, and avoids the myth of precise time estimations. Teams and customers benefit most when the process emphasizes quality and coherence over arbitrary dates.
 
 1. Dev estimations are flawed.  
@@ -160,7 +195,7 @@ Development scheduling succeeds when it prioritizes risk management over rigid d
 5. A risk-managed approach leads to delivering high-quality, essential features that truly satisfy customer needs.  
 6. Customer-centric focus fosters better team collaboration, morale, and decision-making
 
-**Project Buffer Overflow**  
+### Article: Project Buffer Overflow (by IM Wright)  
 To estimate, use historical completion rate.  
 Accurate estimation requires using historical data, trusting calculated timelines, and applying only necessary buffers. Avoid unrealistic promises and overcommitment by focusing on scope management and maintaining professional, data-driven planning. This approach builds trust with customers and management while preventing burnout and disappointment.
 
@@ -173,7 +208,7 @@ Accurate estimation requires using historical data, trusting calculated timeline
    2. Time buffer: added to time estimates. Bad because it avoids addressing the real problem–bad estimates.  
    3. Last-mile buffer: accounts for variations and end-of-game delays. Historical data shows that it takes time to account for last-minute “hijinks” that invariably pop up.
 
-### Flying Pigs
+### Article: Flying Pigs (by IM Wright)
 
 **1\. Why does Wright argue that detailed feature-by-feature schedule estimates are largely a fantasy, and what experience does he use to support that claim?**
 
@@ -199,7 +234,7 @@ Wright argues that developers who feel pressure to hit feature deadlines may hid
 
 One might put emphasis on prioritizing must-have features, communicating risk early, and avoiding false precision in estimates. One could reject the idea that feature dates are largely irrelevant because Scrum boards, sprint goals, and backlog planning benefit from shorter-term commitments that help teams coordinate work while still accommodating uncertainty.
 
-### IMW Buffer Overflow
+### Article: Project Buffer Overflow (by IM Wright)
 
 **1\. Wright argues that most traditional estimation buffers are unnecessary. What are the three types of buffers he describes, and why does he believe only one of them is actually needed?**  
 1\) a work buffer that keeps engineers supplied with ready-to-start tasks; 2\) an estimation buffer that compensates for poor estimates, and; 3\) a final delivery buffer that accounts for last-minute variation and surprises. He argues that if estimates are based on historical completion data, only the final delivery buffer is necessary because the other two exist primarily to compensate for poor planning or inaccurate estimation practices.
@@ -240,6 +275,67 @@ The user story leans towards a non-functional requirement by stating "distribute
 **Constraint:** "The system shall use Redis." (implementation choice)  
 **Functional requirement:** "The system shall provide an API for storing and retrieving cached data."  
 **Non-functional requirement:** "The API shall return responses within 100 ms for 95% of requests."
+
+**Why is feature creep considered a common cause of project failure?**
+
+Uncontrolled additions and changes to requirements throughout development lead to budget and schedule overruns, unstable design and code, and poor overall quality and satisfaction. It is what happens when changes are not managed, which is why change control matters.
+
+**What three things does a feasibility study check about a proposed system?**
+
+It checks whether the system contributes to organizational objectives, whether it can be engineered with current technology and within budget, and whether it can be integrated with the other systems in use. Its purpose is to decide whether the system is worthwhile before major investment.
+
+**How do the questions "Can we build it?" and "Should we build it?" differ?**
+
+"Can we build it?" is the technical feasibility question: is current technology enough, and can the system be integrated? "Should we build it?" is the financial and organizational question: is it worth the cost, and does it support the organization's goals? A project can pass one and fail the other, for example a system that is buildable but not worth the money.
+
+**How can a feasibility study be done when the detailed requirements have not been gathered yet?**
+
+It does not need a full specification, only a high-level picture of the project's objectives from sponsors and stakeholders. From that, the team makes rough estimates of cost, resources, technical risk, and timeline, often by comparing with past projects or industry standards. This prevents investing in a project that later proves unfeasible or misaligned with business needs.
+
+**What is the difference between user requirements and system requirements, and which type of requirement are they?**
+
+User requirements have a customer focus, while system requirements have a developer focus (more detailed, but not necessarily technical). Both are functional requirements, which describe the functionality or services the system is expected to provide and are what cause a customer to want the product.
+
+**Why are imprecise, incomplete, and inconsistent functional requirements a problem?**
+
+Ambiguous requirements can be interpreted in different ways, incomplete ones leave out services users need, and inconsistent ones contradict each other. This matters because the definition of "Done" is critical to a project's success. In agile projects it is often expressed as test cases, which assumes that the tests themselves are complete.
+
+**What does the aircraft reliability example show about non-functional requirements?**
+
+If a functional requirement is not met, users can usually find a work-around, but for an unreliable aircraft system the only "work-arounds" are to pray, scream, or panic. It shows that non-functional requirements such as reliability, response time, and security can be more critical than functional ones, and that failing them can make customers stop using a product.
+
+**How would you rewrite the requirement "The system should be fast" so that it is a good non-functional requirement?**
+
+Add a metric, for example: "The system shall return search results within two seconds under normal operating conditions." With a metric the team can objectively test whether the requirement is met, which is difficult with a vague word like "fast." The "ilities" are tied to non-functional requirements that are measured.
+
+**How could the vague requirement "Secure system" be restated as a functional requirement, and why would you do so?**
+
+It could become "The system shall verify a user ID and password before allowing access." Restating a non-functional requirement as a concrete behavior makes it quantifiable and easier to test, which helps quality assurance. A useful question is: what features can we create to make sure we meet the non-functional requirement?
+
+**In what ways do constraints differ from ordinary requirements?**
+
+Requirements describe what capabilities or qualities the system must have, while constraints limit the design or the project itself, such as "written in C++" or "operational by April 15th." Constraints can be product or business oriented, lean toward "how" rather than "what," and may be changed by management. They can also be viewed as a kind of non-functional requirement.
+
+**Name several common categories of constraints and give an example of each.**
+
+Budget (actual dollars, not people), schedules (dates), technology, development (the number of developers with specific expertise), operations (data center location, people, services), team and organization (location, size), and software process (which life cycle is used). For example, a deadline of April 15th is a schedule constraint, and having only two developers who know a required language is a development constraint.
+
+**What qualities make a requirement statement good?**
+
+It should be easy to read, free of ambiguity (with terminology defined), verifiable, and specific, using dates rather than "ASAP." It should also be organized for its audience and numbered so it can be traced through validation and verification.
+
+**What should a good scenario include?**
+
+A scenario is a real-life example of how the system can be used. It should describe the starting situation, who (the actor) does what, the normal flow of events, what can go wrong, other concurrent activities, and the state when the scenario finishes.
+
+**How is a requirement different from a specification, and why number them?**
+
+A requirement is the high-level statement (the book's user requirement), while the specification provides the detailed version. Numbering both lets you trace each one through the software process, including validation and verification.
+
+**What is requirements management, and what should a team plan for?**
+
+It is the process of managing changing requirements during requirements engineering and development, which is needed because requirements are inevitably incomplete and inconsistent and new ones emerge. The team should plan how requirements are identified, how changes are analyzed (the change management process), how much traceability information is kept, and what CASE tool support is needed.
+
 
 <a id="3.5"></a>
 ## 3.5 Project Management & Testing
