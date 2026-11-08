@@ -94,9 +94,9 @@ Software is largely invisible, so models take the "invisible" out of it by turni
 
 A model is an abstract view of the system, so it deliberately omits detail. Leaving details out reduces noise and confusion and keeps attention on what is important to understand.
 
-**Which statement best describes UML (Unified Modeling Language)?**
+**Describe what UML is?**
 
-UML is a standardized set of diagram types, semantics, and notations for modeling systems, designed to support object-oriented analysis and design. It includes 14 diagram types, grouped into structural diagrams (such as class diagrams) and behavioral diagrams (such as use case, sequence, activity, and state machine diagrams).
+UML (Unified Modeling Language) is a standardized set of diagram types, semantics, and notations for modeling systems, designed to support object-oriented analysis and design. It includes 14 diagram types, grouped into structural diagrams (such as class diagrams) and behavioral diagrams (such as use case, sequence, activity, and state machine diagrams).
 
 **What is the main purpose of a context diagram?**
 
@@ -122,19 +122,19 @@ A class diagram models the static structure of software, including both data (at
 
 Both are "has-a" relationships, but they differ in ownership. In composition (filled diamond) the part cannot exist independently, so if the whole is destroyed the part is destroyed too, such as a hash map and its hash table. In aggregation (open diamond) ownership is shared, so the parts live on if the whole goes away, such as students in a course section that is cancelled.
 
-**What is a UML use case diagram primarily used to show?**
+**What is a UML Use Case diagram primarily used to show?**
 
 A use case diagram shows the interactions between a system and its external actors (people or other systems). Actors are drawn as stick figures outside the system boundary, and use cases (the tasks) are drawn as ovals inside it. It is typically used during requirements analysis to identify the functionality the system should offer, with relationships such as include and extend linking use cases.
 
-**In a UML activity diagram, what do a fork and a join represent?**
+**In a UML Activity Diagram, what do a fork and a join represent?**
 
 A fork splits the flow into actions that can happen in parallel, where the order does not matter. A join synchronizes those parallel actions so the flow continues only when they are done. Choices are shown separately with a decision and merge.
 
-**Which statement correctly describes how to read a UML sequence diagram?**
+**Describe how to read a UML Sequence Diagram?**
 
 Read it from top to bottom, because time moves downward, not left to right. Each participant has a vertical lifeline, activation bars show when it is actively working, and horizontal arrows show messages in order, with solid arrows for requests and dashed arrows for replies. Closed arrowheads indicate synchronous calls and open arrowheads asynchronous ones.
 
-**Why do analysts often use several different types of models for the same system?**
+**Why do Software Engineers often use several different types of models for the same system?**
 
 Different models are complementary: each captures a different kind of information, such as data flow, data structure, interactions, or behavior. Together they give a more complete picture than any single model could. Which approach a given model belongs to matters less than knowing that many models exist.
 
@@ -244,6 +244,71 @@ He recommends calculating a team's historical task completion rate and then esti
 
 **3\. Wright repeatedly tells readers to "believe the estimate." Why does he think teams and managers struggle to trust estimates that are based on historical data?**  
 He believes people often distrust data-driven estimates because they want to believe they can work faster, work harder, or somehow achieve a better outcome than their historical performance suggests. He argues that this optimism leads managers and engineers to second-guess valid estimates instead of accepting what the data indicates about likely completion dates.
+
+### Slide Deck Content
+**What is the cone of uncertainty, and how should it change the way early estimates are presented?**
+
+The cone of uncertainty says that early estimates are inherently wide because so much is still unknown, and that they narrow as the project progresses. Early on, an estimate is best shared as a range, not as a single precise number.
+
+**What are optimism bias and the planning fallacy, and why do tasks run late far more often than early?**
+
+Optimism bias and the planning fallacy are the tendencies to assume things will go better than they usually do and to underestimate how long work will take. Task durations also have a skewed distribution: there is little room to finish much earlier than expected but no limit on how much later a task can run.
+
+**What is anchoring, and how can a team reduce its effect?**
+
+Anchoring happens when the first number spoken, or the loudest voice, dominates the group's estimate. A team can reduce it by having everyone estimate privately and reveal together, as in planning poker.
+
+**How do Hofstadter's Law and Parkinson's Law differ?**
+
+Hofstadter's Law says it always takes longer than you expect, even when you account for Hofstadter's Law. Parkinson's Law says work expands to fill the time available, regardless of the actual effort required, so too much slack is also a problem. 
+
+> **Hofstadter's law**: It always takes longer than you expect, even when you take into account Hofstadter's law.  
+
+> **Parkinson's Law**:   
+> * Work expands so as to fill the time available for its completion.  
+> * The number of workers within public administration tends to grow, regardless of the amount of work to be done.
+
+**What does Brooks's Law say, and why does it hold?**
+
+Brooks's Law says that adding people to a late project makes it later. New people must be brought up to speed and add communication overhead, which slows the people already doing the work.
+
+**What strategies can counter Parkinson's Law?**
+
+Timeboxing sets a fixed, short block of time for a task, and self-imposed shorter deadlines compress an honest estimate to about 50–70%. Other strategies are the [Pomodoro Technique](https://www.todoist.com/productivity-methods/pomodoro-technique) (25-minute focus intervals with 5-minute breaks), defining "done" before starting, and visual timelines such as [Gantt charts](https://project-management.com/what-is-a-gantt-chart/) or progress boards.
+
+**Why is it harmful to treat estimates as commitments?**
+
+When estimates are commitments, teams protect themselves by padding them (sandbagging) and may work unsustainable hours, leading to burnout. An estimate is a forecast made with incomplete knowledge, not a promise.
+
+**How does three-point estimation work? Calculate it for O = 3, M = 6, and P = 15.**
+
+You give an optimistic (O), most likely (M), and pessimistic (P) value and combine them as (O + 4M + P) / 6, which weights the most likely value most heavily. Here it is (3 + 24 + 15) / 6 = 42 / 6 = 7.
+
+**What are the main steps in a round of Planning Poker?**
+
+The product owner presents a story and answers questions, then each person privately picks a card from a Fibonacci-style scale (1, 2, 3, 5, 8, 13, 21) and everyone reveals at once. The highest and lowest voters explain their reasoning, and the team re-votes until estimates converge, then records the result and moves on.
+
+**What are the "reference story" and the "parking lot" in planning poker?**
+
+The *reference story* is a small, familiar story agreed on as a baseline (for example, "this is a 2") that other stories are compared with. The *parking lot* is where a story goes if the team cannot converge, since it probably needs more detail or should be split.
+
+**How are story points and T-shirt sizing similar, and how do they differ?**
+
+Both are relative sizing methods that avoid committing to exact hours or dates. T-shirt sizing (small, medium, large) is quick and coarse, so it is used for roadmapping, while story points use a numeric scale for finer relative sizing, often with planning poker.
+
+**Why is adding a buffer a poor technique, and what is a better alternative?**
+
+A buffer tends to be bigger for inexperienced estimators, so it hides poor estimates instead of improving them. Throughput and velocity-based forecasting is better because it uses the team's historical data, though it requires a bit of process.
+
+**What is the 80-20 rule in estimation, and how can negotiation help?**
+
+The [80-20 rule](https://vkestimatingsolutions.com/2016/05/20/8020-rule-applied-to-estimating-effort/) says that 80% of the work takes 20% of the time, while the last 20% of the work takes 80% of the time. This is also known as the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle).  
+
+> One way to mitigate expensive requests is to *negotiate*. For example, you can offer to deliver only 80% of the ask for some fraction of the full, original cost.  
+
+**How do sampling and the tracer bullet approach help with estimation?**
+
+Sampling means measuring how long a portion of the work takes and then scaling that up to the whole. A tracer bullet builds a thin end-to-end slice first, which flushes out hidden gotchas and complexity before the full estimate is trusted.
 
 <a id="3.x"></a>
 ## 3.x Requirements

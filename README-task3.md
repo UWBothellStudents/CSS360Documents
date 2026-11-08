@@ -8,6 +8,8 @@ In this Sprint, you will implement!! All work should be tracked by a Work Item i
 * Each member will test someone else's feature. 
 * The group will have a Discord bot for `main` so that all features can be tested in one spot.  
 * The group will create a Tag of the *release*.  
+   - Each person should be able to show this tag.   
+   - The Tag will be documented with *Release Notes*.  
  
 
 **Deliverables in GitHub:**  
@@ -82,9 +84,11 @@ branch.
 
 ## Q & A
 
-**1. Why does each student need their own Codespace, branch, and Discord Application?**
+**1. It should be obvious why each student needs their own Codespace, branch, and Discord Application. Why should there be an environment dedicated to `main`?**
 
-Each student needs an isolated environment so they can work independently without interfering with someone else's bot, port, or URL. This prevents conflicts when multiple people run the server at the same time or try to register commands in the same shared setup.
+Each student needs an isolated environment so they can work independently without interfering with someone else's bot, port, or URL. This prevents conflicts when multiple people run the server at the same time or try to register commands in the same shared setup.  
+
+There should be an environment dedicated to `main` to simulate a production environment as much as possible. All development effort will be merged into a dedicated environment where higher level tests will take place (Integration, System, and User Acceptance Testing).  
 
 **2. What is the difference between a Git branch and a Codespace in this project?**
 
@@ -94,7 +98,7 @@ A Git branch is a version of the repository's history that lets you work on chan
 
 Each Codespace has its own bot configuration, including its own Discord Application credentials and forwarded URL. Sharing one `.env` would cause the wrong bot token, public key, or endpoint URL to be used, which would break testing and deployment.
 
-**4. What must you do after changing slash commands in `commands.js`?**
+**4. What must you do after changing slash commands in `commands.js` before the command will work in Discord?**
 
 You must re-run `npm run register` so Discord updates its list of available slash commands. Without re-registering, your new command may not appear in Discord even if your server code is already running.
 
@@ -102,6 +106,14 @@ You must re-run `npm run register` so Discord updates its list of available slas
 
 A pull request is the review step before merging your branch into `main`. It gives teammates a chance to inspect the code, discuss changes, and confirm that the feature is ready before it becomes part of the shared project.
 
-**6. Why do you need to coordinate updates to the shared bot running from `main`?**
+**6. Describe what UML is.**
 
-The bot running from `main` is a shared deployment environment, so only one person should update it at a time. Coordinating changes prevents one update from overwriting another and helps ensure the team is testing the same version of the app.
+UML (Unified Modeling Language) is a standardized set of diagram types, semantics, and notations for modeling systems, designed to support object-oriented analysis and design. It includes 14 diagram types, grouped into structural diagrams (such as class diagrams) and behavioral diagrams (such as use case, sequence, activity, and state machine diagrams).
+
+**7. What is a UML Use Case diagram primarily used to show?**
+
+A use case diagram shows the interactions between a system and its external actors (people or other systems). Actors are drawn as stick figures outside the system boundary, and use cases (the tasks) are drawn as ovals inside it. It is typically used during requirements analysis to identify the functionality the system should offer, with relationships such as include and extend linking use cases.
+
+**8. Why do Software Engineers often draw several different types of models for the same system?**
+
+Different models are complementary: each captures a different kind of information, such as data flow, data structure, interactions, or behavior. Together they give a more complete picture than any single model could. Which approach a given model belongs to matters less than knowing that many models exist.
