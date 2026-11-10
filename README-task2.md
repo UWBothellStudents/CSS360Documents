@@ -22,7 +22,7 @@ One of the following:
 * Create a new slash command in the modular architecture. The command will be your name. The response can be any creative text. For example:
 ```
 Input on Discord: /stride
-Response: One small step for a man, one giant leap for a Stride.
+Response: One small step for a man, one giant Stride for mankind.
 ```
 
 **Notes:**  

@@ -4,10 +4,15 @@
 In this Sprint, you will implement!! All work should be tracked by a Work Item in Kanban. Especially important is to have work items for everything needed in this sprint, and to assign owners of the work.   
 
 **Tasks:**  
-* Each member of the group will develop a medium-sized feature in their own branch that will get merged into `main`. 
-* Each member will test someone else's feature. 
-* The group will have a Discord bot for `main` so that all features can be tested in one spot.  
-* The group will create a Tag of the *release*.  
+* The Team will document their "Definition of Done".   
+   - [Atlassian](https://www.atlassian.com/agile/project-management/definition-of-done)   
+   - [Microsoft](https://microsoft.github.io/code-with-engineering-playbook/agile-development/team-agreements/definition-of-done/)  
+   - [Teaching Agile](https://teachingagile.com/scrum/psm-1/scrum-implementation/definition-of-done)    
+* Each member of the Team will develop a "sizable" feature in their own branch that will get merged into `main`.  
+   - If the team agrees, then the Team can develop a larger feature where each member develops a component or layer of the feature.  
+* Each member will test someone else's work. 
+* The Team will have a Discord bot for `main` so that all features can be tested in one spot.  
+* The Team will create a Tag of the *release*.  
    - Each person should be able to show this tag.   
    - The Tag will be documented with *Release Notes*.  
  
@@ -43,11 +48,48 @@ In this Sprint, you will implement!! All work should be tracked by a Work Item i
 7. Use AI to develop and to create Unit Tests for feature work.  
 8. Complete all Sprint work, updating work items regularly.  
 
-## Create a Kanban Work Items
+## Create Kanban Work Items
 Read the all the steps above and below to get an idea of what you'll create in this task. Create new 
 Backlog items and add them to the Kanban board's backlog. Assign them to someone on the team and,
 as you make progress, track the work on the Kanban board.  
 Make sure that you include work to create Unit Tests, that you have a Validation work item with Test Scenarios, and that you include work that the team needs to do. 
+
+### Detailing Done  
+Last sprint we were a bit haphazard with where and how we defined *Done*. In this sprint, we want to be more effective and efficient.    
+* The Team will have a shared document that is the `Definition of Done` for all work items.  
+* In the Title or Description field, the Work Item will contain a `User Story` that is brief.  
+* The Desciption field of a Work Item will have `Acceptance Criteria` that is detailed and specific.  
+* The Validation work will contain `Test Scenarios`.  
+
+**The Work Items:**  
+* Title can be user story if short, or short title
+* Use Description field:
+   - User Story: 
+      - “As a developer” is fine for Architecture Diagram
+      - “As a customer” is good for features
+      - Does not need to describe every detail of the functionality
+   - Acception Criteria:
+      - specific functionality description.
+      - Informs the developer when the feature is complete
+      - Perhaps describe what will **not** get done
+* Comment field should have a breakdown of the work. It can be a list of tasks written by and targeting the specific Developer doing the work. These can be vague to others so long as the developer understand them. Their purpose is to help decompose the work, to assist with providing an accurate estimate, and to assure that work is done properly.   
+
+**Validation Work Items**  
+* No User Story  
+* Have title for validation be short.  
+* Use Description field for the Test Scenarios  
+   - User does X  
+   - User sees Y  
+* Be specific on what should be tested  
+* Don’t be developer specific, but Work Item specific.  
+   - Don’t have a description that says: "Confirm that Stride successfully drew a diagram."  
+   - Instead, provide mores specifics such as: "Confirm that the diagram is \<specifics go here\> "  
+   - This is because work can be moved to different team members, but the work stays the same.  
+
+**At the end of Kickoff**  
+* Every Work Item is assigned  
+* Almost ALL fields are set: You can leave out start date and target date until work is started.  
+
 
 ## Create `main` Discord bot  
 **Only one person does this.**
@@ -84,36 +126,32 @@ branch.
 
 ## Q & A
 
-**1. It should be obvious why each student needs their own Codespace, branch, and Discord Application. Why should there be an environment dedicated to `main`?**
-
+**1. It should be obvious why each student needs their own Codespace, branch, and Discord Application. Why should there be an environment dedicated to `main`?**  
 Each student needs an isolated environment so they can work independently without interfering with someone else's bot, port, or URL. This prevents conflicts when multiple people run the server at the same time or try to register commands in the same shared setup.  
 
 There should be an environment dedicated to `main` to simulate a production environment as much as possible. All development effort will be merged into a dedicated environment where higher level tests will take place (Integration, System, and User Acceptance Testing).  
 
-**2. What is the difference between a Git branch and a Codespace in this project?**
 
-A Git branch is a version of the repository's history that lets you work on changes separately from `main`. A Codespace is the cloud-based development environment where that branch is opened and edited. One branch can be used in one or more Codespaces, but each Codespace is a separate place to run and test your work.
+**2. Describe the difference between `Definition of Done` and `Acceptance Criteria`.**
+**TODO**
 
-**3. Why is `.env` created separately in each Codespace instead of being shared?**
-
+**3. Why is `.env` created separately in each Codespace instead of being shared?**  
 Each Codespace has its own bot configuration, including its own Discord Application credentials and forwarded URL. Sharing one `.env` would cause the wrong bot token, public key, or endpoint URL to be used, which would break testing and deployment.
 
-**4. What must you do after changing slash commands in `commands.js` before the command will work in Discord?**
-
+**4. What must you do after changing slash commands in `commands.js` before the command will work in Discord?**  
 You must re-run `npm run register` so Discord updates its list of available slash commands. Without re-registering, your new command may not appear in Discord even if your server code is already running.
 
-**5. What is the purpose of a pull request in this workflow?**
 
-A pull request is the review step before merging your branch into `main`. It gives teammates a chance to inspect the code, discuss changes, and confirm that the feature is ready before it becomes part of the shared project.
+**5. Describe the difference between a `Test Scenario` and a `Test Case`.**
+**TODO**
 
-**6. Describe what UML is.**
 
+**6. What is UML? Why do we have it?**
+**UPDATE**  
 UML (Unified Modeling Language) is a standardized set of diagram types, semantics, and notations for modeling systems, designed to support object-oriented analysis and design. It includes 14 diagram types, grouped into structural diagrams (such as class diagrams) and behavioral diagrams (such as use case, sequence, activity, and state machine diagrams).
 
-**7. What is a UML Use Case diagram primarily used to show?**
-
+**7. What is a UML Use Case diagram primarily used to show?**  
 A use case diagram shows the interactions between a system and its external actors (people or other systems). Actors are drawn as stick figures outside the system boundary, and use cases (the tasks) are drawn as ovals inside it. It is typically used during requirements analysis to identify the functionality the system should offer, with relationships such as include and extend linking use cases.
 
-**8. Why do Software Engineers often draw several different types of models for the same system?**
-
+**8. Why do Software Engineers often draw several different types of models for the same system?**  
 Different models are complementary: each captures a different kind of information, such as data flow, data structure, interactions, or behavior. Together they give a more complete picture than any single model could. Which approach a given model belongs to matters less than knowing that many models exist.

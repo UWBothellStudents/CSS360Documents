@@ -1,7 +1,7 @@
 # Period 3: Reading Reflections
 
 ## Summary
-This section's overall theme is **Project Management** as we examine techniques to gather requirements, create an archtiecture, brainstorm features, how to estimate costs, and how to test.  We look at using UML to draw architecture--to remove software's invisibility characteristic.  
+This section's overall theme is **Project Management** as we examine techniques to gather requirements, create an architecture, brainstorm features, how to estimate costs, and how to test.  We look at using UML to draw architecture--to remove software's invisibility characteristic.  
 
 ### Slide Decks
 
@@ -324,83 +324,222 @@ Sampling means measuring how long a portion of the work takes and then scaling t
 * Often apply to the **system as a whole**, not a single user interaction.  
 * Example: *The system must respond within 2 seconds under peak load*.
 
-User Stories
+The user story leans towards a   
 
-1. Non-Functional: As a business owner, I want my product to scale to 20k users.  
-2. Non-Functional: As a user, I want the app to be responsive (no lag greater than 500ms).  
-3. **Design Constraint:** As a system architect, I want the application to use a Redis cache for shared data so that distributed servers can access frequently used information efficiently.  
-4. Functional: As a customer, I want to reset my password through email verification so that I can regain access to my account if I forget my password.
+**User Stories can be used to describe Functional, Non-Functional, and Design Constraints**
 
-**RE: Design Constraint**
+1. *Non-Functional*: As a business owner, I want my product to scale to 20k users.  
+2. *Non-Functional*: As a user, I want the app to be responsive (no lag greater than 500ms).  
+3. *Design Constraint:* As a system architect, I want the application to use a Redis cache for shared data so that distributed servers can access frequently used information efficiently.  
+4. *Functional*: As a customer, I want to reset my password through email verification so that I can regain access to my account if I forget my password.  
+5. *Non-Functional*: As a system architect, I want distributed servers that can access frequently used information efficiently". This Non-Functional requirement is poor because the word *efficiently* should be replaced with a metric.  
 
-This is neither a functional nor a non-functional requirement. It specifies an implementation decision. The system's users do not care whether Redis is used; they care about the resulting performance. This statement constrains the design. 
+**What is a Design Constraint?**
 
-The user story leans towards a non-functional requirement by stating "distributed servers can access frequently used information efficiently". The word *efficiently* should be replaced with a metric.  
+A Design Constraint is neither a functional nor a non-functional requirement. It specifies an implementation decision. The system's users do not care whether Redis is used; they care about the resulting performance. This statement constrains the design. 
 
-**Constraint:** "The system shall use Redis." (implementation choice)  
-**Functional requirement:** "The system shall provide an API for storing and retrieving cached data."  
-**Non-functional requirement:** "The API shall return responses within 100 ms for 95% of requests."
+**Comparisons:**  
+* **Constraint:** "The system shall use Redis." (implementation choice)  
+* **Functional requirement:** "As a developer, I want an API for storing and retrieving cached data."  
+* **Non-functional requirement:** "The API shall return responses within 100 ms for 95% of requests."
 
-**Why is feature creep considered a common cause of project failure?**
-
+**Why is feature creep considered a common cause of project failure?**  
 Uncontrolled additions and changes to requirements throughout development lead to budget and schedule overruns, unstable design and code, and poor overall quality and satisfaction. It is what happens when changes are not managed, which is why change control matters.
 
-**What three things does a feasibility study check about a proposed system?**
-
+**What three things does a feasibility study check about a proposed system?**  
 It checks whether the system contributes to organizational objectives, whether it can be engineered with current technology and within budget, and whether it can be integrated with the other systems in use. Its purpose is to decide whether the system is worthwhile before major investment.
 
-**How do the questions "Can we build it?" and "Should we build it?" differ?**
-
+**How do the questions "Can we build it?" and "Should we build it?" differ?**  
 "Can we build it?" is the technical feasibility question: is current technology enough, and can the system be integrated? "Should we build it?" is the financial and organizational question: is it worth the cost, and does it support the organization's goals? A project can pass one and fail the other, for example a system that is buildable but not worth the money.
 
-**How can a feasibility study be done when the detailed requirements have not been gathered yet?**
-
+**How can a feasibility study be done when the detailed requirements have not been gathered yet?**  
 It does not need a full specification, only a high-level picture of the project's objectives from sponsors and stakeholders. From that, the team makes rough estimates of cost, resources, technical risk, and timeline, often by comparing with past projects or industry standards. This prevents investing in a project that later proves unfeasible or misaligned with business needs.
 
-**What is the difference between user requirements and system requirements, and which type of requirement are they?**
-
+**What is the difference between user requirements and system requirements, and which type of requirement are they?**  
 User requirements have a customer focus, while system requirements have a developer focus (more detailed, but not necessarily technical). Both are functional requirements, which describe the functionality or services the system is expected to provide and are what cause a customer to want the product.
 
-**Why are imprecise, incomplete, and inconsistent functional requirements a problem?**
-
+**Why are imprecise, incomplete, and inconsistent functional requirements a problem?**  
 Ambiguous requirements can be interpreted in different ways, incomplete ones leave out services users need, and inconsistent ones contradict each other. This matters because the definition of "Done" is critical to a project's success. In agile projects it is often expressed as test cases, which assumes that the tests themselves are complete.
 
-**What does the aircraft reliability example show about non-functional requirements?**
-
+**What does the aircraft reliability example show about non-functional requirements?**  
 If a functional requirement is not met, users can usually find a work-around, but for an unreliable aircraft system the only "work-arounds" are to pray, scream, or panic. It shows that non-functional requirements such as reliability, response time, and security can be more critical than functional ones, and that failing them can make customers stop using a product.
 
-**How would you rewrite the requirement "The system should be fast" so that it is a good non-functional requirement?**
-
+**How would you rewrite the requirement "The system should be fast" so that it is a good non-functional requirement?**  
 Add a metric, for example: "The system shall return search results within two seconds under normal operating conditions." With a metric the team can objectively test whether the requirement is met, which is difficult with a vague word like "fast." The "ilities" are tied to non-functional requirements that are measured.
 
-**How could the vague requirement "Secure system" be restated as a functional requirement, and why would you do so?**
-
+**How could the vague requirement "Secure system" be restated as a functional requirement, and why would you do so?**  
 It could become "The system shall verify a user ID and password before allowing access." Restating a non-functional requirement as a concrete behavior makes it quantifiable and easier to test, which helps quality assurance. A useful question is: what features can we create to make sure we meet the non-functional requirement?
 
-**In what ways do constraints differ from ordinary requirements?**
-
+**In what ways do constraints differ from ordinary requirements?**  
 Requirements describe what capabilities or qualities the system must have, while constraints limit the design or the project itself, such as "written in C++" or "operational by April 15th." Constraints can be product or business oriented, lean toward "how" rather than "what," and may be changed by management. They can also be viewed as a kind of non-functional requirement.
 
-**Name several common categories of constraints and give an example of each.**
-
+**Name several common categories of constraints and give an example of each.**  
 Budget (actual dollars, not people), schedules (dates), technology, development (the number of developers with specific expertise), operations (data center location, people, services), team and organization (location, size), and software process (which life cycle is used). For example, a deadline of April 15th is a schedule constraint, and having only two developers who know a required language is a development constraint.
 
-**What qualities make a requirement statement good?**
-
+**What qualities make a requirement statement good?**  
 It should be easy to read, free of ambiguity (with terminology defined), verifiable, and specific, using dates rather than "ASAP." It should also be organized for its audience and numbered so it can be traced through validation and verification.
 
-**What should a good scenario include?**
-
+**What should a good scenario include?**  
 A scenario is a real-life example of how the system can be used. It should describe the starting situation, who (the actor) does what, the normal flow of events, what can go wrong, other concurrent activities, and the state when the scenario finishes.
 
-**How is a requirement different from a specification, and why number them?**
-
+**How is a requirement different from a specification, and why number them?**  
 A requirement is the high-level statement (the book's user requirement), while the specification provides the detailed version. Numbering both lets you trace each one through the software process, including validation and verification.
 
-**What is requirements management, and what should a team plan for?**
-
+**What is requirements management, and what should a team plan for?**  
 It is the process of managing changing requirements during requirements engineering and development, which is needed because requirements are inevitably incomplete and inconsistent and new ones emerge. The team should plan how requirements are identified, how changes are analyzed (the change management process), how much traceability information is kept, and what CASE tool support is needed.
 
+### Definition of Done (DoD)
+
+> **Key characteristics:** The `Definition of Done` applies universally to ALL work (unlike Acceptance Criteria which varies per story), evolves as team capabilities mature, and is non-negotiable - work not meeting DoD cannot be released. It typically includes code review, automated testing with specific coverage thresholds, documentation updates, security scans, and deployment verification. (Credit to: [Teaching Agile](https://teachingagile.com/scrum/psm-1/scrum-implementation/definition-of-done)) 
+
+The `Definition of Done (DoD)` is a team-wide quality standard that applies to every item (reviewed, tested, merged, and so on). The description we provide in a Work Item on the Kanban board--the details that define when a specific work item is complete--is usually called `Acceptance Criteria`. It is common for folks, even professionals in the industry, to mix up these two terms.  
+
+#### What Does "Done" Mean? 
+When you write a User Story, you are *starting* a conversation, not *finishing* a contract. For example, "As a player, I want to challenge the bot to Rock-Paper-Scissors" tells us a little bit of *what* the feature is, and a little bit about *why* the work matters. But the all required details just can't fit into the User Story.  
+
+The Work Item needs a short *specification*: if you handed the story to any teammate, they should be able to build it and know for certain whether they had finished, without asking you a single question. The specification should not contain any judgement calls or ambiguity. The feature is precisely and objectively described. Nothing is left to the imagination.  
+
+**Acceptance Criteria Techniques**  
+Scrum favors writing only what is necessary, so get to the point. And it's okay to be informal.  
+
+Here are common techniques for providing acceptance criteria:  
+1. Write a short list of **test scenarios** that must pass. These test scenarios can be the *acceptance criteria*. Alternatively, these test scenarios can be written up in a separate work item for separate tracking.   
+2. State what is **not** required. Saying *"no leaderboard needed"* protects you from potential disconnects and misunderstandings.  
+3. Avoid repeating team-wide understandings and DoD activities. For example, "merging through a pull request." Mention process only when it is unusual for this feature and not included in the DoD. 
+4. Write small follow-up stories that add detail one piece at a time, structuring them in an outline format. This technique is commonly used with a larger User Story that is too big to be tracked as a single work item. The larger User Stories might be at the Epic or Feature level.    
+
+#### Validation vs Verification
+**Acceptance Criteria** tells us when we've met the customer's expectations (for this feature). It tells us when we're done developing this feature's functionality. It is Validation: *did we build the right feature?*  
+
+The **Definition of Done** tells us when we've met the team's *standards* of development. It is tells us when we've completed all the required steps during development. It is Verification: *did we build this feature right?*  
+
+While the above definitions sound nice and clean, things are not so cut-and-dry. Definition of Done items are *mostly* verification (code reviewed, tests pass, standards followed), but some DoD items touch validation too, such as *"demoed to the Product Owner."* Likewise, checking acceptance criteria involves verifying the feature behaves as specified.  
+
+> *How important is it to know the minutiae here?* Not very. The important thing is that we learn how to document what is needed and only what is needed to be effective and efficient.  
+
+#### Acceptance Criteria examples
+**Poor**  
+- "The slash command works and is pushed to main."  
+- "Done when the bot is finished."
+
+These are vague, non-specific, untestable, and/or restate what is already assumed in the team's `Definition of Done`. These examples do not have specifics or metrics and can be subjective. 
+
+Sometimes the work is hard to define without exorbitant text. Then it can be handy, and somewhat acceptable, to be overly informal and subjective. For example, one might reasonably say, *"The diagram is clear and professional."* See below for better phrasing.  
+
+**Good Example #1**  
+Consider the task to create a Sequence Diagram.  
+
+*User Story:* As a developer, I want a Sequence Diagram of the Rock-Paper-Scissors game-logic.  
+
+*Acceptance Criteria:*  
+- A hand-drawn sequence diagram shows the participants User, Discord, command handler, and game-logic module for one full round of Rock-Paper-Scissors, from the slash command to the result message.
+- It includes one alternative path (a tie or an invalid choice) shown with an `alt` frame.  
+- Every label can be read in a photo without zooming in.
+- Two paragraphs explain the order of events and what design choice the diagram reveals.  
+
+*Not required:* digital tools, other bot commands, or network-failure handling.
+
+*Validation:* When a different person reads only the diagram and text, they can correctly answer "What happens on a tie?" without asking the author.
+
+**Good example #2**  
+Consider the task to create the slash command: `/stride`  
+
+*User Story*: As a Discord user, I want a slash command `/stride` that responds with a creative quip.  
+
+*Acceptance Criteria:*  
+- When a user runs `/stride`, the bot posts the text reply within 2 seconds.  
+   - The user will see the response: `One small step for a man, one giant Stride for mankind.`  
+- The command is dispatched by the modular command handler code.  
+- The command is registered the same way as the existing commands.
+
+*Not required:* arguments, a database, or permission checks.
+
+### Test Scenarios
+
+#### What is a test scenario?
+
+A test scenario is a short description of one situation your feature must handle, written so that someone else can try it and say "pass" or "fail." It describes *what* to check, not every keystroke needed to check it. Think of it as one sentence in a conversation with your tester: "Make sure the bot handles a tie."
+
+A good scenario does three things:  
+
+1. **It is checkable.** Another person can run it and reach the same verdict you would. "The bot responds correctly" is not checkable. "The bot announces a tie when both players choose the same move" is.
+2. **It covers something that matters.** Each scenario protects one meaningful behavior, including the unhappy paths (bad input, missing data), not just the case where everything goes right.
+3. **It is short.** If you need a paragraph, you are probably describing two scenarios, or you are writing a test case (see below).
+
+#### How specific should it be?
+
+A scenario sits at a middle level: specific enough that the outcome is unambiguous, general enough that it doesn't dictate exactly how to perform it.
+
+- **Too vague:** "Test the Rock-Paper-Scissors command."
+- **About right:** "A player submits an invalid move, and the bot replies with the list of valid moves."
+- **Too detailed for a scenario:** "Open Discord, click the message box, type /rps, press Tab, type 'lizard', press Enter, then wait three seconds and read the reply."
+
+The last one is a script. It belongs in a **test case**, not a scenario.
+
+#### Techniques for Writing Test Scenarios
+**Technique**: Use the `Given/When/Then` format.  
+
+The simplest format is three short parts:
+
+- **Given** the starting situation
+- **When** something happens
+- **Then** what you should observe
+
+> **Given** the bot is online and a player has started a game, **when** the player submits "lizard," **then** the bot replies with a message listing rock, paper, and scissors.
+
+Not every scenario needs all three parts. A one-line rule is fine when the behavior is simple ("The reply is under 2,000 characters").
+
+**Technique:** Find and write only the scenarios worth writing.  
+
+You can't test everything, so use these questions to choose:
+
+- **The normal path:** What happens when everything goes right?
+- **The variations:** What are the different valid outcomes (win, lose, tie)?
+- **The bad input:** What if the user types nothing, something misspelled, or something unexpected?
+- **The boundaries:** What is the smallest, largest, or last allowed value?
+- **The out-of-scope line:** What are we deliberately *not* testing? Writing this down keeps you from being graded on work nobody asked for.
+
+Aim for a handful of scenarios per feature, not dozens.
+
+### Test Scenarios vs Test Cases
+
+A **test scenario** says *what situation* to check. A **test case** says *exactly how*: the specific steps, the exact input, and the exact expected result. One scenario can lead to several test cases.
+
+| | Test Scenario | Test Case |
+|---|---|---|
+| Question it answers | What should we check? | How exactly do we check it? |
+| Level of detail | High level | Low level |
+| Example | Invalid move gets a helpful reply | Type `/rps` with input "lizard." Expect: "Please choose rock, paper, or scissors." |
+
+For the invalid-move scenario, you might write three test cases:  
+1. input "lizard,"  
+2. input "" (empty),  
+3. input "ROCK" in capital letters. 
+
+> You only write test cases when the details matter, such as when an edge case is easy to get wrong or when you are automating the check.
+
+### Test Scenario Reflection
+
+Short scenario work even though they are high level for two reasons.
+
+First, your teammates share your context. They know the project, the bot, and the existing commands, so you don't need to explain how to run the bot or where the command is registered. You only need to state the part that is unique to this feature.
+
+Second, the scenario fixes the *outcome*, not the path. Two testers may choose slightly different inputs, but if the scenario says "the bot replies with the list of valid moves," both will correctly reach the same pass or fail verdict. The freedom in *how* to test is fine as long as there is no freedom in *what counts as success*.
+
+Before you hand your scenarios to a teammate, ask yourself:
+
+- Could someone else run this without asking me a question?
+- Would two people agree on pass or fail?
+- Does it avoid words like "works," "correct," or "properly" without saying what that means?
+
+If you answer yes to all three, your scenario is ready.
+
+Consider these:  
+**"It works."** FAIL! This is not a test scenario. It names no situation, and two people will disagree about what it means.
+
+**"When a user submits an invalid choice, the bot replies by telling the user to pick a valid choice."** PASS! This is a high-level test scenario. It works as long as the tester knows which choices are valid and invalid. Because it leaves room for interpretation, it relies on the tester's judgment and shared understanding of the project.
+
+**"When a user submits an invalid choice, the bot replies with 'The choice was invalid. Please pick from one of these valid options: rock, paper, scissors.'"** PASS! This is effectively a test case because of the exact text. A tester can objectively say the feature does or does not do what is expected. Use this level of detail when the exact wording is the requirement, not by default.
 
 <a id="3.5"></a>
 ## 3.5 Project Management & Testing
