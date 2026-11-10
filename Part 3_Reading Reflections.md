@@ -409,9 +409,9 @@ Here are common techniques for providing acceptance criteria:
 4. Write small follow-up stories that add detail one piece at a time, structuring them in an outline format. This technique is commonly used with a larger User Story that is too big to be tracked as a single work item. The larger User Stories might be at the Epic or Feature level.    
 
 #### Validation vs Verification
-**Acceptance Criteria** tells us when we've met the customer's expectations (for this feature). It tells us when we're done developing this feature's functionality. It is Validation: *did we build the right feature?*  
+**Acceptance Criteria** tells us when we've met the customer's expectations (for this feature). It tells us when we're done developing this feature's functionality. It is similar to Validation: *did we build the right feature?*  
 
-The **Definition of Done** tells us when we've met the team's *standards* of development. It is tells us when we've completed all the required steps during development. It is Verification: *did we build this feature right?*  
+The **Definition of Done** tells us when we've met the team's *standards* of development. It is tells us when we've completed all the required steps during development. It is similar to Verification: *did we build this feature right?*  
 
 While the above definitions sound nice and clean, things are not so cut-and-dry. Definition of Done items are *mostly* verification (code reviewed, tests pass, standards followed), but some DoD items touch validation too, such as *"demoed to the Product Owner."* Likewise, checking acceptance criteria involves verifying the feature behaves as specified.  
 
@@ -485,9 +485,18 @@ The simplest format is three short parts:
 - **When** something happens
 - **Then** what you should observe
 
-> **Given** the bot is online and a player has started a game, **when** the player submits "lizard," **then** the bot replies with a message listing rock, paper, and scissors.
+**Example Test Scenarios:**        
+   - GIVEN an open poll with the options "Pizza" and "Tacos," WHEN a user selects "Pizza," THEN the bot confirms the vote was recorded and the poll results show Pizza with one vote. 
+   - GIVEN an open poll where a user has already voted, WHEN that same user votes again, THEN the bot tells them they have already voted and the vote count does not change.  
+   - GIVEN a poll that has been closed by its creator, WHEN a user tries to vote, THEN the bot replies that the poll is closed and the results do not change.  
+   - GIVEN an open poll, WHEN a user who did not create it tries to close it, THEN the bot refuses and the poll stays open.  
+   - GIVEN a user without moderator permissions, WHEN they run the mute command on another member, THEN the bot refuses and the target member is not muted.  
+   - GIVEN a moderator mutes a member for 5 minutes, WHEN the 5 minutes elapse, THEN the member can send messages again.  
+   - GIVEN the bot is online and a player has started a game, WHEN the player submits "lizard," THEN the bot replies with a message listing rock, paper, and scissors.
 
-Not every scenario needs all three parts. A one-line rule is fine when the behavior is simple ("The reply is under 2,000 characters").
+**Notes on above examples:**
+* Not every scenario needs all three parts.  A one-line rule can be fine when the behavior is super simple. For example:  "The reply is under 2,000 characters".  
+* The Test Scenarios do not need to have **GIVEN/WHEN/THEN** in all caps. This was done for emphasis in our examples.  
 
 **Technique:** Find and write only the scenarios worth writing.  
 

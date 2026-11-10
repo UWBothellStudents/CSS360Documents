@@ -69,17 +69,23 @@ Last sprint we were a bit haphazard with where and how we defined *Done*. In thi
       - “As a customer” is good for features
       - Does not need to describe every detail of the functionality
    - Acception Criteria:
-      - specific functionality description.
+      - specific functionality description
       - Informs the developer when the feature is complete
-      - Perhaps describe what will **not** get done
-* Comment field should have a breakdown of the work. It can be a list of tasks written by and targeting the specific Developer doing the work. These can be vague to others so long as the developer understand them. Their purpose is to help decompose the work, to assist with providing an accurate estimate, and to assure that work is done properly.   
+      - Perhaps describe what will **not** get done  
+      - See [Definition of Done](Part%203_Reading%20Reflections.md#definition-of-done-dod)
+* **Task Breakdown**:
+   - Tasks should be provided in the Description Field or in the Comment Field.    
+   - Tasks breakdown the work. They are a list written by and for the specific Developer doing the work.  
+   - Tasks can be vague to others so long as the developer understands them. Their purpose is to help decompose the work, to assist with providing an accurate estimate, and to assure that work is done properly.    
+* Comment field:  
+   - The comment field can have anything you want.  
+   - It is okay to put the list of Tasks here.  
 
 **Validation Work Items**  
 * No User Story  
 * Have title for validation be short.  
-* Use Description field for the Test Scenarios  
-   - User does X  
-   - User sees Y  
+* Use Description field for the **Test Scenarios**. Use the Given/When/Then format in the Test Scenario.  
+   - See the [Techniques for Writing Test Scenarios](Part%203_Reading%20Reflections.md#techniques-for-writing-test-scenarios)  
 * Be specific on what should be tested  
 * Don’t be developer specific, but Work Item specific.  
    - Don’t have a description that says: "Confirm that Stride successfully drew a diagram."  
@@ -133,7 +139,9 @@ There should be an environment dedicated to `main` to simulate a production envi
 
 
 **2. Describe the difference between `Definition of Done` and `Acceptance Criteria`.**
-**TODO**
+**Acceptance Criteria** tells us when we've met the customer's expectations (for this feature). It tells us when we're done developing this feature's functionality. It is similar to Validation: *did we build the right feature?*  Each and every single Work Item should have a list of Acceptance Criteria that should be detailed enough for any team member to sufficiently and accurately complete the work. 
+
+The **Definition of Done** tells us when we've met the team's *standards* of development. It is tells us when we've completed all the required steps during development. It is similar to Verification: *did we build this feature right?* There is a team-wide Definition of Done that applies to every work item. It is a checklist of things that should happen during feature development.  
 
 **3. Why is `.env` created separately in each Codespace instead of being shared?**  
 Each Codespace has its own bot configuration, including its own Discord Application credentials and forwarded URL. Sharing one `.env` would cause the wrong bot token, public key, or endpoint URL to be used, which would break testing and deployment.
