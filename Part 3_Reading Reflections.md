@@ -159,6 +159,8 @@ Here is an Annotated Class Diagram.
 **What is a UML Use Case diagram primarily used to show?**  
 A use case diagram shows the interactions between a system and its external actors (people or other systems). Actors are drawn as stick figures outside the system boundary, and use cases (the tasks) are drawn as ovals inside it. It is typically used during requirements analysis to identify the functionality the system should offer, with relationships such as include and extend linking use cases.
 
+![Use Case Diagram](resources/use_case.png)  
+
 **In a UML Activity Diagram, what do a fork and a join represent?**  
 A fork splits the flow into actions that can happen in parallel, where the order does not matter. A join synchronizes those parallel actions so the flow continues only when they are done. Choices are shown separately with a decision and merge.
 
