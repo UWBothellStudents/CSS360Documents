@@ -69,3 +69,21 @@ Then you can do: `npm run test:coverage` or just `npm test`.
 
 
 
+## Q & A
+**1. Discuss the differences in `orig` and `modular-architecture`. Are the differences considered "architectural" or "design" in nature? Is modular better? Why?**  
+
+*Are the differences architectural or design?*   
+**BOTH!!** — If we focus on the **Discord Bot** itself, this would clearly be **Architectural** because this is a fundamental structural reorganization of the entire bot code, not just implementation details of a single command. However, if you look at **Discord** as a whole, at a higher level--where we have the Discord Platform, Discord Application, JSON communication protocols defined over HTTPS, with a browser or a Discord application--then the Discord Bot is a small portion of the overall architecture. In which case, file organization and modular structure looks more like Design.  
+
+> Truth be told, it doesn't really matter that much. Call it whatever you want. :-)  
+
+**Modular is significantly better** because:
+
+1. **Low coupling**: Commands don't interfere with each other
+2. **High cohesion**: Each command is self-contained
+3. **Reduced merge conflicts**: Multiple developers can work in parallel
+4. **Smaller cognitive load**: Developers understand less code to make changes
+5. **Fewer bugs**: Isolation prevents accidental side effects
+6. **Better scalability**: Adding features doesn't require editing existing files
+
+The monolithic approach works fine for a small, single-developer prototype, but the modular approach is the correct choice for any project that will grow or be maintained by multiple people.

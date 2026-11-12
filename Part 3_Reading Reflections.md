@@ -529,7 +529,7 @@ For the invalid-move scenario, you might write three test cases:
 
 ### Test Scenario Reflection
 
-Short scenario work even though they are high level for two reasons.
+A relatively short scenario description can work even though they are high level for two reasons.
 
 First, your teammates share your context. They know the project, the bot, and the existing commands, so you don't need to explain how to run the bot or where the command is registered. You only need to state the part that is unique to this feature.
 

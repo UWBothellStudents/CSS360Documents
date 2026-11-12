@@ -132,13 +132,13 @@ branch.
 
 ## Q & A
 
-**1. It should be obvious why each student needs their own Codespace, branch, and Discord Application. Why should there be an environment dedicated to `main`?**  
+**1. It should be obvious why each student needs their own Codespace, branch, and Discord Application. Why should there be an environment dedicated to `main`?**   
 Each student needs an isolated environment so they can work independently without interfering with someone else's bot, port, or URL. This prevents conflicts when multiple people run the server at the same time or try to register commands in the same shared setup.  
 
 There should be an environment dedicated to `main` to simulate a production environment as much as possible. All development effort will be merged into a dedicated environment where higher level tests will take place (Integration, System, and User Acceptance Testing).  
 
 
-**2. Describe the difference between `Definition of Done` and `Acceptance Criteria`.**
+**2. Describe the difference between `Definition of Done` and `Acceptance Criteria`.**  
 **Acceptance Criteria** tells us when we've met the customer's expectations (for this feature). It tells us when we're done developing this feature's functionality. It is similar to Validation: *did we build the right feature?*  Each and every single Work Item should have a list of Acceptance Criteria that should be detailed enough for any team member to sufficiently and accurately complete the work. 
 
 The **Definition of Done** tells us when we've met the team's *standards* of development. It is tells us when we've completed all the required steps during development. It is similar to Verification: *did we build this feature right?* There is a team-wide Definition of Done that applies to every work item. It is a checklist of things that should happen during feature development.  
@@ -150,16 +150,21 @@ Each Codespace has its own bot configuration, including its own Discord Applicat
 You must re-run `npm run register` so Discord updates its list of available slash commands. Without re-registering, your new command may not appear in Discord even if your server code is already running.
 
 
-**5. Describe the difference between a `Test Scenario` and a `Test Case`.**
-**TODO**
+**5. Describe the difference between a `Test Scenario` and a `Test Case`.**  
+A **test scenario** is a high-level description of a situation the feature must handle, written so that someone else can try it and reach a clear pass or fail verdict. It answers the question "what should we check?" and leaves the exact method up to the tester. For example, "When a user submits an invalid choice, the bot replies by telling the user to pick a valid choice" is a scenario. It names the situation and the expected outcome, and it relies on the tester sharing the team's context (such as knowing which choices are valid) to fill in the rest. Scenarios are short, focused on behavior, and good for deciding what is worth testing and for agreeing on scope with the customer.  
+
+A **test case** is the low-level, step-by-step version that answers "how exactly do we check it?" It specifies the precise input, any setup required, the steps to perform, and the exact expected result. For example, "Run `/rps` with the input 'lizard.' Expect the reply: 'The choice was invalid. Please pick from one of these valid options: rock, paper, scissors.'" A single scenario can produce several test cases (a misspelled move, an empty input, a move in capital letters), each checking a different variation. Because test cases leave little room for interpretation, they are most valuable when the details matter, such as when the exact wording is a requirement, when an edge case is easy to get wrong, or when the check will be automated. Otherwise, a scenario is usually enough, and writing a full test case would document more than the team needs.  
 
 
-**6. What is UML? Why do we have it?**
-**UPDATE**  
-UML (Unified Modeling Language) is a standardized set of diagram types, semantics, and notations for modeling systems, designed to support object-oriented analysis and design. It includes 14 diagram types, grouped into structural diagrams (such as class diagrams) and behavioral diagrams (such as use case, sequence, activity, and state machine diagrams).
+**6. What is UML? Why do we have it?**  
+UML (Unified Modeling Language) is a standardized set of diagram types, semantics, and notations for modeling systems, designed to support object-oriented analysis and design. It includes 14 diagram types, grouped into structural diagrams (such as class diagrams) and behavioral diagrams (such as use case, sequence, activity, and state machine diagrams).  
+
+We have UML to help authors and readers converge on a common language, making it easier to create and understand diagrams.  
 
 **7. What is a UML Use Case diagram primarily used to show?**  
 A use case diagram shows the interactions between a system and its external actors (people or other systems). Actors are drawn as stick figures outside the system boundary, and use cases (the tasks) are drawn as ovals inside it. It is typically used during requirements analysis to identify the functionality the system should offer, with relationships such as include and extend linking use cases.
 
 **8. Why do Software Engineers often draw several different types of models for the same system?**  
-Different models are complementary: each captures a different kind of information, such as data flow, data structure, interactions, or behavior. Together they give a more complete picture than any single model could. Which approach a given model belongs to matters less than knowing that many models exist.
+Different models are complementary: each captures a different kind of information, such as data flow, data structure, interactions, or behavior. And no single diagram can show all of them clearly. Together they give a more complete picture than any single model could. 
+
+Drawing several lets engineers focus on one concern at a time, and lets different audiences (developers, testers, customers) see the view that matters to them. Together, the models give a more complete and consistent understanding of the system than any one could alone.

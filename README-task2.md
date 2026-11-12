@@ -513,3 +513,6 @@ export async function handleComponent(req, res) {
 ```
 
 This design keeps shared routing centralized while co-locating each feature's behavior in its command handler. It also shows why `custom_id` values must be unique and stable enough for the dispatcher to recognize them.
+
+
+
