@@ -64,15 +64,15 @@ Sprint #2 and our work in the Discord Bot is a part of this time period. You sho
 
 ##### Entity Relationship Diagram
 
-* [ER Diagram Symbols: Complete Guide to Notations & Meanings](https://www.we-notes.com/component-breakdown-decoding-er-diagram-symbols/) 
+* [ER Diagram Symbols: Complete Guide to Notations & Meanings](https://www.we-notes.com/component-breakdown-decoding-er-diagram-symbols/)  
+* [Database Star](https://www.databasestar.com/entity-relationship-diagram/)  
 
 #### 3.4 Brainstorming & Estimation
 
 * [Dev schedules, flying pigs, and other fantasies – I.M. Wright’s “Hard Code”](https://imwrightshardcode.com/2001/06/dev-schedules-flying-pigs-and-other-fantasies/)   
 * [Project buffer overflow – I.M. Wright’s “Hard Code”](https://imwrightshardcode.com/2018/11/project-buffer-overflow/)
 
-#### 3.5 Project Management and Testing
-
+#### 3.5 Project Management and Testing  
 * [The Mythical Man-Month. | Chapter 2](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch02.xhtml)   
 * [Calling the Shot | Chapter 8 | Mythical Man-Month](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch08.xhtml)   
 * [Hatching a Catastrophe | Chapter 14 | Mythical Man-Month](https://learning.oreilly.com/library/view/mythical-man-month-the/0201835959/ch14.xhtml) 
@@ -86,64 +86,97 @@ Sprint #2 and our work in the Discord Bot is a part of this time period. You sho
 ## 3.3 System Modeling with UML 
 These questions come from the 3.3 Slide deck.
 
-**Why do software teams create system models?**
-
+**Why do software teams create system models?**  
 Software is largely invisible, so models take the "invisible" out of it by turning ideas into graphical representations people can see and discuss. They help the team understand the problem and the system to be built, and they convey that understanding to others such as customers and developers.
 
-**A system model usually leaves out many details of the real system. Why is this considered a strength?**
-
+**A system model usually leaves out many details of the real system. Why is this considered a strength?**  
 A model is an abstract view of the system, so it deliberately omits detail. Leaving details out reduces noise and confusion and keeps attention on what is important to understand.
 
-**Describe what UML is?**
-
+**What is UML?**  
 UML (Unified Modeling Language) is a standardized set of diagram types, semantics, and notations for modeling systems, designed to support object-oriented analysis and design. It includes 14 diagram types, grouped into structural diagrams (such as class diagrams) and behavioral diagrams (such as use case, sequence, activity, and state machine diagrams).
 
-**What is the main purpose of a context diagram?**
-
+**What is the main purpose of a context diagram?**  
 A context diagram shows the single system of focus at the center, with the external entities and the data that cross the system boundary. Knowing the boundary tells you what you will develop and what you will depend on other systems for. It is like a high-level (Level 0) DFD.
 
-**Which of the following is true of a Data Flow Diagram (DFD)?**
+**Describe a Data Flow Diagram (DFD)**  
+A DFD models how data moves through a system between processes, data stores, and external entities, as if you were "interviewing the data." It is not a process diagram: it has no conditionals or logic and does not define an order, although order can often be inferred. DFDs can be drawn at multiple levels, from Level 0 (the context diagram) down to more detailed levels.  
 
-A DFD models how data moves through a system between processes, data stores, and external entities, as if you were "interviewing the data." It is not a process diagram: it has no conditionals or logic and does not define an order, although order can often be inferred. DFDs can be drawn at multiple levels, from Level 0 (the context diagram) down to more detailed levels.
+It is important to denote boundaries to help identify threats. The "spy" icon is added for dramatic effect to indicate that there could be a Man-in-the-Middle attack.  
 
-**What does an Entity-Relationship Diagram (ERD) describe?**
+The arrows should be unidirectional and always labeled with what data flows. The circles are "processes" (modules or servers) that accept and provide data.
 
-An ERD describes the logical structure of the data: the entities, their attributes, and the relationships between entities. It models the data itself, not classes or behavior, and the physical structure may differ to address performance and maintenance. It is widely used in database design.
+![DFD Example](resources/DFD.png)  
+In this example, we see a Data Flow Diagram (DFD) with the term DMZ. It stands for Demilitarized Zone, and it's a key concept in network security. A DMZ is a buffer zone between an organization's internal network and the external internet. It contains systems that need to be accessible from the internet (like web servers, email servers, or DNS servers), but are isolated from the internal network to reduce security risks.
 
 **What does a state diagram (state machine diagram) show?**
 
 A state diagram shows the states of a system, process, or object and the events that cause it to transition from one state to another. For example, a safe might move between wait, open, and lock states. Transition labels follow the pattern: action \[condition\] / resulting action.
 
+![State Diagram](resources/state_diagram.png)  
+
+**What does an Entity-Relationship Diagram (ERD) describe?**
+
+An ERD describes the logical structure of the data: the entities, their attributes, and the relationships between entities. It models the data itself, not classes or behavior, and the physical structure may differ to address performance and maintenance. It is widely used in database design.
+
+![Entity Relationship Diagram](resources/ERD.png)  
+In this example we see PK (Primary Key) and FK (Foreign Key) that indicate unique IDs that are used for definition relationships to other tables. In databases, these are typically integer values, but they can be large 128-bit GUID values as well. The numbers in the parentheses represent the type of relationship using numbers. We usually name them one-to-one, one-to-many, or many-to-many. A zero value means that no relationship is required.  
+
+The example ERD diagram leaves a lot out and is not academically a perfect example. Stride thinks it is a pretty good real-world example.  
+
 **How does a UML class diagram differ from an ERD?**
 
-A class diagram models the static structure of software, including both data (attributes) and behavior (methods), and uses relationships such as association, aggregation, composition, and inheritance. An ERD models only data and its relationships, usually for database design. The two are complementary tools, not interchangeable.
+A class diagram models the static structure of software, including both data (attributes) and behavior (methods), and uses relationships such as association, aggregation, composition, and inheritance. An ERD models only data and its relationships, usually for database design. The two are complementary tools, not interchangeable.  
+
+The diagrams look similar, for sure. 
 
 **In a UML class diagram, what is the difference between composition and aggregation?**
 
 Both are "has-a" relationships, but they differ in ownership. In composition (filled diamond) the part cannot exist independently, so if the whole is destroyed the part is destroyed too, such as a hash map and its hash table. In aggregation (open diamond) ownership is shared, so the parts live on if the whole goes away, such as students in a course section that is cancelled.
 
-**What is a UML Use Case diagram primarily used to show?**
+![UML Class Diagram](resources/UML_class_diagram.png)  
+This is a **UML class diagram**. The label in the top-left corner, "class Online Shopping," is the diagram frame, naming the diagram type and its subject. It models the **structure** of an online shopping system: what kinds of things exist, what data each holds, and how they relate. It does not show behavior or the order of events (that is what sequence and activity diagrams are for).
 
+Each rectangle is a **class**, drawn in compartments: 1) **Top** the class name. 2) **Middle** the attributes. 3) **Bottom** operations (methods). In this example, the bottom is omitted which is common when the focus is on data structure.
+
+A plain line between two classes is an **association**: the two classes know about or relate to each other. The small numbers at each end are **multiplicities** (how many of one object relate to one of the other):
+
+| Symbol | Meaning |
+|---|---|
+| `1` | Exactly one |
+| `0..1` | Zero or one (optional) |
+| `*` | Zero or more |
+| `0..*` | Zero or more (written explicitly) |
+
+There are three **filled black diamonds**, and they mean **composition**, the strongest whole-part relationship. The diamond sits at the **whole** end, and the part's lifetime depends on the whole. For example: **Customer ◆ Account:** means that an Account is owned by a Customer. If the Customer is removed, the Account goes with it. 
+
+**Important notes:**  
+- This diagram is a good contrast with the earlier ERD diagram: the **filled diamonds** here are UML composition and do not belong in an ERD.    
+- Notice there are **no hollow diamonds** (aggregation) and **no arrowheads**. The lines are undirected associations, so you may wonder where "arrows" are. In class diagrams, arrows are used for navigability, inheritance (hollow triangle), and dependencies, none of which appear here.  
+
+![Annotated Class Diagram](resources/Class_Diagram.png)  
+Here is an Annotated Class Diagram. 
+
+**What is a UML Use Case diagram primarily used to show?**  
 A use case diagram shows the interactions between a system and its external actors (people or other systems). Actors are drawn as stick figures outside the system boundary, and use cases (the tasks) are drawn as ovals inside it. It is typically used during requirements analysis to identify the functionality the system should offer, with relationships such as include and extend linking use cases.
 
-**In a UML Activity Diagram, what do a fork and a join represent?**
-
+**In a UML Activity Diagram, what do a fork and a join represent?**  
 A fork splits the flow into actions that can happen in parallel, where the order does not matter. A join synchronizes those parallel actions so the flow continues only when they are done. Choices are shown separately with a decision and merge.
 
-**Describe how to read a UML Sequence Diagram?**
+![Activity Diagram](resources/activity_diagram.png)  
+This UML activity diagram models the *flow of work* through a process: what steps happen, in what order, and where the path can split, branch, or come back together. It is read like a flowchart, following arrows from the *solid circle* (the start) to the *bullseye* (the end). The rounded rectangles are *actions*, single steps that someone or something performs. The thick black bars are *fork and join* nodes: a bar with one arrow in and several out splits the flow into steps that can happen in parallel (here, informing the patient and recording the decision), and a bar with several arrows in and one out is a join that waits for every incoming path to finish before continuing. The hollow *diamond* is a *decision* node, where the flow takes exactly one of several outgoing paths depending on a condition written in square brackets, called a `guard` (such as "[dangerous]" and "[not dangerous]"). Small boxes tagged with a stereotype like «system», attached to an action by a line, show which system supports that step, a way of adding who or what is involved without cluttering the main flow.
 
+What an activity diagram tells us is the *logic and sequence of a process*, which makes it well suited to explaining business procedures, workflows, or the steps behind a single use case. It makes three things visible that are hard to see in prose: which steps can run at the same time, which steps are *alternatives* depending on a condition, and which steps must all complete before the process can move on. It focuses on *behavior over time*, not on structure (that is the job of a class diagram) or on messages between specific objects (that is the job of a sequence diagram). A reader should be able to look at the diagram and understand the whole story of the process, including its unusual paths, without needing to know anything about how it would be coded.  
+
+**Describe how to read a UML Sequence Diagram?**  
 Read it from top to bottom, because time moves downward, not left to right. Each participant has a vertical lifeline, activation bars show when it is actively working, and horizontal arrows show messages in order, with solid arrows for requests and dashed arrows for replies. Closed arrowheads indicate synchronous calls and open arrowheads asynchronous ones.
 
-**Why do Software Engineers often use several different types of models for the same system?**
-
+**Why do Software Engineers often use several different types of models for the same system?**  
 Different models are complementary: each captures a different kind of information, such as data flow, data structure, interactions, or behavior. Together they give a more complete picture than any single model could. Which approach a given model belongs to matters less than knowing that many models exist.
 
-**A student's sequence diagram for a trip to Hawaii includes the arrows "Fly to Hawaii" and "Drive to hotel." Why is this a poor sequence diagram?**
-
+**If a sequence diagram for a trip to Hawaii includes the arrows "Fly to Hawaii" and "Drive to hotel," why is this a poor sequence diagram?**  
 It mixes messages with physical activities and state changes. A sequence diagram is about communication between participants, such as "Give ID" or "Provide reservation information," and should answer who communicates with whom, what is exchanged, and in what order. Activities like flying or driving belong in an activity diagram, a use case scenario, or a written narrative.
 
-**How do classical structured analysis and object-oriented analysis differ in their view of a system?**
-
+**How do classical structured analysis and object-oriented analysis differ in their view of a system?**  
 Classical structured analysis emphasizes that process and data are separate, and uses process-oriented models such as DFDs, ERDs, and state transition diagrams. Object-oriented analysis unifies data and behavior around objects, using UML diagrams such as class, use case, sequence, and activity diagrams. The boundaries between the approaches are blurry, so the key point is knowing the focus of each.
 
 <a id="3.4"></a>
