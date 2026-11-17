@@ -68,83 +68,42 @@ Here's the part that trips people up: your HTTP response isn't just "success/fai
 
 Note that the sequence diagram does not follow all of the conventions of UML. For example, Activation Bars are not indicated for the actors; asynchronous vs synchronous messages are not indicated; return message line is not dashed; the reflective lines do not truly represent messages. 
 
-## Architecture Analysis: Monolithic vs. Modular
+# Architecture Analysis
+Herein we discuss the following:  
+* The differences between `orig` and `modular-architecture`.      
+* We examine the Cohesion and Coupling of the designs and state which is better and why.  
 
-Here we discuss the differences between `orig` and `modular-architecture`.   
-Are the differences considered "architectural" or "design" in nature?   
-Is modular better? Why?
+> We want **high cohesion** and **low coupling**.  
 
-### Overview of the Two Approaches
+**Overview of the Two Approaches**  
+The code provided to students has same basic features implemented using two different approaches: monolithic and modular.  
 
-**Original (`orig/`)**: Monolithic architecture where all interaction handling (commands, buttons, modals, select menus) is centralized in a single `app.js` file (11.7 KB).
+The code found in `orig/` is *"monolithic"*. All interaction handling (commands, buttons, modals, select menus) is highly centralized in a single `app.js` file.  
 
-**Modular (`modular-architecture/`)**: Separated into:
-- **Core handlers**: `app.js`, `command-handler.js`, `component-handler.js`, `modal-handler.js`
-- **Command modules**: Each command in `commands/` directory contains all related logic
+The code found in `modular-architecture` is *"modular"*. It is comprised of *dispatchers* and *modules*. There are two layers of dispatchers: the first dispatch layer routes the *type of interaction* (e.g. command, component, or modal) to the next dispatcher layer that sends it to a specific function/module.  
 
-## Architectural vs. Design Distinction
+*Q: Are the differences considered "architectural" or "design" in nature?*  
+**Short Answer:** Both. And we're splitting hairs here; it doesn't really matter.   
+**Long Answer**: The modular-architecture approach could be considered either **Architectural** or **Design**. We could say *architectural* because we set the *structure and organization* of the Discord Bot. We established the architecture of the Bog. However, we could also say *Design* because the fundamental architecture of how to get a Discored Bot to work with Discord wasn't changed. For example, we did not change the fact that Bot needs to communicate via JSON over HTTPS to the Discord Platform where Discord Applications are registered. The topology of the system is untouched; the higher level architecture established by Discord still determines the lay of the land.  
 
-These differences are **ARCHITECTURAL** in nature, not merely design decisions.
+## Coupling
+**_Def_: Coupling:** Coupling is the degree of interdependence between software modules--how closely one module relies on another’s internal workings, data, or behavior. It reflects how a change in one module might require a change in another.  
 
-**Why?** Architecture addresses *system structure and organization*, while design focuses on implementation details within a chosen architecture. Here:
+Coupling is about how much one piece of code depends on the internals of another. In a *monolithic* Bot architecture you'll typically find:    
+- **Shared mutable state.** Global variables that all commands use. Any function can reach these variables and nothing prevents one command from interferring with another command's variables.  
+- **Shared helper functions with hidden assumptions.** Multipurpose functions doing many things.    
+- **Control coupling in the dispatcher.** Giant `if/else` or `switch` statements that know about every command and need editing whenever any command is updated.  
 
-- **Monolithic** = single responsibility container (one app.js handles everything)
-- **Modular** = separation of concerns across multiple modules with clear boundaries
+Consider this argument:  
+> The "monolithic" architecture has *everything* in very few files; virtually everything is in app.js. The modular approach has many files where the code for each command is put into its own file. It would seem that the large, monolithic file would have *low coupling* because it is one giant "thing."   
 
-This is a fundamental shift in how the system is organized at the module level, which is the definition of architectural change.
+**Question**: How can there be *high coupling* with other "things" when there is only one "thing"? 
+**Answer**: The confusion comes from what we count as a _"thing."_ We typically examine coupling at the level of: classes, modules, packages, components, and functions. We should NOT use a *file* as our *unit of measurement* when examining Coupling. The monolith's design has high coupling, even if the coupling is implicit and hidden within the file. The coupling is present and poor.  
 
-## Key Differences
+If we allowed the unit to be the *file*, the monolith looks great on coupling: one file, so no inter-file dependencies. But that's an *artifact of the unit*. A single file can't be coupled to itself in any meaningful sense, so the metric stops telling you anything. It's like claiming a city has no traffic problems because you measured it as one building.
 
-### 1. **Code Organization & Structure**
-
-**ORIG (Monolithic):**
-```
-app.js (11.7 KB)
-  ├── All commands (test, test-btn, test-modal, challenge)
-  ├── All button handlers
-  ├── All modal handlers
-  ├── All select menu handlers
-  └── In-memory game state (activeGames object)
-```
-
-**MODULAR (Separated):**
-```
-app.js (core router)
-command-handler.js (dispatcher)
-component-handler.js (dispatcher)
-modal-handler.js (dispatcher)
-commands/
-  ├── test.js (command + handler)
-  ├── test-button.js (command + handler)
-  ├── test-modal.js (command + handler)
-  ├── test-select.js (command + handler)
-  └── challenge.js (command + handler + game state)
-```
-
-Consider this argument:
-
-> I'm looking at two different file organizations for a Discord Bot (two different architectures). One is more "monolithic" where everything goes into very few files, virtually everything is in app.js.  The modular approach has many files where each command handler is put into its own file. I'm doing a Cohesion & Coupling review. It would seem that the large, monolithic file would have low coupling because it is one giant "thing." How can there be high coupling with other "things"? 
-
-The argument has some instincts that are correct, and we need to drill into understand this better. The confusion comes from what we count as a "thing." Coupling and cohesion are always measured relative to a chosen unit, so the first step in a review is to name the unit.
-
-**The unit problem**
-
-If the unit is the *file*, the monolith looks great on coupling: one file, so no inter-file dependencies. But that's an artifact of the unit you picked. A single file can't be coupled to itself in any meaningful sense, so the metric stops telling you anything. It's like claiming a city has no traffic problems because you measured it as one building.
-
-If the unit is the *responsibility* (a command, the event router, the database access, the config), the monolith's problems appear. Those responsibilities still exist and still depend on each other. The file boundary just stopped making those dependencies visible.  
-
-We typically examine coupling at the level of: classes, modules, packages, components, and functions.  
-
-**What coupling looks like inside a monolith**
-
-Coupling is about how much one piece of code depends on the internals of another. In a big `app.js` you typically see:
-
-- **Shared mutable state.** A `cooldowns` map, a `queue` array, or a database handle at module scope that five commands read and write. This is the Discord-bot version of global coupling: change how `cooldowns` is structured and every command that touches it may break.
-- **Shared helper functions with hidden assumptions.** `/ban` and `/kick` both call `logModAction()`, which quietly relies on a variable defined 800 lines up.
-- **Control coupling in the dispatcher.** One giant `if/else` or `switch` on `interaction.commandName` that knows about every command. Adding a command means editing that central block, so the dispatcher is coupled to every command.
-- **Accidental coupling through scope.** Any function can reach any variable. Nothing prevents `/play` from using a variable that `/help` also sets, and nobody is forced to declare that dependency.
-
-So the monolith's coupling is real but *implicit*: it's there, but nothing in the structure documents or limits it.
+## Cohesion
+**_Def_: Cohesion:** Cohesion is the degree to which elements within a module belong together and work toward a single, well‑defined purpose.   
 
 **Cohesion in the same comparison**
 

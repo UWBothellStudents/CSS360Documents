@@ -24,7 +24,7 @@ In this Sprint, you will implement!! All work should be tracked by a Work Item i
    - Your feature is functional.  
    - Your feature has tests that run with `npm test`. (Use AI to help)  
 * A Burndown graph will be created by scripts using your Work Items. The Kanban board on GitHub should reflect consistent progress.      
-* Create a Git Tag v1.0 with all the team members' contributions. This should be a Work Item on the Kanban board for one member to complete.  
+* [Create a Git Tag](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) v1.0 with all the team members' contributions. This should be a Work Item on the Kanban board for one member to complete.  
 
 **Prepare:**  
 * In class, you'll fill out a survey as you and a peer review your understanding of the work in this task.  
