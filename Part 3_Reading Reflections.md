@@ -221,16 +221,6 @@ Classical structured analysis emphasizes that process and data are separate, and
 11. **Have Fun**  
     Create a positive and enjoyable atmosphere. Fun can spark creativity and lead to better ideas.
 
-### Article: Dev Schedules, Flying Pigs (by IM Wright)
-Development scheduling succeeds when it prioritizes risk management over rigid deadlines, focuses on critical features first, and avoids the myth of precise time estimations. Teams and customers benefit most when the process emphasizes quality and coherence over arbitrary dates.
-
-1. Dev estimations are flawed.  
-2. Effective project planning costs are T-shirt sized  
-3. Projects schedule high priority features first so that cuts can be made to low-pri items later  
-4. **Scheduling is less about hitting feature deadlines and more about managing risks.**  
-5. A risk-managed approach leads to delivering high-quality, essential features that truly satisfy customer needs.  
-6. Customer-centric focus fosters better team collaboration, morale, and decision-making
-
 ### Article: Project Buffer Overflow (by IM Wright)  
 To estimate, use historical completion rate.  
 Accurate estimation requires using historical data, trusting calculated timelines, and applying only necessary buffers. Avoid unrealistic promises and overcommitment by focusing on scope management and maintaining professional, data-driven planning. This approach builds trust with customers and management while preventing burnout and disappointment.
@@ -244,30 +234,32 @@ Accurate estimation requires using historical data, trusting calculated timeline
    2. Time buffer: added to time estimates. Bad because it avoids addressing the real problem–bad estimates.  
    3. Last-mile buffer: accounts for variations and end-of-game delays. Historical data shows that it takes time to account for last-minute “hijinks” that invariably pop up.
 
-### Article: Flying Pigs (by IM Wright)
+### Article: Flying Pigs (by IM Wright) 
+Development scheduling succeeds when it prioritizes risk management over rigid deadlines, focuses on critical features first, and avoids the myth of precise time estimations. Teams and customers benefit most when the process emphasizes quality and coherence over arbitrary dates.
 
-**1\. Why does Wright argue that detailed feature-by-feature schedule estimates are largely a fantasy, and what experience does he use to support that claim?**
+1. Dev estimations are flawed.  
+2. Effective project planning costs are T-shirt sized  
+3. Projects schedule high priority features first so that cuts can be made to low-pri items later  
+4. **Scheduling is less about hitting feature deadlines and more about managing risks.**  
+5. A risk-managed approach leads to delivering high-quality, essential features that truly satisfy customer needs.  
+6. Customer-centric focus fosters better team collaboration, morale, and decision-making
 
+**1\. Why does Wright argue that detailed feature-by-feature schedule estimates are largely a fantasy, and what experience does he use to support that claim?**  
 Wright argues that software development contains **too much uncertainty** for precise feature-level estimates to be reliable. He bases this view **on practical experience**, claiming that beyond very small or highly repetitive tasks, developers often cannot accurately predict how long implementation will take.
 
-**2\. What is the purpose of the "hard/medium/easy" estimation scale, and how does it differ from assigning specific dates to individual features?**
-
+**2\. What is the purpose of the "hard/medium/easy" estimation scale, and how does it differ from assigning specific dates to individual features?**  
 The purpose of the scale is to provide a rough assessment of effort while **acknowledging uncertainty.** Unlike specific feature dates, it helps teams reason about capacity and risk without creating a false sense of precision.
 
-**3\. Wright claims that development scheduling is primarily about risk management rather than time management. What risks does he believe a schedule should help a team manage?**
-
+**3\. Wright claims that development scheduling is primarily about risk management rather than time management. What risks does he believe a schedule should help a team manage?**  
 Wright believes schedules should help teams manage the **risk that we won't deliver the right features with the right quality at the right time.** His approach focuses on protecting critical functionality rather than attempting to predict exact completion dates for every feature.
 
-**4\. Do you agree with Wright's statement that "the only dates that count are project dates" and not feature dates? In what situations might feature-level dates still be valuable?**
-
+**4\. Do you agree with Wright's statement that "the only dates that count are project dates" and not feature dates? In what situations might feature-level dates still be valuable?**  
 Milestones are generally more important because they keep attention focused on **overall product success** rather than individual tasks. However, feature-level dates can still be useful when *coordinating dependencies* among teams or tracking particularly high-risk work.
 
-**5\. According to Wright, how can feature deadlines actually make a project more likely to fail, even though deadlines are intended to improve accountability?**
-
+**5\. According to Wright, how can feature deadlines actually make a project more likely to fail, even though deadlines are intended to improve accountability?**  
 Wright argues that developers who feel pressure to hit feature deadlines may hide problems instead of communicating risks early. This reduces management's ability to respond to emerging issues and can lead to lower quality, increased stress, and larger schedule slips later.
 
-**6\. If you were managing a modern Agile team using tools such as GitHub and Scrum boards, which parts of Wright's approach would you adopt and which parts would you reject? Why?**
-
+**6\. If you were managing a modern Agile team using tools such as GitHub and Scrum boards, which parts of Wright's approach would you adopt and which parts would you reject? Why?**  
 One might put emphasis on prioritizing must-have features, communicating risk early, and avoiding false precision in estimates. One could reject the idea that feature dates are largely irrelevant because Scrum boards, sprint goals, and backlog planning benefit from shorter-term commitments that help teams coordinate work while still accommodating uncertainty.
 
 ### Article: Project Buffer Overflow (by IM Wright)
@@ -282,20 +274,16 @@ He recommends calculating a team's historical task completion rate and then esti
 He believes people often distrust data-driven estimates because they want to believe they can work faster, work harder, or somehow achieve a better outcome than their historical performance suggests. He argues that this optimism leads managers and engineers to second-guess valid estimates instead of accepting what the data indicates about likely completion dates.
 
 ### Slide Deck Content
-**What is the cone of uncertainty, and how should it change the way early estimates are presented?**
-
+**What is the _Cone of Uncertainty_, and how should it change the way early estimates are presented?**  
 The cone of uncertainty says that early estimates are inherently wide because so much is still unknown, and that they narrow as the project progresses. Early on, an estimate is best shared as a range, not as a single precise number.
 
-**What are optimism bias and the planning fallacy, and why do tasks run late far more often than early?**
-
+**What are optimism bias and the planning fallacy, and why do tasks run late far more often than early?**  
 Optimism bias and the planning fallacy are the tendencies to assume things will go better than they usually do and to underestimate how long work will take. Task durations also have a skewed distribution: there is little room to finish much earlier than expected but no limit on how much later a task can run.
 
-**What is anchoring, and how can a team reduce its effect?**
-
+**What is anchoring, and how can a team reduce its effect?**   
 Anchoring happens when the first number spoken, or the loudest voice, dominates the group's estimate. A team can reduce it by having everyone estimate privately and reveal together, as in planning poker.
 
-**How do Hofstadter's Law and Parkinson's Law differ?**
-
+**How do Hofstadter's Law and Parkinson's Law differ?**  
 Hofstadter's Law says it always takes longer than you expect, even when you account for Hofstadter's Law. Parkinson's Law says work expands to fill the time available, regardless of the actual effort required, so too much slack is also a problem. 
 
 > **Hofstadter's law**: It always takes longer than you expect, even when you take into account Hofstadter's law.  
@@ -304,24 +292,19 @@ Hofstadter's Law says it always takes longer than you expect, even when you acco
 > * Work expands so as to fill the time available for its completion.  
 > * The number of workers within public administration tends to grow, regardless of the amount of work to be done.
 
-**What does Brooks's Law say, and why does it hold?**
-
+**What does Brooks's Law say, and why does it hold?**  
 Brooks's Law says that adding people to a late project makes it later. New people must be brought up to speed and add communication overhead, which slows the people already doing the work.
 
-**What strategies can counter Parkinson's Law?**
-
+**What strategies can counter Parkinson's Law?**  
 Timeboxing sets a fixed, short block of time for a task, and self-imposed shorter deadlines compress an honest estimate to about 50–70%. Other strategies are the [Pomodoro Technique](https://www.todoist.com/productivity-methods/pomodoro-technique) (25-minute focus intervals with 5-minute breaks), defining "done" before starting, and visual timelines such as [Gantt charts](https://project-management.com/what-is-a-gantt-chart/) or progress boards.
 
-**Why is it harmful to treat estimates as commitments?**
-
+**Why is it harmful to treat estimates as commitments?**  
 When estimates are commitments, teams protect themselves by padding them (sandbagging) and may work unsustainable hours, leading to burnout. An estimate is a forecast made with incomplete knowledge, not a promise.
 
-**How does three-point estimation work? Calculate it for O = 3, M = 6, and P = 15.**
-
+**How does three-point estimation work? Calculate it for O = 3, M = 6, and P = 15.**  
 You give an optimistic (O), most likely (M), and pessimistic (P) value and combine them as (O + 4M + P) / 6, which weights the most likely value most heavily. Here it is (3 + 24 + 15) / 6 = 42 / 6 = 7.
 
-**What are the main steps in a round of Planning Poker?**
-
+**What are the main steps in a round of Planning Poker?**  
 The product owner presents a story and answers questions, then each person privately picks a card from a Fibonacci-style scale (1, 2, 3, 5, 8, 13, 21) and everyone reveals at once. The highest and lowest voters explain their reasoning, and the team re-votes until estimates converge, then records the result and moves on.
 
 **What are the "reference story" and the "parking lot" in planning poker?**
