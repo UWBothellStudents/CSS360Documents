@@ -4,18 +4,17 @@
 In this Sprint, you will implement!! All work should be tracked by a Work Item in Kanban. Especially important is to have work items for everything needed in this sprint, and to assign owners of the work.   
 
 **Tasks:**  
-* The Team will document their "Definition of Done".   
+* The Team will document their "Definition of Done" and add this as `definition-of-done.md` in the project and submitted to Canvas.   
    - [Atlassian](https://www.atlassian.com/agile/project-management/definition-of-done)   
    - [Microsoft](https://microsoft.github.io/code-with-engineering-playbook/agile-development/team-agreements/definition-of-done/)  
    - [Teaching Agile](https://teachingagile.com/scrum/psm-1/scrum-implementation/definition-of-done)    
 * Each member of the Team will develop a "sizable" feature in their own branch that will get merged into `main`.  
    - If the team agrees, then the Team can develop a larger feature where each member develops a component or layer of the feature.  
 * Each member will test someone else's work. 
-* The Team will have a Discord bot for `main` so that all features can be tested in one spot.  
-* The Team will create a Tag of the *release*.  
+* The Team's code can be integrated into `main` and demonstrated in one Discord Server all at once.  
+* The Team will create a Tag of the *release*.     
    - Each person should be able to show this tag.   
    - The Tag will be documented with *Release Notes*.  
- 
 
 **Deliverables in GitHub:**  
 * There is a Kanban work with text describing your feature as User Story. It should contain other important information about the feature to "Define Done".  
@@ -35,8 +34,8 @@ In this Sprint, you will implement!! All work should be tracked by a Work Item i
    - Each student works on their own **git branch** (that runs in their own Codespace).  
    - Exercise branches, pull requests, tests, Kanban  
 * Work in a environment where many developers simultaneously create multiple features and merge them into one `main`.   
-* The TEAM will create a singular, `main` Discord Application, Discord server, and Discord bot  
-   - Success means that everyone's code, once merged into main, can be tested in a shared Discord server.  
+* The team will have the ability to view all code merged into `main` 
+   - Success means that everyone's code, once merged into main, can be tested in one (or more) Discord server.  
 
 **Steps:**  
 1. As a group, brainstorm some Discord bot features.  
