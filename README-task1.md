@@ -257,28 +257,24 @@ These are three different things that are easy to conflate:
 - A **Discord Bot** is the specific piece of a Discord App that gets a **user-like presence *inside* a server**. A Discord bot appears in the member list, can be @mentioned, and can send/receive messages. It's created *from* your Discord App and then installed *into* a server (your test server, in this case).
 
 
-**3. What is a Terminal?**
-
+**3. What is a Terminal?**  
 A terminal is a text-based window where you type commands directly to the computer's operating system, instead of clicking buttons in a graphical app. Commands like `npm install` or `git checkout` are typed here. In Codespaces, the terminal you're using is actually running on the remote cloud machine, not your own computer, so the commands you type (like installing packages) affect the Codespace's filesystem, not your laptop.
 
-**4. What is a Port?**
-
+**4. What is a Port?**  
 A port is a numbered "door" on a computer that a specific running program listens on for network traffic. 
 
 The word *port* is overloaded and is also used to mean the physical opening on a computer where a cable can be plugged into. In our code, we do not mean that kind of port. 
 
 A single machine can run many programs at once, each listening on its own port number, so incoming requests know which program to go to. When your bot's server runs `npm start` and prints "Listening on port 3000," it means your Express server has claimed port 3000 and is waiting for HTTP requests to arrive there. Discord needs a *public* URL pointing at that port so it can actually reach your server from the outside internet — that's why you had to make port 3000 public and copy its forwarded URL into the Interactions Endpoint URL field.
 
-**5. What is `npm`? What files in the project are related to it?**  
-
+**5. What is `npm`? What files in the project are related to it?**   
 `npm` (Node Package Manager) is the tool that installs and manages external code libraries ("packages") that your project depends on, and lets you define shortcut commands to run your project. Two files tie into it:
 - **`package.json`**: the project's manifest. Lists your dependencies, project metadata, and the custom `scripts` (like `start` and `register`) that `npm run` executes.
 - **`package-lock.json`**: automatically generated and updated whenever dependencies change. It pins the *exact* versions of every package (including sub-dependencies) so that everyone on the team, and every Codespace, installs identical versions. This is a great way to avoid "it works on my machine" bugs.
 
 You'll also see a **`node_modules`** folder appear after `npm install`. This is where the actual downloaded package code lives. It's not a file tied to npm's configuration, but it's the *result* of npm doing its job; it's excluded from git via `.gitignore` since it can be regenerated anytime from `package.json`.
 
-**6. What is an Express server?**  
-
+**6. What is an Express server?**    
 `Express` is a lightweight web framework for `Node.js` that makes it easy to build servers that handle HTTP requests.
 
 The Express server will receive HTTP requests, decide what to do based on the URL/method, and send back an HTTP response.
@@ -286,7 +282,6 @@ The Express server will receive HTTP requests, decide what to do based on the UR
 Without a framework, handling raw HTTP requests in Node is verbose and repetitive (manually parsing URLs, methods, headers, etc.). Express wraps that in a simple, readable API. In your bot project, this is the code can be found in `app.js`. 
 
 **7. How do you Stop the bot server? How do you stop you Codespaces instance?**  
-
 Re: Bot Server: Start with `npm start` and stop with `Ctrl+C`.
 
 - **Start:** run `npm start` in the terminal. This runs whatever command is defined under `"start"` in `package.json` (in this project, it launches `app.js`, which is an Express server), and you should see `Listening on port 3000`.
@@ -297,8 +292,7 @@ You need to stop and restart the server any time you change code in `app.js` or 
 To stop your Codespaces instance, use the `Command Palette` (via Ctrl+Shift+P on Windows). Then, type in `Codespaces: Stop Codespaces` (or you can type in just enough to see the option and then select it). Note that developers get charged money for how long a Codespaces instance is running. Students should get a good portion of this fee waived so long as you use your `UW Google ID` in association with GitHub.  
 
 
-**8. What is a "bot server"?**  
-
+**8. What is a "bot server"?**   
 It is a process listening on a network port for incoming requests.
 
 A bot server is the actual running program that listens on a port and waits for Discord to send it interaction requests. The server code then figures out how to respond and sends that response back. It's called a "server" in the precise technical sense: a process listening on a network port for incoming requests.

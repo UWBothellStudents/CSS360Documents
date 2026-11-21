@@ -68,12 +68,28 @@ Here's the part that trips people up: your HTTP response isn't just "success/fai
 
 Note that the sequence diagram does not follow all of the conventions of UML. For example, Activation Bars are not indicated for the actors; asynchronous vs synchronous messages are not indicated; return message line is not dashed; the reflective lines do not truly represent messages. 
 
-# Architecture Analysis
-Herein we discuss the following:  
-* The differences between `orig` and `modular-architecture`.      
-* We examine the Cohesion and Coupling of the designs and state which is better and why.  
+## Component Architecture Diagram 
+![Modular Architecture](resources/discord_modular_activity.png)  
 
-> We want **high cohesion** and **low coupling**.  
+Requests arrive from Discord at a single entry point, the router. Its only job is to verify that the request is genuine and decide what kind of interaction it is: a slash command, a button or select-menu click, or a modal form submission. It does no real work itself and simply hands each request to the module responsible for that kind of interaction, so reading the router tells you everything the bot can respond to.
+
+Below the router are three handler modules: `commands.js`, `components.js`, and `modals.js`. Each one owns one category of behavior and nothing else. When a handler needs something beyond its own logic, it reaches down into a group of shared modules, shown in the dashed box. The game store is the one place that holds game state and exposes it through a small interface (get, set, remove), so no handler touches a global variable directly. The game rules live in `game.js`, calls back to Discord go through a single Discord client, and small helpers such as looking up a user ID are written once in `helpers.js`. The arrows all point downward, from the router to handlers to shared modules, so dependencies flow in one direction and no module needs to know about the ones above it. A change to one concern, such as swapping the store for a database, stays inside one box. 
+
+# Architecture Analysis
+Herein we consider the differences between `orig` ("monolithic") and `modular-architecture` in the following ways:  
+* Cohesion and Coupling  
+* Cyclomatic Complexity and Cognitive Load (or Observability)  
+* Side Effects and Regressions  
+* Duplications and Inconsistencies  
+* Tendency for Merge Conflicts  
+* Testability  
+
+Modular is significantly better because:
+- **Scalability:** New commands, buttons, and modals are added as new modules and one registry entry, instead of growing a single function. The team can also grow without everyone editing the same code.
+- **Developer experience:** Small, well-named units are quick to read and navigate, and developers work in parallel with fewer merge conflicts. Onboarding is easier because a newcomer can learn one module at a time.
+- **Maintainability:** Each fact and responsibility has one home, so changes stay local and fixes are made once. Narrow interfaces keep a change from rippling into unrelated code.
+- **Correctness:** Plain functions with injected dependencies can be unit tested directly. Small units make missing responses and inconsistent logic easier to spot, and regressions are caught close to where they are introduced. 
+
 
 **Overview of the Two Approaches**  
 The code provided to students has same basic features implemented using two different approaches: monolithic and modular.  
@@ -82,296 +98,148 @@ The code found in `orig/` is *"monolithic"*. All interaction handling (commands,
 
 The code found in `modular-architecture` is *"modular"*. It is comprised of *dispatchers* and *modules*. There are two layers of dispatchers: the first dispatch layer routes the *type of interaction* (e.g. command, component, or modal) to the next dispatcher layer that sends it to a specific function/module.  
 
-*Q: Are the differences considered "architectural" or "design" in nature?*  
-**Short Answer:** Both. And we're splitting hairs here; it doesn't really matter.   
-**Long Answer**: The modular-architecture approach could be considered either **Architectural** or **Design**. We could say *architectural* because we set the *structure and organization* of the Discord Bot. We established the architecture of the Bog. However, we could also say *Design* because the fundamental architecture of how to get a Discored Bot to work with Discord wasn't changed. For example, we did not change the fact that Bot needs to communicate via JSON over HTTPS to the Discord Platform where Discord Applications are registered. The topology of the system is untouched; the higher level architecture established by Discord still determines the lay of the land.  
+## Cohesion and Coupling
+> We want **high cohesion** and **low coupling**.  
 
-## Coupling
-**_Def_: Coupling:** Coupling is the degree of interdependence between software modules--how closely one module relies on another’s internal workings, data, or behavior. It reflects how a change in one module might require a change in another.  
+![Cohesion and Coupling](resources/coupling-cohesion.png)  
+> **_Def_: Coupling:** Coupling is the degree of interdependence between software modules--how closely one module relies on another's internal workings, data, or behavior. It reflects how a change in one module might require a change in another.  
 
-Coupling is about how much one piece of code depends on the internals of another. In a *monolithic* Bot architecture you'll typically find:    
-- **Shared mutable state.** Global variables that all commands use. Any function can reach these variables and nothing prevents one command from interferring with another command's variables.  
-- **Shared helper functions with hidden assumptions.** Multipurpose functions doing many things.    
-- **Control coupling in the dispatcher.** Giant `if/else` or `switch` statements that know about every command and need editing whenever any command is updated.  
+high coupling is bad because it tightly binds components together, making systems fragile, difficult to maintain, and resistant to change, whereas low coupling promotes modular, flexible, and maintainable software. 
+
+Coupling is about how much one piece of code depends on the internals of another. Typically, high coupling design results in:      
+- **Ripple effects**, where a change in one piece forces changes in others
+- **Fragile code**, where small edits break distant parts of the system without warning
+- **Difficulty testing**, since a piece cannot be exercised without dragging its dependencies along
+- **Limited reuse**, because a component cannot be lifted out and used elsewhere without its neighbors
+- **Slower development**, since developers must understand many parts of the system before safely changing any one of them 
+
+In the *monolithic* Bot architecture you'll find the code is structured so that there are very few functions. The code has a large control structure (multiple stacked *ifs*) handling the `interactions` route. The code is a textbook example of [Logical Cohesion](https://thesestudies.blogspot.com/2023/10/logical-cohesion-in-software-engineering.html), where unrelated operations are grouped because they all "handle an interaction." Logical cohesion means grouping elements by a shared logical or technical theme rather than a single, clear purpose. In most software engineering contexts, functional cohesion (all elements contribute to one well‑defined task) is preferred. The If you're interested, you can read up on [Cohesion Categories here](http://www.cs.iit.edu/~cs561/cs487/cohesion/Categories.html).  
 
 Consider this argument:  
 > The "monolithic" architecture has *everything* in very few files; virtually everything is in app.js. The modular approach has many files where the code for each command is put into its own file. It would seem that the large, monolithic file would have *low coupling* because it is one giant "thing."   
 
-**Question**: How can there be *high coupling* with other "things" when there is only one "thing"? 
-**Answer**: The confusion comes from what we count as a _"thing."_ We typically examine coupling at the level of: classes, modules, packages, components, and functions. We should NOT use a *file* as our *unit of measurement* when examining Coupling. The monolith's design has high coupling, even if the coupling is implicit and hidden within the file. The coupling is present and poor.  
+![Monolithic Cohesion](resources/monolithic-cohesion.png)  
 
-If we allowed the unit to be the *file*, the monolith looks great on coupling: one file, so no inter-file dependencies. But that's an *artifact of the unit*. A single file can't be coupled to itself in any meaningful sense, so the metric stops telling you anything. It's like claiming a city has no traffic problems because you measured it as one building.
+This argument has a more thorough responce <a href="#q-and-a">Q&A section below</a>. There is little merit to this argument. The monolithic code is difficult to test, has limited reuse, and does not lend itself well to multiple developers. The design is poor. While we can argue that the "monolithic" design has coupling that is moderate and mostly hidden, there is strong case to be made against its cohesion.  
 
-## Cohesion
-**_Def_: Cohesion:** Cohesion is the degree to which elements within a module belong together and work toward a single, well‑defined purpose.   
+> **_Def_: Cohesion:** Cohesion is the degree to which elements within a module belong together and work toward a single, well‑defined purpose.   
 
-**Cohesion in the same comparison**
+High cohesion means each module has a clear, single responsibility, making it easier to test, maintain, and reuse.  
+Low cohesion can lead to "spaghetti" code where changes in one part affect unrelated parts, increasing maintenance cost and risk.  
 
-- **Monolith:** low cohesion at the file level (music, moderation, config, and event wiring all mixed together, so the file has many reasons to change). Individual functions may still be cohesive.
-- **Modular:** high cohesion per file (`ban.js` is about banning), and the file name tells you what's inside.
+Modularity doesn't remove dependencies; it makes them *explicit and narrow*. You can still build a badly coupled modular bot, though. If every command file imports a shared global variable and mutates a shared state, we've introduced high coupling.  
 
-**What the modular version changes**
+Analyzing and Understanding Cohesion/Coupling:
 
-Modularity doesn't remove dependencies; it makes them *explicit and narrow*. If `ban.js` needs the logger, it has to `require('../utils/logger')`, and that line is the coupling, visible and greppable. A command file typically exposes a small interface (`data` and `execute(interaction)`), so the loader depends only on that contract, not on each command's internals. That's the low-coupling pattern: depend on an interface, not an implementation.
+1. **The "change test"**: Ask yourself, "If I change how Feature X works, how many places must I edit, and how do I find them?" In a monolithic file, you search a single 3000-line file and make multiple edits sprinkled across the file. In a modular version, ideally you would edit one module with a size that is easier to digest.  
+2. **The "and" test**: Describe what the function does in one sentence without "and" or "or."   
+3. **The name test**: If the honest name for a function is `handleEverything`, we've got a problem. A function with a single responsibility is easy to name (e.g.handleChallenge, handleAccept, handleModalSubmit): names would be precise.  
 
-You can still build a badly coupled modular bot, though. If every command file imports a shared global `client` and mutates a shared `state.js`, you've reproduced the monolith's coupling across files. File count alone doesn't determine quality.
-
-**A way to explain it to students**
-
-A few angles that tend to work:
-
-1. **The "change test."** Ask: "If I change how cooldowns work, how many places must I edit, and how do I find them?" In the monolith, you search a 3,000-line file. In the modular version, ideally you edit one module, or the compiler/loader/grep shows you the import sites.
-2. **The kitchen analogy.** A monolith is one counter where every cook shares every tool and ingredient; nothing stops two cooks from interfering, and nobody can say who depends on whom. Modular is separate stations with a pass-through window; the window is the interface.
-3. **Make them draw it.** Have students sketch boxes for each responsibility in the monolith and draw arrows for every shared variable or function call. Then draw the boundary lines of the modular version around those same boxes. The arrows crossing a boundary are the coupling that became visible.
-4. **Key phrase:** *"Modularity doesn't reduce dependencies, it makes them explicit and limits who can create them."*
-
-**A good review question set**
-
+**Review questions to ask yourself:**  
 - What is the unit of analysis, and why?
 - What shared state exists, and who can write to it?
 - What does adding a new command require touching?
 - Could one command be tested without loading the others?
 
-On that last one, the monolith usually fails (you often can't import a command without starting the bot), while a well-factored `execute(interaction)` function can be unit-tested with a fake interaction.
+### UML Component Diagram
+Components are drawn as boxes, and the interfaces are shown in "ball-and-socket" (lollipop) notation. A circle (the ball) means "this component provides this interface," and a half-circle (the socket) means "this component requires it." A dashed arrow from one component to another is a dependency. 
 
-If it's useful, I can sketch a small before/after example, say a `/ban` command in both styles, showing the hidden coupling in the monolith and the explicit imports in the modular version, which you could drop straight into a lecture.
+> **UML component diagram:** Components are drawn as boxes, and the interfaces are shown in "ball-and-socket" (lollipop) notation. A circle (the ball) means "this component *provides* this interface," and a half-circle (the socket) means "this component *requires* it." A dashed arrow from one component to another is a dependency.  
 
-### 2. **Coupling: ORIG vs. MODULAR**
+**What they do well**
+- They show *structural* coupling at a glance: who depends on whom, how many arrows leave or enter a box (fan-out and fan-in), and whether the dependencies form cycles.
+- The provides/requires notation makes the idea of coupling *through an interface* concrete. A dependency on a small, stable interface is visibly different from a dependency on a whole module.
+- They support architectural conversations, such as layering violations or a module that everything depends on.
 
-**ORIG (High Coupling):**
-- **Intra-file coupling**: All commands, handlers, and logic are tightly bound in one file
-- **Import chain**: `app.js` depends on nothing; nothing depends on it
-- **Global state**: `activeGames` object accessible to all handlers
-- **Hard to test individually**: Can't test one command without the entire app.js
+**What they do badly**
+- **They show that a dependency exists, not how strong it is.** One arrow could mean "calls one function with a string" or "reads and writes five fields of my internal state." Content, common, and stamp coupling all look identical.
+- **They miss hidden coupling.** Coupling through shared global state, string conventions like the `custom_id` format, or timing and ordering assumptions is invisible unless someone draws it in deliberately.
+- **They stop at the module boundary.** This is the most relevant point for your example. A diagram of the monolithic file is one box with a few arrows out to `game.js`, `utils.js`, and Discord. It would suggest low coupling, which is the exact impression you were wary of earlier. The problem lives *inside* the box, so the diagram cannot show it.
+- **They are idealized.** A diagram drawn by hand shows the intended design, which may differ from the code. Diagrams generated from the code are more trustworthy but can be cluttered.
 
-**Metrics**: All 4 commands are coupled through `app.js` - if one command changes, the entire file is touched.
+## The Monolithic Pain  
+**Cohesion and Coupling**
+*Monolithic Pain:*  
+A monolithic handler has logical cohesion: unrelated operations sit together only because they all respond to the same kind of request. Its coupling is hidden rather than low, since every branch shares the same request and response objects, global variables, and implicit string conventions that silently link steps of a workflow. 
 
-**MODULAR (Low Coupling):**
-- **Separation by concern**: Each command is independent; `app.js` only knows about dispatcher logic
-- **Import chain**: 
-  - `app.js` → `command-handler.js` → imports only what's needed
-  - `command-handler.js` → imports individual commands
-  - Each command module is self-contained
-- **Isolated state**: Each command manages its own state (e.g., `challenge.js` has its own `activeGames`)
-- **Easy to test**: Can test `challenge.js` independently without loading other commands
+*Why modular is better*:
+- Each unit has a single, clear purpose, so its name describes everything it does
+- Dependencies are passed in explicitly instead of hidden in shared state
+- Changing one module rarely forces changes in another
+- Related logic lives together, making it easy to find and reason about
 
-**Metrics**: Commands are loosely coupled through registry pattern; adding/removing commands doesn't affect the dispatcher.
+**Cyclomatic Complexity and Cognitive Load**
+*Monolithic Pain:*  
+One function holds many decision points across long chains of conditionals, early returns, and error handling. A reader must keep the whole function in mind to understand any one branch, and it is hard to spot paths that never send a response.
 
-### 3. **Cohesion: ORIG vs. MODULAR**
+*Why modular is better*:
+- Each function has few decision paths, so it is easy to read and verify
+- A reader only needs to understand one behavior at a time
+- A thin dispatcher shows everything the app supports at a glance
+- Missing responses and error paths are easier to spot in small functions
 
-**Cohesion** measures how related the code within a module is (higher is better).
+**Side Effects and Regressions**
+*Monolithic Pain:*  
+Because all branches share one scope, with similarly named local variables and shared state, a change in one branch can break another without warning. Altering a data format or the structure of shared state ripples through code the author may not realize is connected. 
 
-**ORIG (Low Cohesion):**
-- `app.js` contains 4 different command handlers (test, test-btn, test-modal, challenge) all in the same file
-- The file mixes:
-  - Discord API response formatting
-  - Game state management
-  - Modal handling
-  - Button handling
-  - Select menu handling
-  - HTTP routing
-- **Consequence**: A developer reading one command must understand the entire file context to avoid side effects
+*Why modular is better*:
+- Local scope prevents variables from accidentally colliding or being reused
+- Narrow interfaces confine the impact of a change
+- Shared state is owned by one module, so changes to it happen in one place
+- Regressions are caught closer to where they are introduced
 
-**MODULAR (High Cohesion):**
-- Each command file contains only related functionality
-- Example: `commands/test-button.js` has the `/test-btn` command definition, the button ID constant, and the button click handler—everything related to that feature
-- `commands/challenge.js` has the `/challenge` command, all rock-paper-scissors game logic, state management, and both button and select handlers
-- **Consequence**: Reading one command file doesn't require understanding other commands
+**Duplications and Inconsistencies**
+*Monolithic Pain:*  
+The same knowledge is repeated and applied differently in several places, such as extracting an identifier from a request or reading a configuration value, and one variant may even fail in a case the others handle. Copy-paste leftovers like redundant nested checks are another symptom. 
 
-## Merge Conflicts: A Critical Advantage
+*Why modular is better*:
+- Each fact or rule has a single home (a single source of truth)
+- Bug fixes are made once and apply everywhere
+- Behavior stays consistent across features
+- Shared helpers reduce copy-paste errors and leftover code
 
-### ORIG (Monolithic) - High Conflict Risk
+**Tendency for Merge Conflicts**
+*Monolithic Pain:*  
+Every new feature edits the same long function in the same file, so developers working on unrelated features will routinely collide on the same lines. Code review is also harder because the diff lands in a huge function with little context. 
 
-**Real scenario**: Dev A wants to add a new `/roll-dice` command. Dev B is fixing a bug in the `/challenge` command's game logic.
-
-- **Dev A** edits `orig/app.js` to add the new command
-- **Dev B** edits `orig/app.js` to fix the game state structure
-
-**Result**: **Merge conflict** in `orig/app.js` even though the changes are logically independent. Git sees both developers editing the same file and can't auto-merge. Someone must manually resolve the conflict, review the merge, and test it.
-
-**If they have 6 developers and each adds one command**, all 6 edit the same file, creating a bottleneck.
-
-### MODULAR - Conflict Prevention
-
-**Same scenario**, modular style:
-
-- **Dev A** creates `commands/roll-dice.js` (new file)
-- **Dev B** edits `commands/challenge.js` (different file)
-
-**Result**: **No merge conflict**. They edited different files. Git auto-merges instantly. The only change touching both is a single line in `command-handler.js` to register the new command.
-
-**If they have 6 developers and each adds one command**, each creates their own `commands/new-command-name.js`, and merging is instant with zero conflicts.
-
-**Why this matters**:
+*Why modular is better*:
 - Developers can work in parallel without blocking each other
 - Merge conflicts become rare, reducing team friction
 - Code review is focused on features, not conflict resolution
 - Faster iteration cycles for teams
 
-## Code Isolation & Reduced Confusion
+**Testability**
+*Monolithic Pain:*  
+The logic can only be reached through the web framework's request and response objects, real environment configuration, and live external calls, so even a simple test requires heavy mocking. Core behavior cannot be tested apart from the transport layer. 
 
-### ORIG (High Context Required)
+*Why modular is better*:
+- Plain functions can be unit tested with ordinary inputs and assertions
+- Dependencies can be replaced with simple fakes instead of heavy mocking
+- Core behavior can be tested without the web framework or network
+- Small, fast tests make failures easy to diagnose and encourage more testing
 
-Reading the `/challenge` handler in `orig/app.js` requires understanding:
-- Command handler (the initial `/challenge` interaction)
-- Button handler (when a user accepts the challenge)
-- Select handler (when the responding user picks their move)
-- State definition (where `activeGames` is created)
-- Message manipulation logic (how endpoints are built)
+Here is a concrete example. To test the `/challenge` command handler, you'd need to:
+  - Load the entire `orig/app.js`   
+  - Import Express and Discord middleware  
+  - Mock `getRandomEmoji()` and `DiscordRequest()` from `utils.js`  
+  - Provide a fake `req` object with `req.body`, `req.body.member`, etc.  
+  - Summary: In actuality, we can't easily isolate the handler. We're testing it within the full HTTP request/response flow.  
 
-A developer must jump between scattered locations throughout the file, constantly returning to where state is defined. The context is fragmented.
-
-**Real risks from this code**:
-- The state object format must match between the command handler (where it's created), button handler (where it's read), and select handler (where it's deleted)—if someone changes the format in one place, others break silently
-- Delete operations could fail to clean up state if an exception occurs, causing memory leaks
-- Identical endpoint-building logic repeats in multiple places, and any change must be applied everywhere
-
-### MODULAR (Contained Context)
-
-Reading `commands/challenge.js` contains:
-- Command definition at the top
-- Game state management helpers (createGame, getGame, deleteGame)
-- Game logic (RPSChoices rules)
-- Command handler
-- Component handlers (button and select)
-
-**All in one file**. A developer:
-- Opens one file
-- Reads top-to-bottom
-- Sees exactly how a game starts, is tracked, and is resolved
-- Knows where state is managed and how it's used
-
-**Result**: 
-- Fewer cognitive load mistakes
-- Easier to spot bugs (all related code is together)
-- Easier to maintain (one mental model)
-
-## Side Effects & Bug Prevention
-
-### ORIG Risks
-
-1. **Global state pollution**: `activeGames` is readable and writable by all handlers
-   - Command handler creates entries, button handler assumes they exist, select handler deletes them
-   - If someone adds a new handler and doesn't realize `activeGames` exists, they could accidentally overwrite a game in progress
-
-2. **Hidden dependencies**: The button and select handlers depend on `activeGames` being populated correctly by the command handler, but this dependency isn't declared anywhere. It's just convention.
-
-3. **Format brittleness**: All handlers must know the exact structure of `activeGames` entries. Change the format in one place and silent failures occur elsewhere.
-
-### MODULAR Safety
-
-1. **Encapsulated state**: `activeGames` is private to `commands/challenge.js`. Other commands can't access or interfere with it.
-
-2. **Explicit interface**: `commands/challenge.js` exports only what's needed: `handleCommand()`, `handleComponent()`, and ID prefixes. Everything else is hidden.
-
-3. **No accidental interference**: Each command file has its own namespace. `commands/test-button.js` can't accidentally collide with state in `commands/challenge.js`.
+## Cyclomatic Complexity 
+> **_Def_: Cyclomatic Complexity:**  Cyclomatic Complexity is ...  
 
 
-## Cohesion & Coupling Summary Table
 
-| Metric | ORIG (Monolithic) | MODULAR (Separated) | Better? |
-|--------|-------------------|-------------------|---------|
-| **Cohesion** | Low (~40%) | High (~90%) | MODULAR ✓ |
-| **Coupling** | High (all features in one file) | Low (independent modules) | MODULAR ✓ |
-| **Lines per concern** | 200+ lines | 50-100 lines per command | MODULAR ✓ |
-| **Merge conflicts** | Frequent (all in one file) | Rare (separate files) | MODULAR ✓ |
-| **Context required to understand** | Entire file (~300 lines) | Single command file (~50-100 lines) | MODULAR ✓ |
-| **State management clarity** | Implicit (global `activeGames`) | Explicit (local to module) | MODULAR ✓ |
-| **Testability** | Hard (must load entire app.js) | Easy (test individual command file) | MODULAR ✓ |
+<a id='q-and-a'></a>  
 
+## Q & A
+**Are the differences considered "architectural" or "design" in nature?**   
+**Short** Both. And we're splitting hairs here; it doesn't really matter.   
+**Long**: The modular-architecture approach could be considered either *Architectural* or *Design*. We could say *architectural* because we set the *structure and organization* of the Discord Bot. We established the architecture of the Bog. However, we could also say *Design* because the fundamental architecture of how to get a Discored Bot to work with Discord wasn't changed. For example, we did not change the fact that Bot needs to communicate via JSON over HTTPS to the Discord Platform where Discord Applications are registered. The topology of the system is untouched; the higher level architecture established by Discord still determines the lay of the land.  
 
-## Is Modular Better?
+**How can there be *high coupling* with other "things" when there is only one "thing"?**   
+The confusion comes from what we count as a _"thing."_ We typically examine coupling at the level of: classes, modules, packages, components, and functions. We should NOT use a *file* as our *unit of measurement* when examining Coupling. The monolith's design has high coupling, even if the coupling is implicit and hidden within the file. The coupling is present and poor.  
 
-### **YES, absolutely.** Here's why:
+If we allowed the unit to be the *file*, the monolith looks great on coupling: one file, so no inter-file dependencies. But that's an *artifact of the unit*. A single file can't be coupled to itself in any meaningful sense, so the metric stops telling you anything. It's like claiming a city has no traffic problems because you put everything into one giant building.  
 
-#### 1. **Scalability**
-- **ORIG**: Adding a 5th command (say `/new-game`) requires editing `orig/app.js`:
-  ```javascript
-  if (name === 'new-game') {
-    // Add 50+ lines of new logic here
-  }
-  ```
-  The file grows from 400 to 450+ lines. Each new command makes the single file larger and harder to navigate.
-
-- **MODULAR**: Adding a 5th command means:
-  - Create `commands/new-game.js` (one new file)
-  - Add one line to `command-handler.js`:
-    ```javascript
-    import { command as newGame, handleCommand as handleNewGame } from '../commands/new-game.js';
-    // ...
-    [newGame.name]: handleNewGame,
-    ```
-  - File count goes from 8 to 9, but no existing file grows significantly
-
-#### 2. **Developer Experience**
-- **ORIG**: Two developers are working on `/test-modal` (in `orig/app.js` around lines 84-132) and `/challenge` (lines 135-185). They both edit the same file in different areas. When they try to merge their branches, Git sees conflicts because both touched the same file, even if their changes don't overlap. They must spend time resolving merge conflicts.
-  
-- **MODULAR**: Two developers work on `commands/test-modal.js` and `commands/challenge.js` respectively. These are different files, so no conflicts. They merge independently, in parallel.
-
-#### 3. **Maintainability**
-- **ORIG**: Fixing a bug where the rock-paper-scissors game doesn't clean up `activeGames` properly (currently handled at line 327 of `orig/app.js`) requires:
-  - Finding where `activeGames` is defined (line 10)
-  - Finding where it's created (line 149)
-  - Finding where it's read (lines 272, 306)
-  - Finding where it's deleted (line 327)
-  - Understanding the entire flow across 300+ lines
-  
-- **MODULAR**: All rock-paper-scissors logic is in one file (`commands/challenge.js`). The `activeGames` object is defined on line 41, and all four helper functions (`createGame`, `getGame`, `deleteGame`) are on lines 42-50. A bug fix is localized to one file.
-
-#### 4. **Correctness**
-- **ORIG**: All commands share the global namespace of `orig/app.js`. If a developer doesn't realize `/challenge` uses `activeGames`, they might accidentally use a variable with a similar name for a new command, causing a collision or overwriting game state. There's no protection against this.
-  
-- **MODULAR**: Each command file has its own namespace. `commands/challenge.js` has an `activeGames` object (private, not exported). `commands/test.js` has no such state. There's no way for one command to accidentally interfere with another's state.
-
-#### 5. **Testing & Debugging**
-- **ORIG**: To test the `/challenge` command handler, you'd need to:
-  - Load the entire `orig/app.js` 
-  - Import Express and Discord middleware
-  - Mock `getRandomEmoji()` and `DiscordRequest()` from `utils.js`
-  - Provide a fake `req` object with `req.body`, `req.body.member`, etc.
-  - Actually test can't easily isolate the handler—you're testing it within the full HTTP request/response flow
-  
-- **MODULAR**: To test the `/challenge` command handler, you:
-  ```javascript
-  import { handleCommand, handleComponent } from './challenge.js';
-  
-  const fakeReq = {
-    body: {
-      id: 'msg-123',
-      data: { options: [{ value: 'rock' }] },
-      member: { user: { id: 'user-456' } }
-    }
-  };
-  
-  const result = handleCommand(fakeReq);
-  assert(result.type === InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE);
-  ```
-  You can unit-test `handleCommand()` and `handleComponent()` independently, mocking only what they import (`DiscordRequest`, `getRandomEmoji`)
-
-#### 6. **Feature Independence**
-- **ORIG**: The `/challenge` command is baked into `orig/app.js`. To reuse it in another Discord bot, you'd need to copy lines 10 (state), 135-185 (command), 251-300 (button handler), 301-352 (select handler), plus understand all the imports and dependencies. It's not clean.
-  
-- **MODULAR**: To reuse the `/challenge` command in another bot project, you simply copy `commands/challenge.js` and import it. The module is self-contained and explicitly lists its dependencies (`DiscordRequest`, `getRandomEmoji`). You can drop it into another project immediately.
-
-## Trade-offs (What Modular Loses)
-
-1. **Simplicity for trivial projects**: A single command bot doesn't benefit from modularity
-2. **Import overhead**: Slightly more file I/O at startup (negligible for modern systems)
-3. **Initial setup complexity**: Requires discipline to maintain separation
-
-**Verdict**: These are negligible compared to the architectural benefits.
-
-## Conclusion
-
-The differences are **ARCHITECTURAL**: both approaches solve the same problem (handling Discord interactions) using fundamentally different system organization strategies.
-
-**Modular is significantly better** because:
-
-1. **Low coupling**: Commands don't interfere with each other
-2. **High cohesion**: Each command is self-contained
-3. **Reduced merge conflicts**: Multiple developers can work in parallel
-4. **Smaller cognitive load**: Developers understand less code to make changes
-5. **Fewer bugs**: Isolation prevents accidental side effects
-6. **Better scalability**: Adding features doesn't require editing existing files
-
-The monolithic approach works fine for a small, single-developer prototype, but the modular approach is the correct choice for any project that will grow or be maintained by multiple people.
+Lastly, the functionality (code) within the giant file doesn't have a meaningful relationship; the vast functionality doesn't semantically belong together. This means that there is low *cohesion*.  
