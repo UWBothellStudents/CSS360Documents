@@ -104,7 +104,7 @@ The code found in `modular-architecture` is *"modular"*. It is comprised of *dis
 ![Cohesion and Coupling](resources/coupling-cohesion.png)  
 > **_Def_: Coupling:** Coupling is the degree of interdependence between software modules--how closely one module relies on another's internal workings, data, or behavior. It reflects how a change in one module might require a change in another.  
 
-high coupling is bad because it tightly binds components together, making systems fragile, difficult to maintain, and resistant to change, whereas low coupling promotes modular, flexible, and maintainable software. 
+High coupling is bad because it tightly binds components together, making systems fragile, difficult to maintain, and resistant to change, whereas low coupling promotes modular, flexible, and maintainable software. 
 
 Coupling is about how much one piece of code depends on the internals of another. Typically, high coupling design results in:      
 - **Ripple effects**, where a change in one piece forces changes in others
@@ -118,7 +118,7 @@ In the *monolithic* Bot architecture you'll find the code is structured so that 
 Consider this argument:  
 > The "monolithic" architecture has *everything* in very few files; virtually everything is in app.js. The modular approach has many files where the code for each command is put into its own file. It would seem that the large, monolithic file would have *low coupling* because it is one giant "thing."   
 
-![Monolithic Cohesion](resources/monolithic-cohesion.png)  
+<img src="resources/monolithic-cohesion.png" alt="Monolithic Cohesion" width="200">
 
 This argument has a more thorough responce <a href="#q-and-a">Q&A section below</a>. There is little merit to this argument. The monolithic code is difficult to test, has limited reuse, and does not lend itself well to multiple developers. The design is poor. While we can argue that the "monolithic" design has coupling that is moderate and mostly hidden, there is strong case to be made against its cohesion.  
 
@@ -158,9 +158,9 @@ Components are drawn as boxes, and the interfaces are shown in "ball-and-socket"
 - **They are idealized.** A diagram drawn by hand shows the intended design, which may differ from the code. Diagrams generated from the code are more trustworthy but can be cluttered.
 
 ## The Monolithic Pain  
-**Cohesion and Coupling**
+**Cohesion and Coupling**  
 *Monolithic Pain:*  
-A monolithic handler has logical cohesion: unrelated operations sit together only because they all respond to the same kind of request. Its coupling is hidden rather than low, since every branch shares the same request and response objects, global variables, and implicit string conventions that silently link steps of a workflow. 
+> A monolithic handler has logical cohesion: unrelated operations sit together only because they all respond to the same kind of request. Its coupling is hidden rather than low, since every branch shares the same request and response objects, global variables, and implicit string conventions that silently link steps of a workflow. 
 
 *Why modular is better*:
 - Each unit has a single, clear purpose, so its name describes everything it does
@@ -168,9 +168,9 @@ A monolithic handler has logical cohesion: unrelated operations sit together onl
 - Changing one module rarely forces changes in another
 - Related logic lives together, making it easy to find and reason about
 
-**Cyclomatic Complexity and Cognitive Load**
+**Cyclomatic Complexity and Cognitive Load**  
 *Monolithic Pain:*  
-One function holds many decision points across long chains of conditionals, early returns, and error handling. A reader must keep the whole function in mind to understand any one branch, and it is hard to spot paths that never send a response.
+> One function holds many decision points across long chains of conditionals, early returns, and error handling. A reader must keep the whole function in mind to understand any one branch, and it is hard to spot paths that never send a response.
 
 *Why modular is better*:
 - Each function has few decision paths, so it is easy to read and verify
@@ -178,9 +178,9 @@ One function holds many decision points across long chains of conditionals, earl
 - A thin dispatcher shows everything the app supports at a glance
 - Missing responses and error paths are easier to spot in small functions
 
-**Side Effects and Regressions**
+**Side Effects and Regressions**  
 *Monolithic Pain:*  
-Because all branches share one scope, with similarly named local variables and shared state, a change in one branch can break another without warning. Altering a data format or the structure of shared state ripples through code the author may not realize is connected. 
+> Because all branches share one scope, with similarly named local variables and shared state, a change in one branch can break another without warning. Altering a data format or the structure of shared state ripples through code the author may not realize is connected. 
 
 *Why modular is better*:
 - Local scope prevents variables from accidentally colliding or being reused
@@ -188,9 +188,9 @@ Because all branches share one scope, with similarly named local variables and s
 - Shared state is owned by one module, so changes to it happen in one place
 - Regressions are caught closer to where they are introduced
 
-**Duplications and Inconsistencies**
+**Duplications and Inconsistencies**  
 *Monolithic Pain:*  
-The same knowledge is repeated and applied differently in several places, such as extracting an identifier from a request or reading a configuration value, and one variant may even fail in a case the others handle. Copy-paste leftovers like redundant nested checks are another symptom. 
+> The same knowledge is repeated and applied differently in several places, such as extracting an identifier from a request or reading a configuration value, and one variant may even fail in a case the others handle. Copy-paste leftovers like redundant nested checks are another symptom. 
 
 *Why modular is better*:
 - Each fact or rule has a single home (a single source of truth)
@@ -198,9 +198,9 @@ The same knowledge is repeated and applied differently in several places, such a
 - Behavior stays consistent across features
 - Shared helpers reduce copy-paste errors and leftover code
 
-**Tendency for Merge Conflicts**
+**Tendency for Merge Conflicts**  
 *Monolithic Pain:*  
-Every new feature edits the same long function in the same file, so developers working on unrelated features will routinely collide on the same lines. Code review is also harder because the diff lands in a huge function with little context. 
+> Every new feature edits the same long function in the same file, so developers working on unrelated features will routinely collide on the same lines. Code review is also harder because the diff lands in a huge function with little context. 
 
 *Why modular is better*:
 - Developers can work in parallel without blocking each other
@@ -208,9 +208,9 @@ Every new feature edits the same long function in the same file, so developers w
 - Code review is focused on features, not conflict resolution
 - Faster iteration cycles for teams
 
-**Testability**
+**Testability**  
 *Monolithic Pain:*  
-The logic can only be reached through the web framework's request and response objects, real environment configuration, and live external calls, so even a simple test requires heavy mocking. Core behavior cannot be tested apart from the transport layer. 
+> The logic can only be reached through the web framework's request and response objects, real environment configuration, and live external calls, so even a simple test requires heavy mocking. Core behavior cannot be tested apart from the transport layer. 
 
 *Why modular is better*:
 - Plain functions can be unit tested with ordinary inputs and assertions
