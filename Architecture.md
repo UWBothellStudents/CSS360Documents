@@ -227,13 +227,34 @@ By contrast, the modular approach isolates complexity. Each command handler is a
 <a id='q-and-a'></a>  
 
 ## Q & A
-**Are the differences considered "architectural" or "design" in nature?**   
+**Are the differences between "monolithic" and "modular" considered *architectural* or *design* in nature?**   
 **Short:** Both. And we're splitting hairs here; it doesn't really matter.   
 **Long:** The modular-architecture approach could be considered either *Architectural* or *Design*. We call it *architectural* because we set the *structure and organization* of the Discord Bot. However, the fundamental architecture of how a Discord Bot communicates with Discord via JSON over HTTPS remains unchanged—we didn't alter the topology, only how we organize the code within it.  
 
-**How can there be *high coupling* with other "things" when there is only one "thing"?**   
+**In a *monolithic* approach, we may have just one file, or worse yet, one giant function. How can there be *high coupling* with other "things" when there is only one "thing"? Wouldn't a *monolithic* approach always be considered great since it has *low coupling*?**   
 The confusion comes from what we count as a _"thing."_ We typically examine coupling at the level of: classes, modules, packages, components, and functions. We should NOT use a *file* as our *unit of measurement* when examining Coupling. The monolith's design has high coupling, even if the coupling is implicit and hidden within the file. The coupling is present and poor.  
 
 If we allowed the unit to be the *file*, the monolith looks great on coupling: one file, so no inter-file dependencies. But that's an *artifact of the unit*. A single file can't be coupled to itself in any meaningful sense, so the metric stops telling you anything. It's like claiming a city has no traffic problems because you put everything into one giant building.  
 
 Lastly, the functionality (code) within the giant file doesn't have a meaningful relationship; the vast functionality doesn't semantically belong together. This means that there is low *cohesion*.  
+
+**What is the primary difference between high coupling and low cohesion, and why does a monolithic approach have both problems?**  
+Coupling and cohesion measure different things. Coupling describes how much *separate* units depend on each other's internals, while cohesion describes how well the contents *within* a single unit belong together. High coupling makes changes ripple across units, and low cohesion means a unit mixes unrelated responsibilities. A monolithic approach suffers from both. It has low cohesion because commands, components, and modals are grouped only because they all "handle interactions," not because they share a single, well-defined responsibility. It also has *hidden*, strong coupling because every branch shares the same request and response objects, shared state, and implicit string conventions that silently link the steps of a workflow; a change in one branch can break another. In practice, the low cohesion is what causes the hidden coupling.
+
+**Using the "and" test from the document, describe what a monolithic `/challenge` command handler does in one sentence without using "and" or "or." What does this tell you about its cohesion?**  
+This is difficult or impossible to do concisely because the handler likely validates input, checks user permissions, reads game state, computes a response, mutates state, and handles errors—all as one unit. The fact that you can't describe it without "and" suggests low cohesion; the function is trying to do too many things. A modular handler, by contrast, would have a single purpose: "execute the challenge command for the user."
+
+**How would you apply the "change test" to understand whether a monolithic bot has high coupling?**  
+Ask: "If I need to change how the game state is stored (say, from memory to a database), how many places in the code must I edit?" In a monolithic bot with high coupling, the answer is "many places throughout the file, wherever state is read or written." In a modular bot with low coupling, the answer is "one module: the game store." The number of places you must touch reveals the coupling hidden within the monolith.
+
+**What is cyclomatic complexity, and why is it harder to test a function with high cyclomatic complexity?**  
+Cyclomatic complexity measures the number of independent paths through a function—each if-statement, loop, and conditional adds a path. A function with many paths is hard to test because you need a test case for each path to ensure full coverage. A monolithic bot's main handler might have 50+ paths, requiring dozens of test cases. Worse, reaching any one path requires heavy setup (mocking Discord middleware, faking request objects), so testing is slow and brittle. A modular handler with 5 paths is easier to test with simple, fast unit tests.
+
+**In the modular approach, each command is in its own file. Does this eliminate all dependencies between commands, or does it manage dependencies differently? Explain.**  
+Modularity doesn't eliminate dependencies; it makes them *explicit and narrow*. Commands might still share the game store or Discord client, but instead of hiding these dependencies in shared scope, the modular approach passes them in as dependencies. This way, if you need to test a command, you can inject a fake store instead of mocking the entire framework. The dependencies are visible in the function signature, not hidden in global state.
+
+**Why do merge conflicts become more common in a monolithic bot, and how does the modular approach reduce them?**  
+Every new feature or bug fix in a monolithic bot edits the same `app.js` file, often the same long function. If two developers work on different commands simultaneously, they'll collide on overlapping lines of code, creating merge conflicts. The modular approach splits each concern into separate files, so developers working on different commands rarely touch the same files. Fewer conflicts means less time resolving merges and faster parallel development for teams.
+
+**How are UML component diagrams limited in what they can reveal about coupling?**  
+UML diagrams show that dependencies exist, but not how strong they are or what kind. One arrow could mean "calls one function with a string" or "reads and writes five fields of internal state." More importantly, they miss hidden coupling—especially coupling through shared global state, implicit string conventions, or timing assumptions. A diagram of a monolithic bot looks like one box with a few outgoing arrows, suggesting low coupling, when the real problem is *inside* the box. This is why looking at structure alone can be misleading.
