@@ -218,9 +218,11 @@ Analyzing and Understanding Cohesion/Coupling:
 For example, testing the `/challenge` command handler in the monolithic version requires loading the entire `app.js`, importing Express and Discord middleware, mocking multiple utility functions, and providing fake `req` objects—testing it within the full HTTP request/response flow rather than in isolation.  
 
 ## Cyclomatic Complexity 
-> **_Def_: Cyclomatic Complexity:** Cyclomatic Complexity is a quantitative measure of the number of linearly independent paths through a function or program. It is calculated by counting the number of decision points (such as if statements, loops, and logical operators) plus one. A higher cyclomatic complexity indicates more complex logic and typically correlates with increased difficulty in testing and understanding the code.  
+> **_Def_: Cyclomatic Complexity:** Cyclomatic Complexity is a quantitative measure of the number of linearly independent paths through a function or program. It is calculated by counting the number of decision points (such as if statements, loops, and logical operators) plus one. A higher cyclomatic complexity indicates more complex logic and typically correlates with increased difficulty in testing and understanding the code.
 
+The monolithic bot has extremely high cyclomatic complexity in its main handler function. A single `app.js` file with nested if-statements for each command and interaction type creates dozens of paths through the code—some intentional, some accidental. For instance, a command handler might have branches for different user roles, error conditions, success cases, and special validations, all stacked within one massive function. A developer reading this function must mentally trace through all these paths to understand a single command, and it's easy to miss edge cases. The *monolithic pain* is cognitive: *all the complexity is concentrated in one place, forcing you to understand everything at once*.
 
+By contrast, the modular approach isolates complexity. Each command handler is a small, focused function with perhaps 5-10 decision points instead of dozens. The main router is thin and clear—you can see at a glance what interactions the bot supports. This low complexity makes each function easier to test, understand, and reason about. If a handler has a subtle bug, you're debugging a 50-line function in isolation, not hunting through thousands of lines. This is why cyclomatic complexity matters not just for metrics, but for how quickly a team can move safely.  
 
 <a id='q-and-a'></a>  
 
