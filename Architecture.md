@@ -60,7 +60,7 @@ sequenceDiagram
     Bot->>Discord: Return response
     Discord->>Browser: Display bot's reply
 ```
-This sequence diagram provides architectural insight in a different way. Instead of providing a modular/component perspective layed out as boxes, it instead focuses on the system level communications. It illustrates what, when and where messages get passed. There are three **participants**: the `Browser`, which represents the person using Discord; the `Discord API`, which is Discord's own platform/backend; and the `Bot`, which is your `Express` server running in `Codespaces`.  
+This sequence diagram provides architectural insight in a different way. Instead of providing a modular/component perspective layed out as boxes, it instead focuses on the system level communications. It illustrates what, when, and where messages get passed. There are three **participants**: the `Browser`, which represents the person using Discord; the `Discord API`, which is Discord's own platform/backend; and the `Bot`, which is your `Express` server running in `Codespaces`.  
 
 Reading from top to bottom, the diagram traces a single request through time. First, the Browser sends a slash command, which goes to the Discord API. Discord then forwards that interaction as an HTTP POST request to your Bot. The Bot performs an internal step, validating the signature on the incoming request using the discord-interactions package, to make sure the payload really came from Discord and not from an impersonator. Once validated, the Bot determines the response, and it sends that response back to the Discord API, which finally relays that response to the Browser so the user can see it. The solid arrows represent each message being sent, and the vertical order in which they appear tells you the sequence of events, which is the main thing a sequence diagram is meant to communicate: not the structure of the system, but the timeline of a specific interaction.
 
@@ -113,14 +113,14 @@ Coupling is about how much one piece of code depends on the internals of another
 - **Limited reuse**, because a component cannot be lifted out and used elsewhere without its neighbors
 - **Slower development**, since developers must understand many parts of the system before safely changing any one of them 
 
-In the *monolithic* Bot architecture you'll find the code is structured so that there are very few functions. The code has a large control structure (multiple stacked *ifs*) handling the `interactions` route. The code is a textbook example of [Logical Cohesion](https://thesestudies.blogspot.com/2023/10/logical-cohesion-in-software-engineering.html), where unrelated operations are grouped because they all "handle an interaction." Logical cohesion means grouping elements by a shared logical or technical theme rather than a single, clear purpose. In most software engineering contexts, functional cohesion (all elements contribute to one well‑defined task) is preferred. The If you're interested, you can read up on [Cohesion Categories here](http://www.cs.iit.edu/~cs561/cs487/cohesion/Categories.html).  
+In the *monolithic* Bot architecture you'll find the code is structured so that there are very few functions. The code has a large control structure (multiple stacked *ifs*) handling the `interactions` route. The code is a textbook example of [Logical Cohesion](https://thesestudies.blogspot.com/2023/10/logical-cohesion-in-software-engineering.html), where unrelated operations are grouped because they all "handle an interaction." Logical cohesion means grouping elements by a shared logical or technical theme rather than a single, clear purpose. In most software engineering contexts, functional cohesion (all elements contribute to one well‑defined task) is preferred. If you're interested, you can read up on [Cohesion Categories here](http://www.cs.iit.edu/~cs561/cs487/cohesion/Categories.html).  
 
 Consider this argument:  
 > The "monolithic" architecture has *everything* in very few files; virtually everything is in app.js. The modular approach has many files where the code for each command is put into its own file. It would seem that the large, monolithic file would have *low coupling* because it is one giant "thing."   
 
 <img src="resources/monolithic-cohesion.png" alt="Monolithic Cohesion" width="200">
 
-This argument has a more thorough responce <a href="#q-and-a">Q&A section below</a>. There is little merit to this argument. The monolithic code is difficult to test, has limited reuse, and does not lend itself well to multiple developers. The design is poor. While we can argue that the "monolithic" design has coupling that is moderate and mostly hidden, there is strong case to be made against its cohesion.  
+This argument has a more thorough response <a href="#q-and-a">Q&A section below</a>. There is little merit to this argument. The monolithic code is difficult to test, has limited reuse, and does not lend itself well to multiple developers. The design is poor. While we can argue that the "monolithic" design has coupling that is moderate and mostly hidden, there is a strong case to be made against its cohesion.  
 
 > **_Def_: Cohesion:** Cohesion is the degree to which elements within a module belong together and work toward a single, well‑defined purpose.   
 
@@ -226,7 +226,7 @@ Here is a concrete example. To test the `/challenge` command handler, you'd need
   - Summary: In actuality, we can't easily isolate the handler. We're testing it within the full HTTP request/response flow.  
 
 ## Cyclomatic Complexity 
-> **_Def_: Cyclomatic Complexity:**  Cyclomatic Complexity is ...  
+> **_Def_: Cyclomatic Complexity:** Cyclomatic Complexity is a quantitative measure of the number of linearly independent paths through a function or program. It is calculated by counting the number of decision points (such as if statements, loops, and logical operators) plus one. A higher cyclomatic complexity indicates more complex logic and typically correlates with increased difficulty in testing and understanding the code.  
 
 
 
@@ -235,7 +235,7 @@ Here is a concrete example. To test the `/challenge` command handler, you'd need
 ## Q & A
 **Are the differences considered "architectural" or "design" in nature?**   
 **Short** Both. And we're splitting hairs here; it doesn't really matter.   
-**Long**: The modular-architecture approach could be considered either *Architectural* or *Design*. We could say *architectural* because we set the *structure and organization* of the Discord Bot. We established the architecture of the Bog. However, we could also say *Design* because the fundamental architecture of how to get a Discored Bot to work with Discord wasn't changed. For example, we did not change the fact that Bot needs to communicate via JSON over HTTPS to the Discord Platform where Discord Applications are registered. The topology of the system is untouched; the higher level architecture established by Discord still determines the lay of the land.  
+**Long**: The modular-architecture approach could be considered either *Architectural* or *Design*. We could say *architectural* because we set the *structure and organization* of the Discord Bot. We established the architecture of the Bot. However, we could also say *Design* because the fundamental architecture of how to get a Discored Bot to work with Discord wasn't changed. For example, we did not change the fact that Bot needs to communicate via JSON over HTTPS to the Discord Platform where Discord Applications are registered. The topology of the system is untouched; the higher level architecture established by Discord still determines the lay of the land.  
 
 **How can there be *high coupling* with other "things" when there is only one "thing"?**   
 The confusion comes from what we count as a _"thing."_ We typically examine coupling at the level of: classes, modules, packages, components, and functions. We should NOT use a *file* as our *unit of measurement* when examining Coupling. The monolith's design has high coupling, even if the coupling is implicit and hidden within the file. The coupling is present and poor.  
