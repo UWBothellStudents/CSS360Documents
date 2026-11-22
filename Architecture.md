@@ -102,11 +102,9 @@ The code found in `modular-architecture` is *"modular"*. It is comprised of *dis
 > We want **high cohesion** and **low coupling**.  
 
 ![Cohesion and Coupling](resources/coupling-cohesion.png)  
-> **_Def_: Coupling:** Coupling is the degree of interdependence between software modules--how closely one module relies on another's internal workings, data, or behavior. It reflects how a change in one module might require a change in another.  
+> **_Def_: Coupling:** Coupling is the degree of interdependence between software modules--how closely one module relies on another's internal workings, data, or behavior. It reflects how a change in one module might require a change in another. High coupling is bad because it tightly binds components together, making systems fragile, difficult to maintain, and resistant to change, whereas low coupling promotes modular, flexible, and maintainable software.
 
-High coupling is bad because it tightly binds components together, making systems fragile, difficult to maintain, and resistant to change, whereas low coupling promotes modular, flexible, and maintainable software. 
-
-Coupling is about how much one piece of code depends on the internals of another. Typically, high coupling design results in:      
+Typically, high coupling design results in:      
 - **Ripple effects**, where a change in one piece forces changes in others
 - **Fragile code**, where small edits break distant parts of the system without warning
 - **Difficulty testing**, since a piece cannot be exercised without dragging its dependencies along
@@ -142,7 +140,6 @@ Analyzing and Understanding Cohesion/Coupling:
 - Could one command be tested without loading the others?
 
 ### UML Component Diagram
-Components are drawn as boxes, and the interfaces are shown in "ball-and-socket" (lollipop) notation. A circle (the ball) means "this component provides this interface," and a half-circle (the socket) means "this component requires it." A dashed arrow from one component to another is a dependency. 
 
 > **UML component diagram:** Components are drawn as boxes, and the interfaces are shown in "ball-and-socket" (lollipop) notation. A circle (the ball) means "this component *provides* this interface," and a half-circle (the socket) means "this component *requires* it." A dashed arrow from one component to another is a dependency.  
 
@@ -218,12 +215,7 @@ Components are drawn as boxes, and the interfaces are shown in "ball-and-socket"
 - Core behavior can be tested without the web framework or network
 - Small, fast tests make failures easy to diagnose and encourage more testing
 
-Here is a concrete example. To test the `/challenge` command handler, you'd need to:
-  - Load the entire `orig/app.js`   
-  - Import Express and Discord middleware  
-  - Mock `getRandomEmoji()` and `DiscordRequest()` from `utils.js`  
-  - Provide a fake `req` object with `req.body`, `req.body.member`, etc.  
-  - Summary: In actuality, we can't easily isolate the handler. We're testing it within the full HTTP request/response flow.  
+For example, testing the `/challenge` command handler in the monolithic version requires loading the entire `app.js`, importing Express and Discord middleware, mocking multiple utility functions, and providing fake `req` objects—testing it within the full HTTP request/response flow rather than in isolation.  
 
 ## Cyclomatic Complexity 
 > **_Def_: Cyclomatic Complexity:** Cyclomatic Complexity is a quantitative measure of the number of linearly independent paths through a function or program. It is calculated by counting the number of decision points (such as if statements, loops, and logical operators) plus one. A higher cyclomatic complexity indicates more complex logic and typically correlates with increased difficulty in testing and understanding the code.  
@@ -234,8 +226,8 @@ Here is a concrete example. To test the `/challenge` command handler, you'd need
 
 ## Q & A
 **Are the differences considered "architectural" or "design" in nature?**   
-**Short** Both. And we're splitting hairs here; it doesn't really matter.   
-**Long**: The modular-architecture approach could be considered either *Architectural* or *Design*. We could say *architectural* because we set the *structure and organization* of the Discord Bot. We established the architecture of the Bot. However, we could also say *Design* because the fundamental architecture of how to get a Discored Bot to work with Discord wasn't changed. For example, we did not change the fact that Bot needs to communicate via JSON over HTTPS to the Discord Platform where Discord Applications are registered. The topology of the system is untouched; the higher level architecture established by Discord still determines the lay of the land.  
+**Short:** Both. And we're splitting hairs here; it doesn't really matter.   
+**Long:** The modular-architecture approach could be considered either *Architectural* or *Design*. We call it *architectural* because we set the *structure and organization* of the Discord Bot. However, the fundamental architecture of how a Discord Bot communicates with Discord via JSON over HTTPS remains unchanged—we didn't alter the topology, only how we organize the code within it.  
 
 **How can there be *high coupling* with other "things" when there is only one "thing"?**   
 The confusion comes from what we count as a _"thing."_ We typically examine coupling at the level of: classes, modules, packages, components, and functions. We should NOT use a *file* as our *unit of measurement* when examining Coupling. The monolith's design has high coupling, even if the coupling is implicit and hidden within the file. The coupling is present and poor.  
