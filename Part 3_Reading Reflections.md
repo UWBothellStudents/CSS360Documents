@@ -6,9 +6,11 @@ This section's overall theme is **Project Management** as we examine techniques 
 ### Slide Decks
 
 * <a href="#3.3">3.3 System Models</a>  
-* <a href="#3.4">3.4 Brainstorming & Estimation</a>  
+* <a href="#3.4">3.4 Brainstorming</a>
+* <a href="#3.45">3.45 Estimation Techniques</a>  
 * <a href="#3.x">3.x Requirements</a>   
-* <a href="#3.5">3.5 Project Management & Testing</a>
+   * <a href="#definition-of-done-dod">Definition of Done</a>
+* <a href="#3.5">3.5 Project Management</a>
 * <a href="#3.6">3.6 Security</a>
 
 ### Reading
@@ -184,7 +186,7 @@ Classical structured analysis emphasizes that process and data are separate, and
 
 <a id="3.4"></a>
 
-## 3.4 Brainstorming & Estimation  
+## 3.4 Brainstorming  
 
 ### Brainstorming Rules
 
@@ -220,6 +222,10 @@ Classical structured analysis emphasizes that process and data are separate, and
 
 11. **Have Fun**  
     Create a positive and enjoyable atmosphere. Fun can spark creativity and lead to better ideas.
+
+<a id="3.45"></a>
+
+## 3.45 Estimation Techniques  
 
 ### Article: Project Buffer Overflow (by IM Wright)  
 To estimate, use historical completion rate.  
@@ -286,11 +292,12 @@ Anchoring happens when the first number spoken, or the loudest voice, dominates 
 **How do Hofstadter's Law and Parkinson's Law differ?**  
 Hofstadter's Law says it always takes longer than you expect, even when you account for Hofstadter's Law. Parkinson's Law says work expands to fill the time available, regardless of the actual effort required, so too much slack is also a problem. 
 
-> **Hofstadter's law**: It always takes longer than you expect, even when you take into account Hofstadter's law.  
+> **Hofstadter's law**:  
+> * It always takes longer than you expect, even when you take into account Hofstadter's law.  
 
 > **Parkinson's Law**:   
 > * Work expands so as to fill the time available for its completion.  
-> * The number of workers within public administration tends to grow, regardless of the amount of work to be done.
+> * The core idea is that if you allocate more time than necessary for a task, the task will grow in complexity or take longer to complete, often due to procrastination, overthinking, or unnecessary perfectionism.
 
 **What does Brooks's Law say, and why does it hold?**  
 Brooks's Law says that adding people to a late project makes it later. New people must be brought up to speed and add communication overhead, which slows the people already doing the work.
@@ -307,26 +314,21 @@ You give an optimistic (O), most likely (M), and pessimistic (P) value and combi
 **What are the main steps in a round of Planning Poker?**  
 The product owner presents a story and answers questions, then each person privately picks a card from a Fibonacci-style scale (1, 2, 3, 5, 8, 13, 21) and everyone reveals at once. The highest and lowest voters explain their reasoning, and the team re-votes until estimates converge, then records the result and moves on.
 
-**What are the "reference story" and the "parking lot" in planning poker?**
-
+**What are the "reference story" and the "parking lot" in planning poker?**  
 The *reference story* is a small, familiar story agreed on as a baseline (for example, "this is a 2") that other stories are compared with. The *parking lot* is where a story goes if the team cannot converge, since it probably needs more detail or should be split.
 
-**How are story points and T-shirt sizing similar, and how do they differ?**
-
+**How are story points and T-shirt sizing similar, and how do they differ?**  
 Both are relative sizing methods that avoid committing to exact hours or dates. T-shirt sizing (small, medium, large) is quick and coarse, so it is used for roadmapping, while story points use a numeric scale for finer relative sizing, often with planning poker.
 
-**Why is adding a buffer a poor technique, and what is a better alternative?**
-
+**Why is adding a buffer a poor technique, and what is a better alternative?**  
 A buffer tends to be bigger for inexperienced estimators, so it hides poor estimates instead of improving them. Throughput and velocity-based forecasting is better because it uses the team's historical data, though it requires a bit of process.
 
-**What is the 80-20 rule in estimation, and how can negotiation help?**
-
+**What is the 80-20 rule in estimation, and how can negotiation help?**  
 The [80-20 rule](https://vkestimatingsolutions.com/2016/05/20/8020-rule-applied-to-estimating-effort/) says that 80% of the work takes 20% of the time, while the last 20% of the work takes 80% of the time. This is also known as the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle).  
 
 > One way to mitigate expensive requests is to *negotiate*. For example, you can offer to deliver only 80% of the ask for some fraction of the full, original cost.  
 
-**How do sampling and the tracer bullet approach help with estimation?**
-
+**How do sampling and the tracer bullet approach help with estimation?**  
 Sampling means measuring how long a portion of the work takes and then scaling that up to the whole. A tracer bullet builds a thin end-to-end slice first, which flushes out hidden gotchas and complexity before the full estimate is trusted.
 
 <a id="3.x"></a>
@@ -570,7 +572,7 @@ Consider these:
 **"When a user submits an invalid choice, the bot replies with 'The choice was invalid. Please pick from one of these valid options: rock, paper, scissors.'"** PASS! This is effectively a test case because of the exact text. A tester can objectively say the feature does or does not do what is expected. Use this level of detail when the exact wording is the requirement, not by default.
 
 <a id="3.5"></a>
-## 3.5 Project Management & Testing
+## 3.5 Project Management
 
 ### The Mythical Man-Month (Chapter 2)
 
@@ -585,72 +587,69 @@ Brooks argues that software projects are frequently underestimated because peopl
 * Software projects often suffer from optimism about deadlines and underestimate unforeseen complexities. Brooks emphasizes the importance of contingency planning and realistic scheduling.  
 * The Second-System Effect: Brooks warns that engineers often over-design their second system, incorporating excessive features learned from their first project, leading to bloated, delayed, and overly complex systems.
 
-**A somewhat controversial or extreme claim**
-
+**A somewhat controversial or extreme claim**  
 The most famous and controversial claim from the chapter is:
 
 > "Adding manpower to a late software project makes it later."
 
 This claim, which later became known as **Brooks's Law**, runs counter to the common-sense belief that adding more workers should always help a project finish sooner. Brooks argues that onboarding and communication costs can outweigh any productivity gains from the additional personnel.
 
-**Arguable given today's software engineering**
-
+**Arguable given today's software engineering**  
 Software projects today are often organized around smaller autonomous teams and modular architectures that can make parallel development more practical. Nevertheless, Brooks's core observation about onboarding costs, communication overhead, and the limits of dividing knowledge-intensive work remains widely accepted.
 
-**Q\&A**
+#### Brooks: Mythical Man-Month Q \& A
 
-1. **Brooks argues that two things are not interchangeable. What are those? Why does that impact estimation?**  
-   Brooks argues that **effort and elapsed time** are not interchangeable. Here, effort means the "Total Cost" in person-months needed to complete everything. Elapsed time = Total Cost / People.  A project requiring 12 person-months of effort cannot necessarily be completed by 12 people in one month because many tasks must be performed sequentially and because additional people create communication and coordination overhead, which makes schedule estimation more complex. There is also no direct relationship between Effort and Productivity, especially when we consider the broad range of people and their experience. It can be a huge effort to implement a relatively small feature; it may take a long time to discover a fix to a relatively small bug.
+**Brooks argues that two things are not interchangeable. What are those? Why does that impact estimation?**  
+Brooks argues that **effort and elapsed time** are not interchangeable. Here, effort means the "Total Cost" in person-months needed to complete everything. Elapsed time = Total Cost / People.  A project requiring 12 person-months of effort cannot necessarily be completed by 12 people in one month because many tasks must be performed sequentially and because additional people create communication and coordination overhead, which makes schedule estimation more complex. There is also no direct relationship between Effort and Productivity, especially when we consider the broad range of people and their experience. It can be a huge effort to implement a relatively small feature; it may take a long time to discover a fix to a relatively small bug.
 
-2. **Is Brooks's Law still 100% valid today? When is it more or less applicable?**  
-   Brooks's Law is not 100% valid in every situation today, but its core insight remains relevant. It is most applicable when new developers must be trained, when work is highly interconnected, or when the project is already in trouble, and it is less applicable when work can be divided into largely independent tasks and new team members can contribute immediately.
+**Is Brooks's Law still 100% valid today? When is it more or less applicable?**   
+Brooks's Law is not 100% valid in every situation today, but its core insight remains relevant. It is most applicable when new developers must be trained, when work is highly interconnected, or when the project is already in trouble, and it is less applicable when work can be divided into largely independent tasks and new team members can contribute immediately.
 
-3. **Is optimism still the primary source of inaccurate estimates? What might also contribute to inaccuracies?**  
-   Optimism continues to be a major source of estimation error because people tend to assume that work will proceed without significant obstacles. Other contributors include changing requirements, technical debt, hidden complexity, incomplete requirements, organizational dependencies, staffing changes, and pressure from stakeholders to commit to aggressive schedules.
+**Is optimism still the primary source of inaccurate estimates? What might also contribute to inaccuracies?**  
+Optimism continues to be a major source of estimation error because people tend to assume that work will proceed without significant obstacles. Other contributors include changing requirements, technical debt, hidden complexity, incomplete requirements, organizational dependencies, staffing changes, and pressure from stakeholders to commit to aggressive schedules.
 
-4. **Brooks argues that testing is the most mis-scheduled part of programming. How much proportional time does Brooks schedule for Coding vs Testing?**  
-   Brooks argues that testing is often severely underestimated and suggests that ***coding typically accounts for about one-sixth*** of the schedule, while component testing and system testing together account for roughly half, while planning accounts for the remaining third. His recommendation was intended to counter the common assumption that coding is the majority of the work.
+**Brooks argues that testing is the most mis-scheduled part of programming. How much proportional time does Brooks schedule for Coding vs Testing?**  
+Brooks argues that testing is often severely underestimated and suggests that ***coding typically accounts for about one-sixth*** of the schedule, while component testing and system testing together account for roughly half, while planning accounts for the remaining third. His recommendation was intended to counter the common assumption that coding is the majority of the work.
 
-5. **What modern Testing technique do we use to help address the amount of time spent testing after development is done?**  
-   Today, Testing and Development are done hand-in-hand, together with the deliverable. Furthermore, automated testing work can be done even before coding. This modern approach, automated testing, is coupled with Continuous Integration and Continuous Delivery (CI/CD) pipelines. By running unit tests, integration tests, and regression tests continuously throughout development, teams can discover defects earlier and reduce the large testing phase that traditionally occurred after coding was completed.
+**What modern Testing technique do we use to help address the amount of time spent testing after development is done?**  
+Today, Testing and Development are done hand-in-hand, together with the deliverable. Furthermore, automated testing work can be done even before coding. This modern approach, automated testing, is coupled with Continuous Integration and Continuous Delivery (CI/CD) pipelines. By running unit tests, integration tests, and regression tests continuously throughout development, teams can discover defects earlier and reduce the large testing phase that traditionally occurred after coding was completed.
 
-6. **If a project is behind schedule today, what actions should be tried before adding more developers, and how do those actions compare with Brooks's recommendations?**  
-   Before adding developers, teams should identify bottlenecks, reduce scope, remove low value features, automate repetitive work, improve requirements clarity, and focus effort on the highest risk tasks. For heaven's sake, one could even consider moving the delivery date. Teams will always try to improve efficiency, but this doesn't always mean "working smarter." Often times the best way to improving efficiency is to automate\! People's level of efficiency is limited.
+**If a project is behind schedule today, what actions should be tried before adding more developers, and how do those actions compare with Brooks's recommendations?**  
+Before adding developers, teams should identify bottlenecks, reduce scope, remove low value features, automate repetitive work, improve requirements clarity, and focus effort on the highest risk tasks. For heaven's sake, one could even consider moving the delivery date. Teams will always try to improve efficiency, but this doesn't always mean "working smarter." Often times the best way to improving efficiency is to automate\! People's level of efficiency is limited.
 
-### Calling the Shots (Chapter 8)
+### Books: Calling the Shots (Chapter 8)
 
-**Summary** 
-
+#### Summary  
 Brooks examines the challenge of software estimation and argues that reliable schedules must be based on empirical data rather than optimism or intuition. He reviews productivity data from several software projects and observes that programming effort grows nonlinearly with system size, that *coding itself represents only a fraction of total project work*, and that communication overhead and organizational complexity significantly affect productivity. Brooks's central message is that meaningful estimation requires collecting and **analyzing historical project** data because software development is too complex to estimate accurately through judgment alone. 
 
-**A somewhat controversial or extreme claim**
-
+**A somewhat controversial or extreme claim**  
 One of the more striking claims in the chapter is that productivity can vary dramatically based on communication demands and project structure, with some studies showing programmers producing several times more output in low-communication environments than in highly coordinated projects. The implication that communication overhead can overwhelm the benefits of additional personnel can feel extreme to those who assume larger teams naturally produce software faster.
 
-**What might be different or arguably wrong today?**
-
+**What might be different or arguably wrong today?**  
 Brooks relies heavily on lines of code and instruction counts as measures of software size, whereas contemporary teams often think in terms of features, business value, user outcomes, or flow metrics. Many organizations today are skeptical of long-range software estimates and instead favor iterative forecasting approaches used in Agile and Lean development.
 
-**Questions to Discuss**
+#### Questions to Discuss
 
-1. **What is Brooks's argument for how software estimation should be done?**  
-   Brooks argues that software estimation should be based on empirical evidence from past projects rather than intuition, optimism, or management pressure. He believes organizations should collect productivity and schedule data so future estimates can be grounded in actual experience rather than wishful thinking.  
-2. **If coding represents only a fraction of total project effort, why do managers and stakeholders often focus so heavily on coding productivity?**  
-   Coding is the most visible part of software development, making it easier to observe and measure than activities such as requirements analysis, design, testing, integration, communication, and project coordination. As a result, stakeholders often overestimate the impact of coding speed and underestimate the effort consumed by all the supporting work required to deliver a successful system.  
-3. **How relevant are Brooks's observations about communication overhead now that teams have tools such as GitHub, Microsoft Teams, and modern collaboration platforms?**  
-   Brooks's observations remain highly relevant because communication challenges arise from coordination and dependencies, not just the mechanics of exchanging information. Modern tools make communication faster and more transparent, but large teams still face significant overhead when aligning decisions, integrating work, and managing shared understanding.  
-4. **Does the widespread use of Agile methodologies make software estimation easier, or does it simply change the way uncertainty is managed?**  
-   Agile generally does not eliminate estimation difficulty; instead, it changes how uncertainty is handled by emphasizing short iterations, frequent feedback, and continual replanning. Rather than attempting to predict an entire project accurately upfront, Agile teams focus on improving forecasts as new information becomes available.
+**What is Brooks's argument for how software estimation should be done?**  
+Brooks argues that software estimation should be based on empirical evidence from past projects rather than intuition, optimism, or management pressure. He believes organizations should collect productivity and schedule data so future estimates can be grounded in actual experience rather than wishful thinking.  
 
-### Hatching a Catastrophe (Chapter 14)
+**If coding represents only a fraction of total project effort, why do managers and stakeholders often focus so heavily on coding productivity?**  
+Coding is the most visible part of software development, making it easier to observe and measure than activities such as requirements analysis, design, testing, integration, communication, and project coordination. As a result, stakeholders often overestimate the impact of coding speed and underestimate the effort consumed by all the supporting work required to deliver a successful system.  
 
-**Summary**
+**How relevant are Brooks's observations about communication overhead now that teams have tools such as GitHub, Microsoft Teams, and modern collaboration platforms?**  
+Brooks's observations remain highly relevant because communication challenges arise from coordination and dependencies, not just the mechanics of exchanging information. Modern tools make communication faster and more transparent, but large teams still face significant overhead when aligning decisions, integrating work, and managing shared understanding.  
 
+**Does the widespread use of Agile methodologies make software estimation easier, or does it simply change the way uncertainty is managed?**  
+Agile generally does not eliminate estimation difficulty; instead, it changes how uncertainty is handled by emphasizing short iterations, frequent feedback, and continual replanning. Rather than attempting to predict an entire project accurately upfront, Agile teams focus on improving forecasts as new information becomes available.
+
+### Brooks: Hatching a Catastrophe (Chapter 14)
+
+#### Summary  
 Brooks argues that major project delays rarely result from a single disaster; instead, they emerge gradually through the accumulation of many small schedule slips that are ignored or underestimated. He emphasizes the importance of defining sharp, measurable milestones because vague notions such as "almost finished" obscure real progress and conceal delays. Brooks advocates the use of critical-path and PERT-style scheduling to **make dependencies visible**, identify which delays truly matter, and prevent teams from rationalizing lost time. Just making the chart can be of more value than the chart itself. He also discusses the organizational tendency to **hide problems from management**, stressing that leaders need reliable status information without automatically intervening. He recommends disciplined tools and process to **expose early warning signs** before a project becomes *a year late* "one day at a time."
 
 Critical Path: The longest path in a project. If it is delayed, the entire project is delayed.
 
-PERT: the Project Evaluation and Review Technique is a valuable tool for effective project management. It helps teams visualize the sequence of tasks, understand dependencies, and identify the critical path for timely project completion. It is a diagram showing: Tasks, Dependencies between tasks, Expected durations, and Critical paths through the project. It can look like an activity sequence diagram. 
+PERT: the Project Evaluation and Review Technique is a valuable tool for effective project management *(or at least it used to be, but not so much today)*. It helps teams visualize the sequence of tasks, understand dependencies, and identify the critical path for timely project completion. It is a diagram showing: Tasks, Dependencies between tasks, Expected durations, and Critical paths through the project. It can look like an activity sequence diagram. 
 
 The following PERT diagram shows that BOTH Database Design and UI Design need to be complete before Integration Testing begins. A delay in either impacts the release.
 ```
@@ -663,29 +662,88 @@ Requirements ┤                     ├─> Integration Testing ──> Release
 
 Brooks concludes with the claim that time dedicated to being a watchdog (an early warning system) can contribute more to overall project success than doing programming tasks. A few people dedicated to schedule visibility and coordination can prevent catastrophic project delays while a few additional programmers may add only marginal productivity. 
 
-**What might be different or arguable today?**
-
+**What might be different or arguable today?**  
 Several aspects of the chapter can be questioned from a modern software engineering perspective:
 
-1. **Heavy reliance on PERT and centralized planning.** Brooks views detailed dependency tracking and milestone management as the primary defense against schedule slippage. Modern Agile, Scrum, and Lean approaches often favor shorter iterations, continuous delivery, and empirical measurement over large upfront network schedules.
+**Heavy reliance on PERT and centralized planning.**  
+Brooks views detailed dependency tracking and milestone management as the primary defense against schedule slippage. Modern Agile, Scrum, and Lean approaches often favor shorter iterations, continuous delivery, and empirical measurement over large upfront network schedules.
 
-2. **Dedicated plans-and-controls groups.** Today's teams often distribute project visibility through tools such as GitHub, Azure DevOps, Jira, automated testing pipelines, dashboards, and observability systems. Many organizations would see a separate, dedicated team doing project-control function work to be bureaucracy causing information lag.
+**Dedicated plans-and-controls groups.**  
+Today's teams often distribute project visibility through tools such as GitHub, Azure DevOps, Jira, automated testing pipelines, dashboards, and observability systems. Many organizations would see a separate, dedicated team doing project-control function work to be bureaucracy causing information lag.
 
-3. **The "hustle" concept.** While Brooks argues that great teams need reserve effort and urgency, modern engineering organizations are more sensitive to burnout. Many teams would argue that sustainable pace generally outperforms a culture of continual extra effort, especially over multi-year projects.
+**The "hustle" concept.**  
+While Brooks argues that great teams need reserve effort and urgency, modern engineering organizations are more sensitive to burnout. Many teams would argue that sustainable pace generally outperforms a culture of continual extra effort, especially over multi-year projects.
 
 That said, the chapter's central warning about gradual schedule erosion remains surprisingly relevant. Anyone who has watched technical debt, deferred defects, or delayed pull requests accumulate has seen Brooks's "one day at a time" phenomenon in action. 
 
-1. **Brooks argues that projects become late through many minor delays rather than major disasters. Is this still the dominant cause of software schedule failure today?**  
-   Yes. While modern projects also face challenges such as changing requirements, technical debt, and organizational complexity, many schedule failures still result from the accumulation of small delays that seem insignificant individually but become substantial over time. 
+**Brooks argues that projects become late through many minor delays rather than major disasters. Is this still the dominant cause of software schedule failure today?**  
+Yes. While modern projects also face challenges such as changing requirements, technical debt, and organizational complexity, many schedule failures still result from the accumulation of small delays that seem insignificant individually but become substantial over time. 
 
-2. **Are sharp, binary milestones a better measure of progress than modern Agile metrics such as story points, velocity, or burndown charts?**  
-   Sharp, binary milestones are often better for determining whether a specific deliverable has actually been completed. But Agile metrics provide better visibility into trends, team capacity, and ongoing progress that is good for predicting future work and delivery dates. In practice, many teams benefit from using both approaches together.
+**Are sharp, binary milestones a better measure of progress than modern Agile metrics such as story points, velocity, or burndown charts?**  
+Sharp, binary milestones are often better for determining whether a specific deliverable has actually been completed. But Agile metrics provide better visibility into trends, team capacity, and ongoing progress that is good for predicting future work and delivery dates. In practice, many teams benefit from using both approaches together.
 
-3. **Do you think Brooks is correct in today's world when he says having a dedicated planning and controls function can contribute more to success than assigning those same people to development work?**  
-   Partially. Brooks's argument still applies to large, complex projects where coordination failures can be more damaging than a lack of coding capacity, but modern tools have reduced the need for a separate planning and controls organization. The underlying need for visibility and coordination remains important.   
+**Do you think Brooks is correct in today's world when he says having a dedicated planning and controls function can contribute more to success than assigning those same people to development work?**  
+Partially. Brooks's argument still applies to large, complex projects where coordination failures can be more damaging than a lack of coding capacity, but modern tools have reduced the need for a separate planning and controls organization. The underlying need for visibility and coordination remains important.   
      
-4. **How does Brooks use the word "Hustle" in the article? How does hustle impact culture and the development process?**  
-   Brooks uses "hustle" to describe the habit of *acting sooner, working harder*, and maintaining reserve effort so that teams can *absorb everyday disruption*s without falling behind schedule. A culture of hustle can increase responsiveness and *accountability*, but if taken too far it can also contribute to stress, burnout, and unsustainable work practices.   
+**How does Brooks use the word "Hustle" in the article? How does hustle impact culture and the development process?**   
+Brooks uses "hustle" to describe the habit of *acting sooner, working harder*, and maintaining reserve effort so that teams can *absorb everyday disruption*s without falling behind schedule. A culture of hustle can increase responsiveness and *accountability*, but if taken too far it can also contribute to stress, burnout, and unsustainable work practices.   
    
+<a id="3.6"></a>
+## 3.6 Security
 
+**What distinguishes a threat from a vulnerability?**  
+A threat is a circumstance that has the potential to cause harm, while a vulnerability is a weakness in the system that could be exploited. An attack is an actual attempt to exploit a vulnerability, and an asset is something of value that is being protected. Keeping these terms apart makes it easier to talk about what could go wrong, where the weakness is, and what to protect.
+
+**In security terminology, what is a mitigation (also called a control)?**  
+A mitigation, or control, is a protective measure that reduces the likelihood of exploitation, such as encryption, input validation, or multi-factor authentication. It differs from an entry point (an area an attacker can reach), an asset (something of value), and an attack (an attempt to exploit a weakness). When drawing an architecture for security analysis, you mark the assets and entry points, then decide which mitigations to apply.
+
+**Why should security be built into every phase of development instead of added at the end?**  
+Late security changes are harder, riskier, and more expensive, since they may require reworking an architecture that was built without security in mind. That is why the Security Development Lifecycle (SDL) integrates security into every phase, from design to deployment and beyond, with practices such as security requirements, design review and threat modeling, security testing, and monitoring and response.
+
+**What is the difference between a white hat hacker and a black hat hacker?**  
+White hat hackers are ethical hackers, often trained and certified, who identify and fix security issues, typically through penetration testing and vulnerability assessments. Black hat hackers exploit weaknesses for malicious purposes such as stealing data or distributing malware, with no permission or legal authority. Blue hat hackers are external professionals who find gaps (sometimes pressuring a company to fix them), and script kiddies are unskilled attackers who use easy scripts.
+
+**Explain what STRIDE is used for?**  
+STRIDE is a way to brainstorm threats by category: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.  
+
+**What is Spoofing?**  
+Spoofing means pretending to be someone else to gain unauthorized access.  A website that imitates a trusted one is also an example of spoofing.
+
+**What is Repudiation?**  
+Repudiation is when one performs some actions that cannot be traced, so the actor can deny accountability. The usual mitigations are secure logging and monitoring that capture enough detail to show who did what. 
+
+**What is the purpose of the DREAD model?**  
+DREAD is a risk-rating model that scores each threat on Damage potential, Reproducibility, Exploitability, Affected users, and Discoverability, so the team can decide which threats to address first. It is used together with STRIDE: STRIDE helps find threats, and DREAD helps prioritize them. A threat tree can help determine the DREAD values.
+
+**What is a threat tree?**  
+A threat tree maps how an attacker might exploit vulnerabilities to reach a harmful objective. The root is the main threat (such as unauthorized access to sensitive data), and the branches and sub-nodes show the methods, steps, and conditions that make it possible. This helps teams find attack pathways, analyze weaknesses systematically, prioritize security work, and see where controls can be applied.
+
+**What describes a Distributed Denial of Service (DDoS) attack?**  
+In a DDoS attack, a large number of compromised machines (often called zombies) send traffic at the same time to overwhelm a target and make it unavailable, which is the Denial of Service category in STRIDE. If all attacks were to come from a single source, it is very easy to defend oneself: you reject request from the one attacker. When the attacks come from many machines, it becomes harder to identify the attacker from regular userus. Defenses against DDoS include rate limiting, traffic filtering, and DDoS mitigation services.  
+
+**What is SQL injection? Which defense best protects an application against SQL injection?**  
+In SQL injection an attacker manipulates a query by injecting malicious code into a SQL query, which can expose, modify, or delete data. It is prevented by prepared statements, input validation, and least-privilege access, in line with the principle to treat all user input as untrusted. Showing detailed database errors would actually help an attacker, which breaks the "fail securely" principle.
+
+**What is a Cross-Site Request Forgery (CSRF) attack?**  
+A CSRF attack occurs when a malicious website tricks a user's browser into sending a request to another website where the user is already logged in. Because the browser automatically includes the user's session cookie, the trusted site may believe the request came from the legitimate user.  
+
+The attacker abuses the fact that a user is already authenticated to a trusted site and tricks that user into executing an unwanted action there. 
+> **Example**:  
+> Imagine you're logged in to your bank. While still logged in, you visit a malicious website. That site secretly submits a form that transfers money from your account. Since your browser automatically sends your bank's authentication cookie, the bank may process the transfer as if you requested it.  
+
+Defenses include special CSRF tokens and checking the Referer header. A CSRF token is a long, random, unpredictable value generated by the trusted website and embedded in forms or requests. When the user submits a request, the token is sent along with it. The server verifies that the token matches the one it originally issued.
+
+CRSF attacks are often confused with XSS, in which an attacker injects malicious scripts into pages viewed by other users, usually to steal cookies, tokens, or data.
+
+**What does the "defense in depth" principle say?**  
+Defense in depth means securing every layer, from the outer perimeter to inner application logic, databases, and APIs, and assuming that any single layer might be breached. Overlapping protections reduce the chance that one failure leads to a full compromise. It reflects the takeaway that good security needs layered defenses, input validation, careful session and data handling, and user education.
+
+**What does the "principle of least privilege" require?**  
+Least privilege limits user and process permissions to the minimum necessary, so that a compromised account or program can reach as little as possible. Once upon a time it was thought that the user would benefit the most by defaulting to full privilege to do everything. But that broadened the attack surface area and resulted in not just more frequent breaches, but more severe breaches. This principle helps prevent privilege escalation (together with role-based access control) and limits damage from attacks like SQL injection. It is related to, but different from, separation of duties, which splits roles among people or components.  
+
+**What does it mean to "fail securely"?**  
+A system that fails securely stays safe when something goes wrong: errors must not reveal sensitive details or provide unintended access. A common practice is to show users generic error messages and to avoid stack traces or database details in responses, while still logging enough detail for monitoring. Detailed errors give attackers useful clues for attacks such as SQL injection.
+
+**What is the difference between static (SAST) and dynamic (DAST) application security testing?**  
+Static analysis (SAST) examines source code without executing it, so it can catch problems such as SQL injection, XSS, buffer overflows, and hard-coded credentials early in development. Dynamic analysis (DAST) tests the running application by simulating attacks and observes how it responds. Interactive testing (IAST) combines both, and a combination of tools is recommended for coverage of code, dependencies, runtime, and deployment configuration.
 
