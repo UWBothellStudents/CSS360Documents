@@ -277,7 +277,22 @@ One might put emphasis on prioritizing must-have features, communicating risk ea
 He recommends calculating a team's historical task completion rate and then estimating a feature by dividing its expected number of tasks by that rate. This approach assumes that work is consistently broken into reasonably similar-sized tasks, that the team has reliable historical data, and that future work resembles the work used to establish the completion rate.
 
 **3\. Wright repeatedly tells readers to "believe the estimate." Why does he think teams and managers struggle to trust estimates that are based on historical data?**  
-He believes people often distrust data-driven estimates because they want to believe they can work faster, work harder, or somehow achieve a better outcome than their historical performance suggests. He argues that this optimism leads managers and engineers to second-guess valid estimates instead of accepting what the data indicates about likely completion dates.
+He believes people often distrust data-driven estimates because they want to believe they can work faster, work harder, or somehow achieve a better outcome than their historical performance suggests. He argues that this optimism leads managers and engineers to second-guess valid estimates instead of accepting what the data indicates about likely completion dates.  
+
+**4\. Wright argues that if you need to shorten a schedule, you should reduce scope rather than assume people can work faster. Do you agree? Why or why not?**  
+Yes, most would agree. Reducing scope is a predictable way to meet a deadline because it directly decreases the amount of work that must be completed, while assuming developers can work significantly faster is often unrealistic. Although productivity can sometimes improve through better tools or processes, those gains are usually smaller and less reliable than delivering a smaller set of features. Focusing on the highest-priority requirements also helps preserve quality and reduce risk.  
+
+**5\. Wright claims that working weekends and applying pressure do not significantly accelerate delivery and may even reduce quality. How consistent is this claim with your own experiences or observations of software projects?**  
+This claim is very consistent with industry observations. Short periods of extra effort can occasionally help a team meet a milestone, but extended overtime can sometimes lead to more bugs, technical debt, and burnout. Developers who are tired tend to make more mistakes, which increases the amount of rework needed later. As a result, any time saved upfront is often lost during testing, debugging, and maintenance.  
+
+**6\. If you were managing a modern Agile team using tools such as GitHub and Scrum boards, which parts of Wright's estimation approach would you adopt and which parts would you reject? Why?**  
+Parts worth adopting are:  
+Wright's emphasis on using historical team performance data, breaking large features into smaller tasks, and making commitments based on evidence rather than optimism. Those practices align well with Agile principles and help create more reliable forecasts.   
+
+Parts worth reconsideration are:  
+Relying solely on counting tasks could be suspect in a Scrum team because tasks can vary greatly in complexity. In Kanban, Wright encourages teams to have each task/card be about the same amount of work. But one could easily run a team where task can have distinct costs where one can combine task breakdowns with metrics such as velocity, cycle time, and throughput.   
+
+In summary, this answer keeps his data-driven mindset while using modern Agile forecasting techniques to improve accuracy.
 
 ### Slide Deck Content
 **What is the _Cone of Uncertainty_, and how should it change the way early estimates are presented?**  
@@ -315,7 +330,7 @@ You give an optimistic (O), most likely (M), and pessimistic (P) value and combi
 The product owner presents a story and answers questions, then each person privately picks a card from a Fibonacci-style scale (1, 2, 3, 5, 8, 13, 21) and everyone reveals at once. The highest and lowest voters explain their reasoning, and the team re-votes until estimates converge, then records the result and moves on.
 
 **What are the "reference story" and the "parking lot" in planning poker?**  
-The *reference story* is a small, familiar story agreed on as a baseline (for example, "this is a 2") that other stories are compared with. The *parking lot* is where a story goes if the team cannot converge, since it probably needs more detail or should be split.
+The *reference story* is a small, familiar story agreed on as a baseline (for example, "this is a 2") that other stories are compared with. The *parking lot* is where a story goes if the team cannot converge after multiple attempts, since it probably needs more detail or should be split. Let's face it, Planning Poker isn't magical; if people cannot come to an agreement then more time is needed. Don't force it.
 
 **How are story points and T-shirt sizing similar, and how do they differ?**  
 Both are relative sizing methods that avoid committing to exact hours or dates. T-shirt sizing (small, medium, large) is quick and coarse, so it is used for roadmapping, while story points use a numeric scale for finer relative sizing, often with planning poker.
@@ -345,7 +360,7 @@ Sampling means measuring how long a portion of the work takes and then scaling t
 * Often apply to the **system as a whole**, not a single user interaction.  
 * Example: *The system must respond within 2 seconds under peak load*.
 
-The user story leans towards a   
+The user story leans towards defining functional requirements, but this  
 
 **User Stories can be used to describe Functional, Non-Functional, and Design Constraints**
 
@@ -379,8 +394,14 @@ It does not need a full specification, only a high-level picture of the project'
 **What is the difference between user requirements and system requirements, and which type of requirement are they?**  
 User requirements have a customer focus, while system requirements have a developer focus (more detailed, but not necessarily technical). Both are functional requirements, which describe the functionality or services the system is expected to provide and are what cause a customer to want the product.
 
-**Why are imprecise, incomplete, and inconsistent functional requirements a problem?**  
-Ambiguous requirements can be interpreted in different ways, incomplete ones leave out services users need, and inconsistent ones contradict each other. This matters because the definition of "Done" is critical to a project's success. In agile projects it is often expressed as test cases, which assumes that the tests themselves are complete.
+**What are some key characteristics of functional requirements**  
+The *acceptance criteria* are specific to a feature. They need to be precise, complete, and consistent. This can be achieved in many ways, including using the following techniques:  
+* Use User Stories to explain context, goal, and benefit of what should be done    
+* Explicitly state what is **NOT** going to get done  
+* Provide a list of Test Scenarios  
+* Have a Definition of Done, a checklist that all features must satisfy before being understood as complete (e.g. Code reviewed by the Subject Matter Expert, merged into the integration branch, Integration Tests pass, etc).  
+
+The risks of failing are obvious: Ambiguous requirements can be interpreted in different ways, incomplete ones leave out services users need, and inconsistent ones contradict each other. 
 
 **What does the aircraft reliability example show about non-functional requirements?**  
 If a functional requirement is not met, users can usually find a work-around, but for an unreliable aircraft system the only "work-arounds" are to pray, scream, or panic. It shows that non-functional requirements such as reliability, response time, and security can be more critical than functional ones, and that failing them can make customers stop using a product.
@@ -722,7 +743,7 @@ A threat tree maps how an attacker might exploit vulnerabilities to reach a harm
 In a DDoS attack, a large number of compromised machines (often called zombies) send traffic at the same time to overwhelm a target and make it unavailable, which is the Denial of Service category in STRIDE. If all attacks were to come from a single source, it is very easy to defend oneself: you reject request from the one attacker. When the attacks come from many machines, it becomes harder to identify the attacker from regular userus. Defenses against DDoS include rate limiting, traffic filtering, and DDoS mitigation services.  
 
 **What is SQL injection? Which defense best protects an application against SQL injection?**  
-In SQL injection an attacker manipulates a query by injecting malicious code into a SQL query, which can expose, modify, or delete data. It is prevented by prepared statements, input validation, and least-privilege access, in line with the principle to treat all user input as untrusted. Showing detailed database errors would actually help an attacker, which breaks the "fail securely" principle.
+In SQL injection an attacker manipulates a query by injecting malicious code into a SQL query, which can expose, modify, or delete data. It is prevented by prepared statements, input validation, and least-privilege access, in line with the principle to treat all user input as untrusted. Stored procedures can also prevent SQL injection when they use parameterized queries, but they are not inherently safe from SQL injection. A common mistake made by developers is to show detailed database errors so that the user knows what went wrong and to help with debugging. However, this actually helps an attacker, which breaks the "fail securely" principle.
 
 **What is a Cross-Site Request Forgery (CSRF) attack?**  
 A CSRF attack occurs when a malicious website tricks a user's browser into sending a request to another website where the user is already logged in. Because the browser automatically includes the user's session cookie, the trusted site may believe the request came from the legitimate user.  
